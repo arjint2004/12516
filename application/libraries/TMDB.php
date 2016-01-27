@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
 /**
  * 	TMDB API v3 PHP class - wrapper to API version 3 of 'themoviedb.org
  * 	API Documentation: http://help.themoviedb.org/kb/api/about-3
@@ -28,8 +28,21 @@
  * 	@author Alvaro Octal
  * 	@link {https://github.com/Alvaroctal/TMDB-PHP-API}
  */
+include("data/TMDBObject.php");
+include("data/Movie.php");
+include("data/TVShow.php");
+include("data/Season.php");
+include("data/Episode.php");
+include("data/Person.php");
+include("data/Role.php");
+include("data/roles/MovieRole.php");
+include("data/roles/TVShowRole.php");
+include("data/Collection.php");
+include("data/Company.php");
+include("data/Genre.php");
+include("data/config/Configuration.php");
 
-class TMDB{
+class tmdb{
 
 	#@var string url of API TMDB
 	const _API_URL_ = "http://api.themoviedb.org/3/";
@@ -56,8 +69,7 @@ class TMDB{
 	 * 	@param string $apikey The API key token
 	 * 	@param string $lang The languaje to work with, default is english
 	 */
-	public function __construct($apikey, $lang = 'en', $debug = false) {
-
+	public function __construct($apikey='', $lang = 'en', $debug = false) {
 		// Sets the API key
 		$this->setApikey($apikey);
 	
@@ -84,7 +96,7 @@ class TMDB{
 	 * 	@param string $apikey
 	 * 	@return void
 	 */
-	private function setApikey($apikey) {
+	public function setApikey($apikey) {
 		$this->_apikey = (string) $apikey;
 	}
 

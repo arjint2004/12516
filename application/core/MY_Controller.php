@@ -2,8 +2,10 @@
 class My_controller extends CI_Controller {
     public function __construct() {
         parent::__construct();
+		
 		$this->load->helper('url');
-		$this->load->library('TMDB');
+		$this->load->library('tmdb');
+		$this->tmdb->setApikey($this->config->item('tmdb_api_key'));
 		$this->_init();
     }
 	
