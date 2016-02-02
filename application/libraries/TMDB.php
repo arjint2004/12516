@@ -42,7 +42,7 @@ include("data/Company.php");
 include("data/Genre.php");
 include("data/config/Configuration.php");
 
-class tmdb{
+class tmdb extends CI_Controller{
 
 	#@var string url of API TMDB
 	const _API_URL_ = "http://api.themoviedb.org/3/";
@@ -70,6 +70,7 @@ class tmdb{
 	 * 	@param string $lang The languaje to work with, default is english
 	 */
 	public function __construct($apikey='', $lang = 'en', $debug = false) {
+		
 		// Sets the API key
 		$this->setApikey($apikey);
 	
@@ -342,19 +343,21 @@ class tmdb{
 		return json_decode($response);
 	}
 	public function getMovieByGenreDb($id=28,$page=1){
+		$CI=& get_instance();
 		$page=$page-1;
 		$per_page=20;
 		$start=$page*$per_page;
 		$get_data_sqlc="SELECT count(*) c FROM movie_data WHERE id_genre  LIKE '%".$id."%' AND type='movie'";					
-		$hc=mysql_query($get_data_sqlc);
-		$resc=mysql_fetch_assoc($hc);
-		$out['total_data']=$resc['c'];
+		$hc=$CI->db->query($get_data_sqlc)->result_array();
 		
+		$out['total_data']=$hc[0]['c'];
+
 		$get_data_sql="SELECT original FROM movie_data s WHERE id_genre  LIKE '%".$id."' AND type='movie' LIMIT ".$start.",".$per_page."";					
-		$h=mysql_query($get_data_sql);
+		$h=$CI->db->query($get_data_sql)->result_array();
+		
 		$data=array();
-		while($res=mysql_fetch_assoc($h)){
-			$data[]=unserialize($res['original']);
+		foreach($h as $dd=>$dth){
+			$data[]=@unserialize($dth['original']);
 		}
 		$out['results']=$data;	
 		return $out;

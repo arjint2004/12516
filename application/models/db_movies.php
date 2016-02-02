@@ -1,0 +1,1 @@
+<?phpClass Db_movies extends CI_Model{	function getMovie($id=null){		$this->db->query("SELECT count(*) c FROM movie_data WHERE id_genre  LIKE '%".$id."%' AND type='movie'");	}}?>

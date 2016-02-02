@@ -20,7 +20,8 @@ class Movies extends My_controller {
 	}
 	public function genre($id_genre=0,$Page=1)
 	{
-		$data['genre']=$tmdb->getMovieByGenreDb($id_genre,$Page);
-		$this->load->view('themes/'.THEMESET.'/movie/home',$data);
+		
+		$data['genre']=$this->tmdb->getMovieByGenreDb($id_genre,$Page);
+		$this->load->view('themes/'.THEMESET.'/movie/genre',$data);
 	}
 }
