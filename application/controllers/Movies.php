@@ -18,6 +18,10 @@ class Movies extends My_controller {
 	{
 		$this->load->view('themes/'.THEMESET.'/movie/home');
 	}
+	public function dmca()
+	{
+		echo "shfshdhfkdsjf";
+	}
 	public function genre($id_genre=0,$Page=1)
 	{
 		
