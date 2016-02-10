@@ -69,10 +69,9 @@ class tmdb extends CI_Controller{
 	 * 	@param string $apikey The API key token
 	 * 	@param string $lang The languaje to work with, default is english
 	 */
-	public function __construct($apikey='', $lang = 'en', $debug = false) {
-		
+	 public function __construct($apikey, $lang = 'en', $debug = false) {
 		// Sets the API key
-		$this->setApikey($apikey);
+		 $this->setApikey($apikey['apikey']);
 	
 		// Setting Language
 		$this->setLang($lang);
@@ -407,7 +406,7 @@ class tmdb extends CI_Controller{
 	private function _call($action, $appendToResponse){
 
 		$url = self::_API_URL_.$action .'?api_key='. $this->getApikey() .'&language='. $this->getLang() .'&'.$appendToResponse;
-		// echo $action.'<br>';
+		 // echo $url.'<br>';die;
 		if($action=='tv/'){
 			echo $url; die();
 		}

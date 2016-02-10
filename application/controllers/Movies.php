@@ -6,6 +6,8 @@ class Movies extends My_controller {
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->library('tmdb');
+		$this->tmdb->setApikey($this->config->item('tmdb_api_key'));
 		
 	}
 
