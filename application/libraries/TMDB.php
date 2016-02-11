@@ -61,6 +61,7 @@ class tmdb extends CI_Controller{
 
 	#@var boolean for testing
 	private $_debug;
+	private $CI;
 
 	private $cinmovie=0;
 	/**
@@ -70,8 +71,9 @@ class tmdb extends CI_Controller{
 	 * 	@param string $lang The languaje to work with, default is english
 	 */
 	 public function __construct($apikey, $lang = 'en', $debug = false) {
+		$this->CI=& get_instance();
 		// Sets the API key
-		 $this->setApikey($apikey['apikey']);
+		$this->setApikey($apikey['apikey']);
 	
 		// Setting Language
 		$this->setLang($lang);
@@ -273,7 +275,7 @@ class tmdb extends CI_Controller{
 		//pr($page);die();
 		$ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL, "http://api.themoviedb.org/3/movie/popular?api_key=".$this->getApikey()."&language=".$this->getLang()."&page=".$page."
+		curl_setopt($ch, CURLOPT_URL, "http://api.themoviedb.org/3/movie/top_rated?api_key=".$this->getApikey()."&language=".$this->getLang()."&page=".$page."
 		");
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 		curl_setopt($ch, CURLOPT_HEADER, FALSE);
@@ -342,17 +344,17 @@ class tmdb extends CI_Controller{
 		return json_decode($response);
 	}
 	public function getMovieByGenreDb($id=28,$page=1){
-		$CI=& get_instance();
+		
 		$page=$page-1;
 		$per_page=20;
 		$start=$page*$per_page;
 		$get_data_sqlc="SELECT count(*) c FROM movie_data WHERE id_genre  LIKE '%".$id."%' AND type='movie'";					
-		$hc=$CI->db->query($get_data_sqlc)->result_array();
+		$hc=$this->CI->db->query($get_data_sqlc)->result_array();
 		
 		$out['total_data']=$hc[0]['c'];
 
 		$get_data_sql="SELECT original FROM movie_data s WHERE id_genre  LIKE '%".$id."' AND type='movie' LIMIT ".$start.",".$per_page."";					
-		$h=$CI->db->query($get_data_sql)->result_array();
+		$h=$this->CI->db->query($get_data_sql)->result_array();
 		
 		$data=array();
 		foreach($h as $dd=>$dth){
@@ -971,6 +973,9 @@ class tmdb extends CI_Controller{
 	}
 	
 	
+	public function getBlankImage(){
+		return base_url().'/assets/themes/'.THEMESET.'/images/noback.gif';
+	}
 	public function getbackdtv($movies){
 		if($movies->getPoster()!=''){
 			$backd=$this->getImageURL('w1000').$movies->getPoster();
@@ -1001,15 +1006,16 @@ class tmdb extends CI_Controller{
 		return $tv;
 	}
 	public function getRandTvMovie($type='movie'){
-							
-		$get_data_sql="SELECT original FROM movie_data WHERE  type='".$type."'  ORDER BY RAND() LIMIT 52";
+		$data=array();							
+		$get_data_sql="SELECT original FROM movie_data WHERE  type='".$type."'  ORDER BY RAND() LIMIT 25";
 		// echo $get_data_sql.'<br />';
-		$h=mysql_query($get_data_sql);
-		$data=array();
-		while($res=mysql_fetch_assoc($h)){
-			$data[]=unserialize($res['original']);
+		$h=$this->CI->db->query($get_data_sql)->result_array();
+
+		foreach($h as $dd=>$dth){
+			$data[]=@unserialize($dth['original']);
 		}
-		return $data;
+		$out['results']=$data;	
+		return $out;
 	}
 	public function getContMovieByKeyword(){
 		

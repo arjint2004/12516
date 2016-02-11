@@ -4,7 +4,7 @@
                         <ul>
 
                             <li data-transition="fade" data-slotamount="7" class="slide" data-slide='Rush.'>
-                                <img alt='' src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/images/slides/first-slide.jpg">
+                                <img alt='' src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/images/slides/1.jpg">
                                 <div class="caption slide__name margin-slider" 
                                      data-x="right" 
                                      data-y="80" 
@@ -125,7 +125,7 @@
 
                             <li data-transition="fade" data-slotamount="7" class="slide fading-slide" data-slide='Travel worldwide.
 Create trip film.'>
-                                <img alt='' src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/images/bg-video.jpg">
+                                <img alt='' src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/images/slides/2.jpg">
                                  <div class="caption slide__video" data-x="0" data-y="0" data-autoplay='true'>
                                    <video class="media-element"  autoplay="autoplay" preload='none' loop="loop" muted="" src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/video/TravelIs.mp4" >
                                         <source type="video/webm" src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/video/TravelIs.webm">
@@ -222,7 +222,7 @@ Create trip film.'>
 
                             <li data-transition="fade" data-slotamount="7" class="slide" data-slide='Stop wishing. 
 Start doing.'>
-                                <img alt='' src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/images/slides/next-slide.jpg">
+                                <img alt='' src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/images/slides/3.jpg">
                                  <div class="caption slide__name slide__name--smaller slide__name--specific customin customout" 
                                      data-x="left" 
                                      data-y="160" 

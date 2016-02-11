@@ -6,8 +6,8 @@ class Movies extends My_controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->library('tmdb');
-		$this->tmdb->setApikey($this->config->item('tmdb_api_key'));
+		// $this->load->library('tmdb');
+		// $this->tmdb->setApikey($this->config->item('tmdb_api_key'));
 		
 	}
 
@@ -16,17 +16,47 @@ class Movies extends My_controller {
 	{
 		$this->load->view('themes/'.THEMESET.'/movie/home');
 	}
-	public function home()
+	public function about_us()
 	{
-		$this->load->view('themes/'.THEMESET.'/movie/home');
+		$this->load->view('themes/'.THEMESET.'/movie/about_us');
 	}
 	public function dmca()
 	{
-		echo "shfshdhfkdsjf";
+		$this->load->view('themes/'.THEMESET.'/movie/dmca');
 	}
-	public function genre($id_genre=0,$Page=1)
+	public function home()
 	{
-		
+		$data['movie']=$this->tmdb->getRandTvMovie();
+		$data['tv']=$this->tmdb->getRandTvMovie('tv');
+		$this->load->view('themes/'.THEMESET.'/movie/home',$data);
+	}
+	public function nowplaying($page=1)
+	{
+		$data['title']='Now Playing';
+		$data['nowplay']=$this->tmdb->getMovieNowPlay($page);
+		$this->load->view('themes/'.THEMESET.'/movie/now_palying',$data);
+	}
+	public function popular($page=1)
+	{
+		$data['title']='Popular';
+		$data['nowplay']=$this->tmdb->getMoviePopular($page);
+		$this->load->view('themes/'.THEMESET.'/movie/now_palying',$data);
+	}
+	public function toprated($page=1)
+	{
+		$data['title']='Top rated';
+		$data['nowplay']=$this->tmdb->getMovieTop_rated($page);
+		$this->load->view('themes/'.THEMESET.'/movie/now_palying',$data);
+	}
+	public function upcoming($page=1)
+	{
+		$data['title']='Upcoming';
+		$data['nowplay']=$this->tmdb->getMovieTop_rated($page);
+		$this->load->view('themes/'.THEMESET.'/movie/now_palying',$data);
+	}
+	public function genre($id_genre=0,$Page=1,$genre='')
+	{
+		$data['genrenya']=$genre;
 		$data['genre']=$this->tmdb->getMovieByGenreDb($id_genre,$Page);
 		$this->load->view('themes/'.THEMESET.'/movie/genre',$data);
 	}

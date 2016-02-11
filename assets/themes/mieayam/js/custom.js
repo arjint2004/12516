@@ -355,13 +355,13 @@ function init_Home() {
 
     //4. Rating scrore init
     //Rating star
-    $('.score').raty({
+    /*$('.score').raty({
         width:130, 
         score: 0,
-        path: 'images/rate/',
+        path: 'assets/themes/mieayam/images/rate/',
         starOff : 'star-off.svg',
         starOn  : 'star-on.svg' 
-    });
+    });*/
 
     //5. Scroll down navigation function
     //scroll down
@@ -1058,11 +1058,11 @@ function init_MovieList () {
                 });
 
     //3. Rating scrore init
-    //Rating star
+    //Rating star \assets\themes\mieayam\images\rate
     $('.score').raty({
         width:130, 
         score: 0,
-        path: 'images/rate/',
+        path: 'assets/themes/mieayam/images/rate/',
         starOff : 'star-off.svg',
         starOn  : 'star-on.svg' 
     });
@@ -1114,7 +1114,7 @@ function init_MoviePage () {
     $('.score').raty({
         width:130, 
         score: 5,
-        path: 'images/rate/',
+        path: 'assets/themes/mieayam/images/rate/',
         starOff : 'star-off.svg',
         starOn  : 'star-on.svg' 
     });
@@ -1755,7 +1755,7 @@ function init_Rates () {
                 $('.score').raty({
                     width:130, 
                     score: 0,
-                    path: 'images/rate/',
+                    path: 'assets/themes/mieayam/images/rate/',
                     starOff : 'star-off.svg',
                     starOn  : 'star-on.svg' 
                 });

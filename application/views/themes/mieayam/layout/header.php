@@ -24,26 +24,26 @@
                             <span class="sub-nav-toggle plus"></span>
                             <a href="#">Movie Genre</a>
                             <ul>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/28/1">Action</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/12/1">Adventure</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/16/1">Animation</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/35/1">Comedy</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/80/1">Crime</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/99/1">Documentary</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/18/1">Drama</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/10751/1">Family</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/14/1">Fantasy</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/10769/1">Foreign</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/36/1">History</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/27/1">Horror</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/10402/1">Music</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/9648/1">Mystery</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/10749/1">Romance</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/878/1">Science Fiction</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/10770/1">TV Movie</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/53/1">Thriller</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/10752/1">War</a></li>
-											<li  class="menu__nav-item"><a href="<?php echo base_url();?>genre/37/1">Western</a></li>					
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/28/1/Action">Action</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/12/1/Adventure">Adventure</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/16/1/Animation">Animation</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/35/1/Comedy">Comedy</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/80/1/Crime">Crime</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/99/1/Documentary">Documentary</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/18/1/Drama">Drama</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/10751/1/Family">Family</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/14/1/Fantasy">Fantasy</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/10769/1/Foreign">Foreign</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/36/1/History">History</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/27/1/Horror">Horror</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/10402/1/Music">Music</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/9648/1/Mystery">Mystery</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/10749/1/Romance">Romance</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/878/1/Science_Fiction">Science Fiction</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/10770/1/TV_Movie">TV Movie</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/53/1/Thriller">Thriller</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/10752/1/War">War</a></li>
+											<li  class="menu__nav-item"><a href="<?php echo base_url();?>movies/genre/37/1/Western">Western</a></li>					
 				
                             </ul>
                         </li>
@@ -51,29 +51,29 @@
                             <span class="sub-nav-toggle plus"></span>
                             <a href="#">Movie</a>
                             <ul>
-								<li class="menu__nav-item" ><a href="">Now Playing</a></li>
-								<li class="menu__nav-item" ><a href="">Popular</a></li>
-								<li class="menu__nav-item" ><a href="">Top Rated</a></li>
-								<li class="menu__nav-item" ><a href="">Up Coming</a></li>
+								<li class="menu__nav-item" ><a href="<?php echo base_url();?>movies/nowplaying">Now Playing</a></li>
+								<li class="menu__nav-item" ><a href="<?php echo base_url();?>movies/popular">Popular</a></li>
+								<li class="menu__nav-item" ><a href="<?php echo base_url();?>movies/toprated">Top Rated</a></li>
+								<li class="menu__nav-item" ><a href="<?php echo base_url();?>movies/upcoming">Up Coming</a></li>
                             </ul>
                         </li>
                         <li>
                             <span class="sub-nav-toggle plus"></span>
                             <a href="#">TV SHow</a>
                             <ul>
-								<li class="menu__nav-item" ><a href="">On The Air</a></li>
-								<li class="menu__nav-item" ><a href="">Airing Today</a></li>
-								<li class="menu__nav-item" ><a href="">Top Rated</a></li>
-								<li class="menu__nav-item" ><a href="">Popular</a></li>
+								<li class="menu__nav-item" ><a href="<?php echo base_url();?>tv/on_the_air">On The Air</a></li>
+								<li class="menu__nav-item" ><a href="<?php echo base_url();?>tv/airing_today">Airing Today</a></li>
+								<li class="menu__nav-item" ><a href="<?php echo base_url();?>tv/top_rated">Top Rated</a></li>
+								<li class="menu__nav-item" ><a href="<?php echo base_url();?>tv/popular">Popular</a></li>
                             </ul>
                         </li>
                         <li>
                             <span class="sub-nav-toggle plus"></span>
-                            <a href="">About Us</a>
+                            <a href="<?php echo base_url();?>movies/about_us">About Us</a>
                         </li>
                         <li>
                             <span class="sub-nav-toggle plus"></span>
-                            <a href="">DMCA</a>
+                            <a href="<?php echo base_url();?>movies/dmca">DMCA</a>
                         </li>
                         
                     </ul>

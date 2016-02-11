@@ -101,8 +101,7 @@
         <!-- Form validation -->
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/form.js"></script>
 
-        <!-- Twitter feed -->
-        <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/twitterfeed.js"></script>
+
 
         <!-- Custom -->
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/custom.js"></script>

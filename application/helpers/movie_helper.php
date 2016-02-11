@@ -11,3 +11,19 @@ if (!function_exists('checkExternalFile')) {
 		return $retCode;
 	}
 }
+if (!function_exists('imgreate')) {
+	function imgreate($rtxc)
+		{
+			$rtx=$rtxc/1.6;
+			$img='';
+			for($i=0;$i<5;$i++){
+				if($i<$rtx){
+					$mg='star-on.svg';
+				}else{
+					$mg='star-off.svg';
+				}
+				$img .='<img src="'.base_url().'assets/themes/'.THEMESET.'/images/rate/'.$mg.'" alt="1" title="bad">&nbsp;';
+			}
+			return $img;
+		}
+}

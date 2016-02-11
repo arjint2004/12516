@@ -9977,3 +9977,7 @@ ul#navigation li.mega-menu__nav-item:hover:before {
 ul.sbOptions{
 	max-height:none !important;
 }
+div.movie__images{
+	height:212px;
+	overflow:hidden;
+}

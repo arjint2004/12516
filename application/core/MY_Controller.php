@@ -18,10 +18,11 @@ class My_controller extends CI_Controller {
 		$this->load->section('sidebar', 'themes/'.THEMESET.'/layout/sidebar',$sidebar);
 		$slider=array(
 						'dataslider'=>''
-		);		
+		);
+		$toprated['toprated']=$this->tmdb->getMovieTop_rated(rand(1,10));
 		$this->load->section('slider', 'themes/'.THEMESET.'/layout/slider',$slider);
 		$this->load->section('header', 'themes/'.THEMESET.'/layout/header');
-		$this->load->section('toprated', 'themes/'.THEMESET.'/layout/toprated');
+		$this->load->section('toprated', 'themes/'.THEMESET.'/layout/toprated',$toprated);
 		$this->load->section('search', 'themes/'.THEMESET.'/layout/search');
 		$this->load->section('upcoming', 'themes/'.THEMESET.'/layout/upcoming');
 		$this->load->section('footer', 'themes/'.THEMESET.'/layout/footer');
