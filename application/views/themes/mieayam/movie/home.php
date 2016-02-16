@@ -28,7 +28,7 @@
 
                                     <p class="movie__time"><?php echo $datamovie->release_date;?></p>
 
-                                    <p class="movie__option">Language: <?php echo $datamovie->original_language;?></p>
+                                    <p class="movie__option"><?=getgenrebyid($datamovie->genre_ids);?></p>
                                     
                                     <div class="movie__rate">
                                         <div class="score" style="cursor: pointer; width: 130px;">
@@ -70,7 +70,7 @@
 
                                     <p class="movie__time"><?php echo $datamovie->first_air_date;?></p>
 
-                                    <p class="movie__option">Language: <?php echo $datamovie->original_language;?></p>
+                                    <p class="movie__option"><?=getgenrebyid($datamovie->genre_ids);?></p>
                                     
                                     <div class="movie__rate">
                                         <div class="score" style="cursor: pointer; width: 130px;">

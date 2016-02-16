@@ -60,4 +60,8 @@ class Movies extends My_controller {
 		$data['genre']=$this->tmdb->getMovieByGenreDb($id_genre,$Page);
 		$this->load->view('themes/'.THEMESET.'/movie/genre',$data);
 	}
+	public function search()
+	{
+		$this->load->view('themes/'.THEMESET.'/movie/search');
+	}
 }

@@ -18,17 +18,17 @@
                               <li class="filter-wrap"><a href="#" class="mega-select__filter" data-filter='cinema'>Movie</a></li>
                               <li class="filter-wrap"><a href="#" class="mega-select__filter" data-filter='actors'>TV Series</a></li>
                           </ul>
-
-                          <input name="search-input" type='text' class="select__field">
+						  <?php echo form_open(base_url().'movies/search', array('name'=>'search','id'=>'formsearch','class'=>'formsearch')); ?>
+                          <input name="movie" type='text' class="select__field">
                           
                           <div class="select__btn">
                             <a href="#" class="btn btn-md btn--danger cinema" style="display: inline-block;">Find <span class="hidden-exrtasm">Movie</span></a>
                             <a href="#" class="btn btn-md btn--danger actors">Find <span class="hidden-exrtasm">TV Series</span></a>
                           </div>
-
+						  <?php echo form_close();?>
                           <div class="select__dropdowns">
 
-                              <ul class="select__group cinema">
+                              <!--<ul class="select__group cinema">
                                 <li class="select__variant" data-value='Cineworld'>Cineworld</li>
                                 <li class="select__variant" data-value='Empire'>Empire</li>
                                 <li class="select__variant" data-value='Everyman'>Everyman</li>
@@ -45,7 +45,7 @@
                                 <li class="select__variant" data-value='Jim Carrey'>Jim Carrey</li>
                                 <li class="select__variant" data-value='Adam Sandler'>Adam Sandler</li>
                                 <li class="select__variant" data-value='Ben Stiller'>Ben Stiller</li>
-                              </ul>
+                              </ul>-->
                           </div>
                       </div>
                   </div>

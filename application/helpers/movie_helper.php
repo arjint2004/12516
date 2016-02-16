@@ -27,3 +27,16 @@ if (!function_exists('imgreate')) {
 			return $img;
 		}
 }
+if (!function_exists('getgenrebyid')) {
+	function getgenrebyid($id=array())
+	{
+		$grnout='';
+		$CI = & get_instance();
+		$genre=$CI->session->userdata('genre');
+		foreach($id as $idgen){
+			$grnout .=$genre[$idgen] .' | ';
+		}
+		
+		return $grnout;
+	}
+}

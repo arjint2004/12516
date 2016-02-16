@@ -293,7 +293,9 @@ function init_Home() {
                         //prevent the default behaviour of the link
                         e.preventDefault();
                         $('.select__field').val('');
-           
+						// alert($(this).attr('data-filter'));
+						if($(this).attr('data-filter')=='cinema'){$('input.select__field').attr('name','movie');}
+						if($(this).attr('data-filter')=='actors'){$('input.select__field').attr('name','tv');}          
                         $('.mega-select__filter').removeClass('filter--active');
                         $(this).addClass('filter--active');
                         
