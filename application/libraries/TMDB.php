@@ -196,21 +196,10 @@ class tmdb extends CI_Controller{
 	//------------------------------------------------------------------------------
 
 	public function getGenre(){
-		$ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL, "http://api.themoviedb.org/3/genre/movie/list?api_key=".$this->getApikey()."&language=".$this->getLang()."
-		");
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt($ch, CURLOPT_HEADER, FALSE);
-
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-		  "Accept: application/json"
-		));
-
-		$response = curl_exec($ch);
-		curl_close($ch);
-
+			$response = file_get_contents("http://api.themoviedb.org/3/genre/movie/list?api_key=".$this->getApikey()."&language=".$this->getLang()."");
 			$genre=json_decode($response,true);
+
 			foreach($genre['genres'] as $gnr){
 				$genre2[$gnr['id']]=$gnr['name'];
 			}
@@ -273,7 +262,7 @@ class tmdb extends CI_Controller{
 	}
 	public function getMovieTop_rated($page=1){
 		//pr($page);die();
-		$ch = curl_init();
+		/*$ch = curl_init();
 
 		curl_setopt($ch, CURLOPT_URL, "http://api.themoviedb.org/3/movie/top_rated?api_key=".$this->getApikey()."&language=".$this->getLang()."&page=".$page."
 		");
@@ -285,8 +274,9 @@ class tmdb extends CI_Controller{
 		));
 
 		$response = curl_exec($ch);
-		curl_close($ch);
-		
+		curl_close($ch);*/
+		$response=file_get_contents("http://api.themoviedb.org/3/movie/top_rated?api_key=".$this->getApikey()."&language=".$this->getLang()."&page=".$page."
+		");
 		return json_decode($response);
 	}
 	public function getMoviePopular($page=1){

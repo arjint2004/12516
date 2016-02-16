@@ -24,7 +24,7 @@ class My_controller extends CI_Controller {
 		if(empty($this->session->userdata('genre'))){
 			$genre=$this->tmdb->getGenre();
 			$this->session->set_userdata('genre', $genre);
-			pr($this->session->userdata('genre'));
+			// pr($this->session->userdata('genre'));
 		}
 		
 		$toprated=$this->tmdb->getMovieTop_rated(rand(1,10));

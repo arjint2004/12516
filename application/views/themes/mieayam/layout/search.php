@@ -22,7 +22,7 @@
                           <input name="movie" type='text' class="select__field">
                           
                           <div class="select__btn">
-                            <a href="#" class="btn btn-md btn--danger cinema" style="display: inline-block;">Find <span class="hidden-exrtasm">Movie</span></a>
+                            <a href="#" onclick="$('form#formsearch').submit();" class="btn btn-md btn--danger cinema" style="display: inline-block;">Find <span class="hidden-exrtasm">Movie</span></a>
                             <a href="#" class="btn btn-md btn--danger actors">Find <span class="hidden-exrtasm">TV Series</span></a>
                           </div>
 						  <?php echo form_close();?>

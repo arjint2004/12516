@@ -1,8 +1,8 @@
 <div class="movie-best">
                  <div class="col-sm-10 col-sm-offset-1 movie-best__rating">TOp Rated Movie</div>
                  <div class="col-sm-12 change--col">
-                     <? 
-						 // pr($toprated);die();
+                     <?php
+						  // pr($toprated);
 						foreach($toprated as $dtatop){
 					 	$imgurl=$this->tmdb->getImageURL('w300') . $dtatop->poster_path;
 						// $fileExists = checkExternalFile($imgurl);
@@ -18,7 +18,7 @@
                              <li><span class="best-voted"><?php echo $dtatop->original_title;?></span></li>
                              <li>
                                 <p class="movie__time"><?php echo $dtatop->release_date;?></p>
-                                <p><?=getgenrebyid($dtatop->genre_ids);?></p>
+                                <p><?php echo getgenrebyid($dtatop->genre_ids);?></p>
                                 <!--<p>38 comments</p>-->
                              </li>
                              <li class="last-block">
@@ -26,6 +26,6 @@
                              </li>
                          </ul>
                      </div>
-					 <? } ?>
+					 <?php } ?>
                  </div>
             </div>

@@ -33,8 +33,11 @@ if (!function_exists('getgenrebyid')) {
 		$grnout='';
 		$CI = & get_instance();
 		$genre=$CI->session->userdata('genre');
+		
 		foreach($id as $idgen){
-			$grnout .=$genre[$idgen] .' | ';
+			if(isset($genre[$idgen])){
+				$grnout .=$genre[$idgen] .' | ';
+			}
 		}
 		
 		return $grnout;

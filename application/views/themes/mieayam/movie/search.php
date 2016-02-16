@@ -1,1 +1,3 @@
-tdfhd
+<?php
+pr($_POST);
+?>
