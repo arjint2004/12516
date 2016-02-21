@@ -1145,12 +1145,8 @@ class tmdb extends CI_Controller{
 	
 	public function getterms($type='movie'){
 		$get_data_sql="SELECT * FROM movie_terms WHERE type='".$type."' ORDER BY RAND() LIMIT 30";
-			  // echo $get_data_sql.'<br />';
-			$h=mysql_query($get_data_sql);
-			$data=array();
-			while($res=mysql_fetch_array($h)){
-				$data[]=$res;
-			}	
+			   //s echo $get_data_sql.'<br />';
+			$data=$this->CI->db->query($get_data_sql)->result_array();
 			return $data;
 	}
 	public function savetermsnofile($keywdata='',$type='movie'){

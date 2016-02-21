@@ -51,7 +51,7 @@ class Movies extends My_controller {
 	public function upcoming($page=1)
 	{
 		$data['title']='Upcoming';
-		$data['nowplay']=$this->tmdb->getMovieTop_rated($page);
+		$data['nowplay']=$this->tmdb->getMovieUpcoming($page);
 		$this->load->view('themes/'.THEMESET.'/movie/now_palying',$data);
 	}
 	public function genre($id_genre=0,$Page=1,$genre='')
@@ -62,6 +62,15 @@ class Movies extends My_controller {
 	}
 	public function search()
 	{
-		$this->load->view('themes/'.THEMESET.'/movie/search');
+
+		$this->tmdb->searchterms();
+		if($_GET['type']=='movie'){
+			$movies['movies']=$this->tmdb->searchMovies($_GET['s'],$_GET['page'],'movie');
+		}elseif($_GET['type']=='tv'){
+			$movies['movies']=$this->tmdb->searchMovies($_GET['s'],$_GET['page'],'tv');
+		}else{
+			$movies['movies']=$this->tmdb->searchMovies($_GET['s'],$_GET['page'],'movie');
+		}
+		$this->load->view('themes/'.THEMESET.'/movie/search',$movies);
 	}
 }

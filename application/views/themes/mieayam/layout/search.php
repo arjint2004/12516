@@ -18,8 +18,10 @@
                               <li class="filter-wrap"><a href="#" class="mega-select__filter" data-filter='cinema'>Movie</a></li>
                               <li class="filter-wrap"><a href="#" class="mega-select__filter" data-filter='actors'>TV Series</a></li>
                           </ul>
-						  <?php echo form_open(base_url().'movies/search', array('name'=>'search','id'=>'formsearch','class'=>'formsearch')); ?>
-                          <input name="movie" type='text' class="select__field">
+						  <?php echo form_open(base_url().'movies/search', array('name'=>'search','id'=>'formsearch','class'=>'formsearch','method'=>'get')); ?>
+                          <input name="s" type='text' class="select__field">
+                          <input name="type" type='hidden' id="q_select__field" value="movie">
+                          <input name="page" type='hidden'  value="1">
                           
                           <div class="select__btn">
                             <a href="#" onclick="$('form#formsearch').submit();" class="btn btn-md btn--danger cinema" style="display: inline-block;">Find <span class="hidden-exrtasm">Movie</span></a>

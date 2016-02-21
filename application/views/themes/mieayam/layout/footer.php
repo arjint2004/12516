@@ -1,27 +1,38 @@
     <footer class="footer-wrapper">
             <section class="container">
                 <div class="col-xs-4 col-md-2 footer-nav">
+					<?php
+						$i=0;
+						foreach($this->session->userdata('genre') as $idgen=>$dtgenre){
+							$genre[$i]['nama']=$dtgenre;
+							$genre[$i]['id']=$idgen;
+							$i++;
+						}
+					?>
                     <ul class="nav-link">
-                        <li><a href="#" class="nav-link__item">Cities</a></li>
-                        <li><a href="movie-list-left.html" class="nav-link__item">Movies</a></li>
-                        <li><a href="trailer.html" class="nav-link__item">Trailers</a></li>
-                        <li><a href="rates-left.html" class="nav-link__item">Rates</a></li>
+						<?php foreach($genre as $cx=>$datagenre){
+							if($cx<4){
+						?>
+                        <li><a href="<?php echo base_url("movies/genre/".$datagenre['id']."/1/".$datagenre['nama']."");?>" class="nav-link__item"><?php echo $datagenre['nama'];?></a></li>
+                        <?php } } ?>
                     </ul>
                 </div>
                 <div class="col-xs-4 col-md-2 footer-nav">
                     <ul class="nav-link">
-                        <li><a href="coming-soon.html" class="nav-link__item">Coming soon</a></li>
-                        <li><a href="cinema-list.html" class="nav-link__item">Cinemas</a></li>
-                        <li><a href="offers.html" class="nav-link__item">Best offers</a></li>
-                        <li><a href="news-left.html" class="nav-link__item">News</a></li>
+						<?php foreach($genre as $cx=>$datagenre){
+							if($cx>4 && $cx<9){
+						?>
+                        <li><a href="<?php echo base_url("movies/genre/".$datagenre['id']."/1/".$datagenre['nama']."");?>" class="nav-link__item"><?php echo $datagenre['nama'];?></a></li>
+                        <?php } } ?>
                     </ul>
                 </div>
                 <div class="col-xs-4 col-md-2 footer-nav">
                     <ul class="nav-link">
-                        <li><a href="#" class="nav-link__item">Terms of use</a></li>
-                        <li><a href="gallery-four.html" class="nav-link__item">Gallery</a></li>
-                        <li><a href="contact.html" class="nav-link__item">Contacts</a></li>
-                        <li><a href="page-elements.html" class="nav-link__item">Shortcodes</a></li>
+						<?php foreach($genre as $cx=>$datagenre){
+							if($cx>9 && $cx<14){
+						?>
+                        <li><a href="<?php echo base_url("movies/genre/".$datagenre['id']."/1/".$datagenre['nama']."");?>" class="nav-link__item"><?php echo $datagenre['nama'];?></a></li>
+                        <?php } } ?>
                     </ul>
                 </div>
                 <div class="col-xs-12 col-md-6">

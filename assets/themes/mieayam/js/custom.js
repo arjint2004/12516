@@ -294,8 +294,8 @@ function init_Home() {
                         e.preventDefault();
                         $('.select__field').val('');
 						// alert($(this).attr('data-filter'));
-						if($(this).attr('data-filter')=='cinema'){$('input.select__field').attr('name','movie');}
-						if($(this).attr('data-filter')=='actors'){$('input.select__field').attr('name','tv');}          
+						if($(this).attr('data-filter')=='cinema'){$('input#q_select__field').val('movie');}
+						if($(this).attr('data-filter')=='actors'){$('input#q_select__field').val('tv');}          
                         $('.mega-select__filter').removeClass('filter--active');
                         $(this).addClass('filter--active');
                         
