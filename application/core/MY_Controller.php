@@ -1,6 +1,8 @@
 <?php
 class My_controller extends CI_Controller {
-    public function __construct() {
+    
+	public $layout='default';
+	public function __construct() {
         parent::__construct();
 		
 		$this->load->helper('url');
@@ -44,13 +46,14 @@ class My_controller extends CI_Controller {
 		$toprated['toprated']=array($toprated[1],$toprated[2],$toprated[3],$toprated[4],$toprated[5],$toprated[6]);
 		
 		
-		$this->output->set_template('default');
 		$this->load->section('slider', 'themes/'.THEMESET.'/layout/slider',$slider);
 		$this->load->section('header', 'themes/'.THEMESET.'/layout/header');
 		$this->load->section('toprated', 'themes/'.THEMESET.'/layout/toprated',$toprated);
 		$this->load->section('search', 'themes/'.THEMESET.'/layout/search');
 		// $this->load->section('upcoming', 'themes/'.THEMESET.'/layout/upcoming',$upcoming);
 		$this->load->section('footer', 'themes/'.THEMESET.'/layout/footer');
+		
+		$this->output->set_template($this->layout);
 	}
 
 	

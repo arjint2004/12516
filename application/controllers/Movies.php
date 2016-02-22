@@ -16,8 +16,14 @@ class Movies extends My_controller {
 	{
 		$this->load->view('themes/'.THEMESET.'/movie/home');
 	}
+	public function play()
+	{
+		$this->output->set_template('single');
+		$this->load->view('themes/'.THEMESET.'/movie/play');
+	}
 	public function about_us()
 	{
+		
 		$this->load->view('themes/'.THEMESET.'/movie/about_us');
 	}
 	public function dmca()
