@@ -281,7 +281,7 @@ class tmdb extends CI_Controller{
 	}
 	public function getMoviePopular($page=1){
 		//pr($page);die();
-		$ch = curl_init();
+		/*$ch = curl_init();
 
 		curl_setopt($ch, CURLOPT_URL, "http://api.themoviedb.org/3/movie/popular?api_key=".$this->getApikey()."&language=".$this->getLang()."&page=".$page."
 		");
@@ -293,8 +293,9 @@ class tmdb extends CI_Controller{
 		));
 
 		$response = curl_exec($ch);
-		curl_close($ch);
-		
+		curl_close($ch);*/
+		$response=file_get_contents("http://api.themoviedb.org/3/movie/popular?api_key=".$this->getApikey()."&language=".$this->getLang()."&page=".$page."
+		");
 		return json_decode($response);
 	}
 	public function getMovieNowPlay($page=1){
