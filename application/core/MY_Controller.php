@@ -46,6 +46,7 @@ class My_controller extends CI_Controller {
 		$toprated['toprated']=array($toprated[1],$toprated[2],$toprated[3],$toprated[4],$toprated[5],$toprated[6]);
 		
 		
+		$this->load->section('player', 'themes/'.THEMESET.'/layout/player');
 		$this->load->section('slider', 'themes/'.THEMESET.'/layout/slider',$slider);
 		$this->load->section('header', 'themes/'.THEMESET.'/layout/header');
 		$this->load->section('toprated', 'themes/'.THEMESET.'/layout/toprated',$toprated);

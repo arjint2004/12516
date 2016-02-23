@@ -64,6 +64,8 @@
         </div>
 		<!-- Main content -->
         <section class="cinema-container">
+		
+			<?php echo $this->load->get_section('player'); ?>
 			<?php echo $output;?>
         </section>
 		        
@@ -112,37 +114,31 @@
         <!-- jQuery 1.9.1--> 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/jquery-1.10.1.min.js"><\/script>')</script>
-        <!-- Migrate --> 
+        <!-- Migrate -->
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/jquery-migrate-1.2.1.min.js"></script>
         <!-- jQuery UI -->
         <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
         <!-- Bootstrap 3--> 
         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-
         <!-- Mobile menu -->
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/jquery.mobile.menu.js"></script>
          <!-- Select -->
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/jquery.selectbox-0.2.min.js"></script>
         <!-- Swiper slider -->
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/idangerous.swiper.min.js"></script>
-
         <!-- Share buttons -->
         <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
         <script type="text/javascript" src="../s7.addthis.com/js/300/addthis_widget.js#pubid=ra-525fd5e9061e7ef0"></script>
-
         <!--*** Google map  ***-->
         <script src="https://maps.google.com/maps/api/js?sensor=true"></script> 
         <!--*** Google map infobox  ***-->
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/infobox.js"></script>
-
         <!-- Form element -->
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/form-element.js"></script>
         <!-- Form validation -->
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/form.js"></script>
-
         <!-- Custom -->
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/custom.js"></script> 
-		
 		<script type="text/javascript">
             $(document).ready(function() {
                 init_Cinema();

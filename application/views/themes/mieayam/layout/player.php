@@ -1,19 +1,20 @@
 
-	<link href="font-awesome.css" rel="stylesheet">
-	<link href="bootstrap.css" rel="stylesheet">
 
-	<link href="mov.css" rel="stylesheet" type="text/css">
-	<link href="style.css" rel="stylesheet" type="text/css">
+	
+	
+	<link href="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/player/mov.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/player/style.css" rel="stylesheet" type="text/css">
 
-	<script src="jquery.js"></script>
-	<script src="bootstrap.js"></script>
+	<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/player/jquery.js"></script>
+	<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/player/bootstrap.js"></script>
 
 
+	<div class="playersasb">
 	<div class="row">
         	<div id="player">
                 		<div class="vcontainer">
                         		<div id="streaming">
-                                		<img class="img-backdrop" src="Jshz1Iv33im4hXhHJCI9FklihE.jpg" alt="" itemprop="image" height="524" width="720">
+                                		<img class="img-backdrop" src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/images/player/Jshz1Iv33im4hXhHJCI9FklihE.jpg" alt="" itemprop="image" height="524" width="720">
                                 		<span class="mpaa">hd</span>
                                 		<div class="watermark">ocim.tk</div>
                                 		<div class="inline play-button registration">
@@ -50,13 +51,13 @@
         <div class="modal-dialog">
         <div class="modal-content clearfix">
                 <div class="modal-header bg-info">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Ã—</span></button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                         <h4 class="modal-title" id="myModalLabel">PLEASE SIGN UP TO WATCH FULL MOVIE!</h4>
                 </div>
                 <div class="modal-body clearfix">
                         <div class="row">
                                 <div class="col-md-6" id="login">
-                                        <img class="img-responsive" src="Jshz1Iv33im4hXhHJCI9FklihE.jpg">
+                                        <img class="img-responsive" src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/images/player/Jshz1Iv33im4hXhHJCI9FklihE.jpg">
                                         <hr>
                                         <h5>Member Login</h5>
                                         <div class="form-group">
@@ -101,6 +102,7 @@
 </div>
 
 </div>
+</div>
 
 
 <script>
@@ -130,4 +132,4 @@
 	$('.player').modal({backdrop: 'static'})  
 </script>
 
-<script type="text/javascript" src="scripts.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/player/scripts.js"></script>

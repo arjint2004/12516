@@ -1,4 +1,4 @@
-			<? if(!empty($upcoming)){?>
+			<?php if(!empty($upcoming)){?>
             <div class="col-sm-12">
                 <h2 class="page-heading">Popular Movie</h2>
 				<?php 
