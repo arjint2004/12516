@@ -37,7 +37,7 @@
 
         <!-- Modernizr --> 
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/modernizr.custom.js"></script>
-    
+		<script>var asset='<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/';</script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries --> 
     <!--[if lt IE 9]> 
     	<script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script> 

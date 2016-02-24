@@ -89,7 +89,7 @@ div.playersasb .player-loader {
         top: 0;
         left: 0;
         display: block;
-        background: #000 url('/include/images/player-loading.gif') center center no-repeat;
+        background: #000 url('../../images/player/player-loading.gif') center center no-repeat;
         visibility: visible;
 }
 div.playersasb .play-button .fa {
@@ -132,7 +132,7 @@ div.playersasb .cplay, div.playersasb .cvolu, div.playersasb .cset, div.playersa
         width:24px; 
         display:inline-block; 
         float:left; 
-        background-image:url('/include/images/sprite.png'); 
+        background-image:url('../../images/player/sprite.png'); 
         background-repeat:no-repeat; 
         position:relative; 
         opacity:0.8; 
@@ -193,7 +193,7 @@ div.playersasb .cvol {
         width:24px; 
         display:inline-block; 
         float:left; 
-        background-image:url('/include/images/sprite.png'); 
+        background-image:url('../../images/player/sprite.png'); 
         background-repeat:no-repeat; 
         background-position:0 -86px; 
 }
@@ -250,7 +250,7 @@ div.playersasb .chade {
         height:10px; 
         width:15px; 
         display:inline-block; 
-        background:transparent url('/include/images/sprite.png') -24px -55px no-repeat; 
+        background:transparent url('../../images/player/sprite.png') -24px -55px no-repeat; 
         position:absolute; 
         top:-3px; 
         right:-3px; 

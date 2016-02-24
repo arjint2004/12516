@@ -13,7 +13,6 @@
     <!-- Mobile Specific Metas-->
     	<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="telephone=no" name="format-detection">
-    
     <!-- Fonts -->
         <!-- Font awesome - icon font -->
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -31,12 +30,13 @@
         <!-- Swiper slider -->
         <link href="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/external/idangerous.swiper.css" rel="stylesheet" /> 
     
+    	<link href="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/player/bootstrap.css" rel="stylesheet" type="text/css">
         <!-- Custom -->
         <link href="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/style3860.css?v=1" rel="stylesheet" />
 
         <!-- Modernizr --> 
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/modernizr.custom.js"></script>
-    
+		<script>var asset='<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/';</script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries --> 
     <!--[if lt IE 9]> 
     	<script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script> 

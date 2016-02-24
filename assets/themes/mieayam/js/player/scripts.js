@@ -71,8 +71,8 @@ $(document).ready(function(){
         	}
 	);
 	$( ".play-button .fa,.cplay" ).on( "click", function() {
-		var 	opening = "http://" + window.location.hostname + "/include/images/opening.jpg",
-			loading = "http://" + window.location.hostname + "/include/images/player-loading.gif";
+		var 	opening = "" + asset + "/images/player/opening.jpg",
+			loading = "" + asset + "/images/player/player-loading.gif";
 		$(".play-button .fa").hide();
 		$(".player-loader").show();
 		setTimeout(function() { 

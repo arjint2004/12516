@@ -2,6 +2,8 @@
 
 	
 	
+
+
 	<link href="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/player/mov.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/player/style.css" rel="stylesheet" type="text/css">
 
@@ -9,14 +11,14 @@
 	<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/player/bootstrap.js"></script>
 
 
-	<div class="playersasb">
-	<div class="row">
+	<div class="playersasb" style="padding: 20px 0px 0px; background: #2d2d2d;">
+	<div class="row" style="width:70%;margin: 0 auto">
         	<div id="player">
                 		<div class="vcontainer">
                         		<div id="streaming">
                                 		<img class="img-backdrop" src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/images/player/Jshz1Iv33im4hXhHJCI9FklihE.jpg" alt="" itemprop="image" height="524" width="720">
-                                		<span class="mpaa">hd</span>
-                                		<div class="watermark">ocim.tk</div>
+                                		<span class="mpaa">HD</span>
+                                		<div class="watermark">namadomain.tk</div>
                                 		<div class="inline play-button registration">
                                         		<span style="display: none;" class="player-loader"></span>
                                         		<i style="visibility: visible;" class="fa fa-youtube-play"></i>
