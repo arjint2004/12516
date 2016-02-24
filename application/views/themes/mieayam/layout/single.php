@@ -47,7 +47,7 @@
 <body class="single-cin">
     <div class="wrapper">
         <?php echo $this->load->get_section('header'); ?>
-		<div class="search-wrapper">
+		<!--<div class="search-wrapper">
             <div class="container container--add">
                 <form id='search-form' method='get' class="search">
                     <input type="text" class="search__field" placeholder="Search">
@@ -61,9 +61,9 @@
                     <button type='submit' class="btn btn-md btn--danger search__button">search a movie</button>
                 </form>
             </div>
-        </div>
+        </div>-->
 		<!-- Main content -->
-        <section class="cinema-container">
+        <section class="cinema-container" style="padding-top:0;">
 		
 			<?php echo $this->load->get_section('player'); ?>
 			<?php echo $output;?>

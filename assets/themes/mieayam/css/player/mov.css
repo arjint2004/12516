@@ -10,7 +10,7 @@ div.playersasb .vcontainer {
 div.playersasb #streaming {
         width: 100%;
         max-height: 580px;
-        z-index: 800;
+        /*z-index: 800;*/
         cursor: pointer;
         position: relative;
 }
@@ -286,4 +286,10 @@ div.playersasb .cfull {
         border-radius: 0; 
         height: 0.5em;
     }
+}
+div#modal-watch,div#modal-watch h1,div#modal-watch h2,div#modal-watch h3,div#modal-watch h4,div#modal-watch h5 {
+	font-family:inherit;
+}
+div#login {
+    text-align: left;
 }

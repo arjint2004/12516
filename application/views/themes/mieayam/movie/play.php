@@ -1,6 +1,6 @@
 <div class="cinema cinema--full">
-                <p class="cinema__title">Artist</p>
-                <div class="cinema__rating">5.0</div>
+               <!-- <p class="cinema__title">Artist</p>
+                <div class="cinema__rating">5.0</div>-->
                 <div class="cinema__gallery">
                     <div class="swiper-container">
                       <div class="swiper-wrapper">
@@ -11,7 +11,7 @@
                           <?php for($k=0;$k<8;$k++){?>
                           <!--Second Slide-->
                           <div class="swiper-slide">
-                                <img alt='' src="<?php echo base_url('assets/themes/mieayam/images');?>/cinema/cinema-inner2.jpg">
+                                <img alt='' src="<?php echo base_url('assets/themes/mieayam/images');?>/cinema/cinema-inner<?php echo $k;?>.jpg">
                           </div>
 						  <?php } ?>
                       </div>

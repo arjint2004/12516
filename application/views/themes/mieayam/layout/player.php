@@ -11,7 +11,7 @@
 	<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/player/bootstrap.js"></script>
 
 
-	<div class="playersasb" style="padding: 20px 0px 0px; background: #2d2d2d;">
+	<div class="playersasb" style="padding: 20px 0px 40px 0; background: #2d2d2d;">
 	<div class="row" style="width:70%;margin: 0 auto">
         	<div id="player">
                 		<div class="vcontainer">
@@ -53,7 +53,7 @@
         <div class="modal-dialog">
         <div class="modal-content clearfix">
                 <div class="modal-header bg-info">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
                         <h4 class="modal-title" id="myModalLabel">PLEASE SIGN UP TO WATCH FULL MOVIE!</h4>
                 </div>
                 <div class="modal-body clearfix">
@@ -63,10 +63,10 @@
                                         <hr>
                                         <h5>Member Login</h5>
                                         <div class="form-group">
-                                                <input class="form-control input-sm" id="userid" placeholder="username" type="text">
-	                                </div>
+                                                <input class="form-control input-sm" id="userid" placeholder="username" name="username" type="text">
+										</div>
                                         <div class="form-group">
-                                                <input class="form-control input-sm" id="password" placeholder="password" type="password">
+                                                <input class="form-control input-sm" id="password" placeholder="password" type="password" name="password">
                                         </div>
                                         <div class="form-group">
                                                 <span class="onload label label-info" style="display: none;">Please wait...</span>
