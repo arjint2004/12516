@@ -15,13 +15,13 @@
         <meta content="telephone=no" name="format-detection">
     <!-- Fonts -->
         <!-- Font awesome - icon font -->
-        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/font-awesome.css" rel="stylesheet">
         <!-- Roboto -->
-        <link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+        <link href='<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/roboto_400_700.css' rel='stylesheet' type='<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/text/css'>
     
     <!-- Stylesheets -->
         <!-- jQuery UI -->
-        <link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
+        <link href="jquery-ui.css" rel="stylesheet">
 
         <!-- Mobile menu -->
         <link href="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/gozha-nav.css" rel="stylesheet" />
@@ -112,14 +112,14 @@
 
 	<!-- JavaScript-->
         <!-- jQuery 1.9.1--> 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/jquery-1.10.1.min.js"><\/script>')</script>
         <!-- Migrate -->
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/jquery-migrate-1.2.1.min.js"></script>
         <!-- jQuery UI -->
-        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/jquery-ui.js"></script>
         <!-- Bootstrap 3--> 
-        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/bootstrap.min.js"></script>
         <!-- Mobile menu -->
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/jquery.mobile.menu.js"></script>
          <!-- Select -->
@@ -129,8 +129,7 @@
         <!-- Share buttons -->
         <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
         <script type="text/javascript" src="../s7.addthis.com/js/300/addthis_widget.js#pubid=ra-525fd5e9061e7ef0"></script>
-        <!--*** Google map  ***-->
-        <script src="https://maps.google.com/maps/api/js?sensor=true"></script> 
+
         <!--*** Google map infobox  ***-->
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/infobox.js"></script>
         <!-- Form element -->

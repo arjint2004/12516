@@ -16,8 +16,9 @@ class Movies extends My_controller {
 	{
 		$this->load->view('themes/'.THEMESET.'/movie/home');
 	}
-	public function play()
+	public function play($id=0,$tag_title='')
 	{
+		$this->tmdb->set_detail($id=0,$type='movie');
 		$this->output->set_template('single');
 		$this->load->view('themes/'.THEMESET.'/movie/play');
 	}

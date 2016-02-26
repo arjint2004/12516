@@ -11,6 +11,20 @@ if (!function_exists('checkExternalFile')) {
 		return $retCode;
 	}
 }
+if (!function_exists('make_url_detail')) {
+	function make_url_detail($id='',$str='',$type='movie')
+	{
+		$clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $str);
+		$clean = strtolower(trim($clean, '-'));
+		$clean = preg_replace("/[\/_|+ -]+/", '-', $clean);
+		if($type=='movie'){
+			$url=base_url('movies/play/'.$id.'/'.str_replace(' ','-',$clean).'.html');
+		}elseif($type=='tv'){
+			$url=base_url('tv/play/'.$id.'/'.str_replace(' ','-',$clean).'.html');
+		}
+		return $url;
+	}
+}
 if (!function_exists('imgreate')) {
 	function imgreate($rtxc)
 		{

@@ -15,11 +15,11 @@
         <meta content="telephone=no" name="format-detection">
     
     <!-- Fonts -->
-        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/font-awesome.css" rel="stylesheet">
         <!-- Roboto -->
-        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,700' rel='stylesheet' type='text/css'>
+        <link href='<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/roboto_400_100_700.css' rel='stylesheet' type='text/css'>
         <!-- Open Sans -->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:800italic' rel='stylesheet' type='text/css'>
+        <link href='<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/open_sans_800_italic.css' rel='stylesheet' type='text/css'>
     
     <!-- Stylesheets -->
 
@@ -78,12 +78,12 @@
 
 	<!-- JavaScript-->
         <!-- jQuery 1.9.1--> 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/jquery-1.10.1.min.js"><\/script>')</script>
         <!-- Migrate --> 
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/jquery-migrate-1.2.1.min.js"></script>
         <!-- Bootstrap 3--> 
-        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/bootstrap.min.js"></script>
 
         <!-- jQuery REVOLUTION Slider -->
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
