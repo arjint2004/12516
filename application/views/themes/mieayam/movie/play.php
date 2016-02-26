@@ -1,27 +1,24 @@
+<?php echo $this->load->get_section('player'); ?>
 <div class="cinema cinema--full">
                <!-- <p class="cinema__title">Artist</p>
-                <div class="cinema__rating">5.0</div>-->
+                <!--<div class="cinema__rating">5.0</div>-->
                 <div class="cinema__gallery">
                     <div class="swiper-container">
                       <div class="swiper-wrapper">
-                          <!--First Slide-->
-                          <div class="swiper-slide"> 
-                                <img alt='' src="<?php echo base_url('assets/themes/mieayam/images');?>/cinema/cinema-inner1.jpg">
-                          </div>
-                          <?php for($k=0;$k<8;$k++){?>
+                          <?php foreach($images['posters'] as $dtimage){?>
                           <!--Second Slide-->
                           <div class="swiper-slide">
-                                <img alt='' src="<?php echo base_url('assets/themes/mieayam/images');?>/cinema/cinema-inner<?php echo $k;?>.jpg">
+                                <img alt='' src="<?php echo $this->tmdb->getImageURL('w300') . $dtimage['file_path'];?>">
                           </div>
 						  <?php } ?>
                       </div>
                     </div>
                 </div>
-                <div class="cinema__info">
+                <!--<div class="cinema__info">
                     <p class="cinema__info-item"><strong>Address:</strong> Leicester Sq, London, WC2H 7LP</p>
                     <p class="cinema__info-item"><strong>Phone:</strong> 0871 224 0240</p>
                     <p class="cinema__info-item"><strong>Official website:</strong> <a href="#">www.myvue.com</a></p>
-                </div>
+                </div>-->
             </div>
 
             <div class="share share--centered">
@@ -36,7 +33,8 @@
                       <!-- Nav tabs -->
                       <div class="container">
                           <ul class="nav nav-tabs" id="hTab">
-                            <li class="active"><a href="#movie1" data-toggle="tab">Simillar Movies</a></li>
+                            <li class="active"><a href="#detail1" data-toggle="tab">Detail</a></li>
+                            <li><a href="#movie1" data-toggle="tab">Simillar Movies</a></li>
                             <li><a href="#comment1" data-toggle="tab">Review</a></li>
                             <li><a href="#map1" data-toggle="tab">Trailler</a></li>
                             <li><a href="#star1" data-toggle="tab">Artist</a></li>
@@ -45,7 +43,122 @@
 
                       <!-- Tab panes -->
                       <div class="tab-content">
-                            <div class="tab-pane active" id="movie1">
+                            <div class="tab-pane active" id="detail1">
+								<div class="container">	
+									<div class="movie movie--preview movie--full release">
+										 <div class="col-sm-3 col-md-2 col-lg-2">
+												<div class="movie__images">
+													<img src="images/movie/movie-sample1.jpg" alt="">
+												</div>
+												<div class="movie__feature">
+													<a class="movie__feature-item movie__feature--comment" href="#">123</a>
+													<a class="movie__feature-item movie__feature--video" href="#">7</a>
+													<a class="movie__feature-item movie__feature--photo" href="#">352</a>
+												</div>
+										</div>
+
+										<div class="col-sm-9 col-md-10 col-lg-10 movie__about">
+												<a class="movie__title link--huge" href="movie-page-full.html">Last Vegas (2013)</a>
+
+												<p class="movie__time">105 min</p>
+
+												<p class="movie__option"><strong>Country: </strong><a href="#">USA</a></p>
+												<p class="movie__option"><strong>Category: </strong><a href="#">Comady</a></p>
+												<p class="movie__option"><strong>Release date: </strong>November 1, 2013</p>
+												<p class="movie__option"><strong>Director: </strong><a href="#">Jon Turteltaub</a></p>
+												<p class="movie__option"><strong>Actors: </strong><a href="#">Robert De Niro</a>, <a href="#">Michael Douglas</a>, <a href="#">Morgan Freeman</a>, <a href="#">Kevin Kline</a>, <a href="#">Mary Steenburgen</a>, <a href="#">Jerry Ferrara</a>, <a href="#">Romany Malco</a> <a href="#">...</a></p>
+												<p class="movie__option"><strong>Age restriction: </strong><a href="#">13</a></p>
+
+												<div class="movie__btns">
+													<a class="btn btn-md btn--warning" href="#">book a ticket <span class="hidden-sm">for this movie</span></a>
+													<a class="watchlist" href="#">Add to watchlist</a>
+												</div>
+
+												<div class="preview-footer">
+													<div class="movie__rate"><div class="score" style="cursor: pointer; width: 130px;"><img src="images/rate/star-off.svg" alt="1" title="bad">&nbsp;<img src="images/rate/star-off.svg" alt="2" title="poor">&nbsp;<img src="images/rate/star-off.svg" alt="3" title="regular">&nbsp;<img src="images/rate/star-off.svg" alt="4" title="good">&nbsp;<img src="images/rate/star-off.svg" alt="5" title="gorgeous"><input type="hidden" name="score"></div><span class="movie__rate-number">170 votes</span> <span class="movie__rating">5.0</span></div>
+													
+
+													<a class="movie__show-btn" href="#">Showtime</a>
+												</div>
+										</div>
+
+										<div class="clearfix"></div>
+										
+										<!-- Time table (choose film start time)-->
+										<div class="time-select">
+											<div class="time-select__group group--first">
+												<div class="col-sm-4">
+													<p class="time-select__place">Cineworld</p>
+												</div>
+												<ul class="col-sm-8 items-wrap">
+													<li data-time="09:40" class="time-select__item">09:40</li>
+													<li data-time="13:45" class="time-select__item">13:45</li>
+													<li data-time="15:45" class="time-select__item active">15:45</li>
+													<li data-time="19:50" class="time-select__item">19:50</li>
+													<li data-time="21:50" class="time-select__item">21:50</li>
+												</ul>
+											</div>
+
+											<div class="time-select__group">
+												<div class="col-sm-4">
+													<p class="time-select__place">Empire</p>
+												</div>
+												<ul class="col-sm-8 items-wrap">
+													<li data-time="10:45" class="time-select__item">10:45</li>
+													<li data-time="16:00" class="time-select__item">16:00</li>
+													<li data-time="19:00" class="time-select__item">19:00</li>
+													<li data-time="21:15" class="time-select__item">21:15</li>
+													<li data-time="23:00" class="time-select__item">23:00</li>
+												</ul>
+											</div>
+
+											<div class="time-select__group">
+												<div class="col-sm-4">
+													<p class="time-select__place">Curzon</p>
+												</div>
+												<ul class="col-sm-8 items-wrap">
+													<li data-time="09:00" class="time-select__item">09:00</li>
+													<li data-time="11:00" class="time-select__item">11:00</li>
+													<li data-time="13:00" class="time-select__item">13:00</li>
+													<li data-time="15:00" class="time-select__item">15:00</li>
+													<li data-time="17:00" class="time-select__item">17:00</li>
+													<li data-time="19:0" class="time-select__item">19:00</li>
+													<li data-time="21:0" class="time-select__item">21:00</li>
+													<li data-time="23:0" class="time-select__item">23:00</li>
+													<li data-time="01:0" class="time-select__item">01:00</li>
+												</ul>
+											</div>
+
+											<div class="time-select__group">
+												<div class="col-sm-4">
+													<p class="time-select__place">Odeon</p>
+												</div>
+												<ul class="col-sm-8 items-wrap">
+													<li data-time="10:45" class="time-select__item">10:45</li>
+													<li data-time="16:00" class="time-select__item">16:00</li>
+													<li data-time="19:00" class="time-select__item">19:00</li>
+													<li data-time="21:15" class="time-select__item">21:15</li>
+													<li data-time="23:00" class="time-select__item">23:00</li>
+												</ul>
+											</div>
+
+											<div class="time-select__group group--last">
+												<div class="col-sm-4">
+													<p class="time-select__place">Picturehouse</p>
+												</div>
+												<ul class="col-sm-8 items-wrap">
+													<li data-time="17:45" class="time-select__item">17:45</li>
+													<li data-time="21:30" class="time-select__item">21:30</li>
+													<li data-time="02:20" class="time-select__item">02:20</li>
+												</ul>
+											</div>
+										</div>
+										<!-- end time table-->
+
+									</div>							
+								</div>							
+							</div>
+                            <div class="tab-pane" id="movie1">
                                 <div class="container">
                                     <div class="movie-time-wrap">
 

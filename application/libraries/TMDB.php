@@ -1266,12 +1266,13 @@ class tmdb extends CI_Controller{
 			// }
 		}	
 	}
-	public function set_detail($id=0,$type='movie',$season=1,$episodes=1){
+	public function set_detail($id=0,$type='movie',$season=0,$episodes=0){
+		
 		//SET DETAIL
 		$playerback=array('movie_back.png','20thFox.png','1280x720-6sr.jpg','paramount_intro_sample_by_icepony64-d88n81s.jpg','fox_video_2010_by_charmedpiper1973-d429owp.png.jpg');
 		$ky=array_rand($playerback);
 		$usmg=$playerback[$ky];
-		if(@$type=='tv' OR isset($season) AND isset($episodes)){
+		if(@$type=='tv' OR $season!=0 AND $episodes!=0){
 			if(isset($season) AND isset($episodes)){
 				$movies=$this->getEpisode($id,$season,$episodes);
 				$tvs=$this->getTVShow($id);
@@ -1281,7 +1282,7 @@ class tmdb extends CI_Controller{
 					$seasson[$ises]=$seassonlist->getEpisodesdata();
 				}			
 				$backd=$this->getbackdtv($movies);
-				file_get_contents(base_url().''.$type.'-tag/'.$tvs->getTitle().'');
+				// file_get_contents(base_url().''.$type.'-tag/'.$tvs->getTitle().'');
 			}else{
 				$movies=$this->getTVShow($id);
 				$numseason=$movies->getNumSeasons();
@@ -1291,67 +1292,71 @@ class tmdb extends CI_Controller{
 				}
 				$lastEpisodes=end(end($seasson));
 				$backd=$this->getbackd($movies);
-				file_get_contents(base_url().''.$type.'-tag/'.$movies->getTitle().'');
+				// file_get_contents(base_url().''.$type.'-tag/'.$movies->getTitle().'');
 			}
 
 		}elseif(@$type=='movie'){
 			$movies=$this->getMovie($id);
 			$backd=$this->getbackd($movies);
-				file_get_contents(base_url().''.$type.'-tag/'.$movies->getTitle().'');
+				// file_get_contents(base_url().''.$type.'-tag/'.$movies->getTitle().'');
 		}else{
 			$movies=$this->getMovie($id);
 			$backd=$this->getbackd($movies);
-				file_get_contents(base_url().''.$type.'-tag/'.$movies->getTitle().'');
+				// file_get_contents(base_url().''.$type.'-tag/'.$movies->getTitle().'');
 		}
 		
-		$redirect_url='http://'.$domain_name.'/watch_download/'.$type.'/'.str_replace(' ','-',$movies->getTitle()); 
+		// $redirect_url='http://'.$domain_name.'/watch_download/'.$type.'/'.str_replace(' ','-',$movies->getTitle()); 
 		
-	  
-	  
-	  
-	  //Backsound area
-	  $Title=$movies->getTitle();
-	  require_once (getcwd().'/youtubeapi/google-api-php-client/src/Google_Client.php');
-	  require_once (getcwd().'/youtubeapi/google-api-php-client/src/contrib/Google_YouTubeService.php');
-
-	  /* Set $DEVELOPER_KEY to the "API key" value from the "Access" tab of the
-	  Google APIs Console <http://code.google.com/apis/console#access>
-	  Please ensure that you have enabled the YouTube Data API for your project. */
-	  $DEVELOPER_KEY = 'AIzaSyAHA7MyBqL-v0iAUwAXUZ1Tpx-i4aYofys';
-
-	  $client = new Google_Client();
-	  $client->setDeveloperKey($DEVELOPER_KEY);
-
-	  $youtube = new Google_YoutubeService($client);
-
-	  try {
-		$datavids = $youtube->search->listSearch('id,snippet', array(
-		  'q' => "".str_replace(' ','+',$Title)."+movie+trailer",
-		  'maxResults' => 20,
-		));
-
-		$videos = '';
-		$channels = '';
-		$comparetitle=array();
-		$title=$Title;
 		
-		foreach($datavids['items'] as $keyr=>$datavid){
-			if(isset($datavid['id']['videoId'])){
-				similar_text($title,$datavid['snippet']['title'],$percent);
-				$comparetitle[$keyr]=$percent;	
+		  $trailer=$movies->getTrailers();
+	      if(isset($trailer['youtube'][0]['source']) && $trailer['youtube'][0]['source']!=''){
+				$trailer='http://www.youtube.com/v/'.$trailer['youtube'][0]['source'];
+		  }else{
+		  //Backsound area
+		  $Title=$movies->getTitle();
+		  require_once (getcwd().'/application/libraries/youtubeapi/google-api-php-client/src/Google_Client.php');
+		  require_once (getcwd().'/application/libraries/youtubeapi/google-api-php-client/src/contrib/Google_YouTubeService.php');
+
+		  /* Set $DEVELOPER_KEY to the "API key" value from the "Access" tab of the
+		  Google APIs Console <http://code.google.com/apis/console#access>
+		  Please ensure that you have enabled the YouTube Data API for your project. */
+		  $DEVELOPER_KEY = 'AIzaSyAHA7MyBqL-v0iAUwAXUZ1Tpx-i4aYofys';
+
+		  $client = new Google_Client();
+		  $client->setDeveloperKey($DEVELOPER_KEY);
+
+		  $youtube = new Google_YoutubeService($client);
+
+		  try {
+			$datavids = $youtube->search->listSearch('id,snippet', array(
+			  'q' => "".str_replace(' ','+',$Title)."+Official+Trailer",
+			  'maxResults' => 20,
+			));
+
+			$videos = '';
+			$channels = '';
+			$comparetitle=array();
+			$title=$Title.' Official Trailer';
+			
+			foreach($datavids['items'] as $keyr=>$datavid){
+				if(isset($datavid['id']['videoId'])){
+					similar_text($title,$datavid['snippet']['title'],$percent);
+					$comparetitle[$keyr]=$percent;	
+				}
 			}
+			$mx=array_keys($comparetitle, max($comparetitle));
+			$keymax=$mx[0];
+		   } catch (Google_ServiceException $e) {
+			$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',
+			  htmlspecialchars($e->getMessage()));
+		  } catch (Google_Exception $e) {
+			$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',
+			  htmlspecialchars($e->getMessage()));
+		  }
+			$trailer='http://www.youtube.com/v/'.$datavids['items'][$keymax]['id']['videoId'];
+			// define('TRAILER', $trailer . "&vq=small");
 		}
-		$mx=array_keys($comparetitle, max($comparetitle));
-		$keymax=$mx[0];
-	   } catch (Google_ServiceException $e) {
-		$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',
-		  htmlspecialchars($e->getMessage()));
-	  } catch (Google_Exception $e) {
-		$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',
-		  htmlspecialchars($e->getMessage()));
-	  }
-		$trailer='http://www.youtube.com/v/'.$datavids['items'][$keymax]['id']['videoId'];
-		define('TRAILER', $trailer . "&vq=small");
-		}
+		return array('trailer'=>$trailer."&vq=small",'movies'=>$movies,'backd'=>$backd);
+	}
 }
 ?>

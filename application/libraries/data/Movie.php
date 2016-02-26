@@ -164,6 +164,9 @@ class Movie extends TMDBObject {
 	public function loadImages(){
 		$this->_data['images'] = $this->_tmdb->getMovieInfo($this->getID(), 'images', false);
 	}
+	public function loadImage(){
+		return $this->_data['images'];
+	}
 
 	/**
 	 * 	Load the trailer of the Movie

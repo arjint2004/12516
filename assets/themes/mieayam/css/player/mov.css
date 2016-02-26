@@ -293,3 +293,12 @@ div#modal-watch,div#modal-watch h1,div#modal-watch h2,div#modal-watch h3,div#mod
 div#login {
     text-align: left;
 }
+div.vtitle {
+    background: rgb(0, 0, 0) none repeat scroll 0 0;
+	color: rgb(255, 255, 255);
+	font-weight: bold;
+	height: 50px;
+	padding: 15px;
+	text-align: left;
+	text-transform: uppercase;
+}

@@ -18,9 +18,15 @@ class Movies extends My_controller {
 	}
 	public function play($id=0,$tag_title='')
 	{
-		$this->tmdb->set_detail($id=0,$type='movie');
+		$out=$this->tmdb->set_detail($id,'movie');
+		$data['movies']=$out['movies'];
+		$data['images']=$out['movies']->loadImage();
+		$data['trailer']=$out['trailer'];
+		$data['backd']=$out['backd'];
+		
+		$this->load->section('player', 'themes/'.THEMESET.'/layout/player',$data);
 		$this->output->set_template('single');
-		$this->load->view('themes/'.THEMESET.'/movie/play');
+		$this->load->view('themes/'.THEMESET.'/movie/play',$data);
 	}
 	public function about_us()
 	{

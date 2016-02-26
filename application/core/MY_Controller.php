@@ -51,7 +51,7 @@ class My_controller extends CI_Controller {
 			$this->load->section('search', 'themes/'.THEMESET.'/layout/search');
 			// $this->load->section('upcoming', 'themes/'.THEMESET.'/layout/upcoming',$upcoming);
 		}else{
-			$this->load->section('player', 'themes/'.THEMESET.'/layout/player');
+			
 		}
 		$this->load->section('header', 'themes/'.THEMESET.'/layout/header');
 		$this->load->section('footer', 'themes/'.THEMESET.'/layout/footer');

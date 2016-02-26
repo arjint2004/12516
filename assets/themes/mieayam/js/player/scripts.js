@@ -71,6 +71,7 @@ $(document).ready(function(){
         	}
 	);
 	$( ".play-button .fa,.cplay" ).on( "click", function() {
+		$("#video")[0].src += "&autoplay=1";
 		var 	opening = "" + asset + "/images/player/opening.jpg",
 			loading = "" + asset + "/images/player/player-loading.gif";
 		$(".play-button .fa").hide();

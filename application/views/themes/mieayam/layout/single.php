@@ -65,7 +65,7 @@
 		<!-- Main content -->
         <section class="cinema-container" style="padding-top:0;">
 		
-			<?php echo $this->load->get_section('player'); ?>
+			
 			<?php echo $output;?>
         </section>
 		        
