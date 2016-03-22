@@ -11,8 +11,18 @@ if (!function_exists('checkExternalFile')) {
 		return $retCode;
 	}
 }
+if (!function_exists('make_genre')) {
+	function make_genre($genre=array())
+	{
+		$gnr='';
+		foreach($genre as $gn){
+			$gnr .=$gn['name'].', ';
+		}
+		return $gnr;
+	}
+}
 if (!function_exists('make_url_detail')) {
-	function make_url_detail($id='',$str='',$type='movie')
+	function make_url_detail($id='',$str='',$type='movie',$season=1,$episodes=1)
 	{
 		$clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $str);
 		$clean = strtolower(trim($clean, '-'));
@@ -20,7 +30,7 @@ if (!function_exists('make_url_detail')) {
 		if($type=='movie'){
 			$url=base_url('movies/play/'.$id.'/'.str_replace(' ','-',$clean).'.html');
 		}elseif($type=='tv'){
-			$url=base_url('tv/play/'.$id.'/'.str_replace(' ','-',$clean).'.html');
+			$url=base_url('tv/play/'.$id.'/'.$season.'/'.$episodes.'/'.str_replace(' ','-',$clean).'.html');
 		}
 		return $url;
 	}

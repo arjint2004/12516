@@ -50,6 +50,35 @@ class Movie extends TMDBObject {
 			$gnr .=$gn['name'].', ';
 		}
 		return $gnr;
+	}		
+	public function getCrewDirector() {
+		
+		$gnr='';
+		$group=array();
+		foreach ( $this->_data['credits']['crew'] as $value ) {
+			if($value['job']=='Director'){
+				$group[$value['name']] = $value;
+			}
+		}
+		foreach($group as $gn){
+			$gnr .=$gn['name'].', ';
+		}
+		return $gnr;
+	}			
+	public function getCast() {
+		
+		$gnr='';
+		$group=array();
+		foreach ( $this->_data['credits']['cast'] as $value ) {
+			$group[$value['name']] = $value;
+		}
+		foreach($group as $gn){
+			$gnr .=$gn['name'].', ';
+		}
+		return $gnr;
+	}			
+	public function getCastArray() {
+		return $this->_data['credits']['cast'];
 	}	
 	public function getProduction() {
 		$gnr='';

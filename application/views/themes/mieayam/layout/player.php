@@ -9,9 +9,9 @@
 
 	<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/player/jquery.js"></script>
 	<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/player/bootstrap.js"></script>
-	<div class="playersasb" style="padding: 20px 0px 40px 0; background: #2d2d2d;">
+	<div class="playersasb" style="padding: 10px 0px 20px 0; background: #2d2d2d;">
 	<iframe id="video" width="1" height="1" src="<?php echo $trailer; ?>"></iframe> 
-	<div class="row" style="width:70%;margin: 0 auto">
+	<div class="row" style="width:50%;margin: 0 auto">
         	<div id="player">
                 		<div class="vcontainer">
 								<div class="vtitle"><?php echo $movies->getTitle()?></div>

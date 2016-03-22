@@ -226,22 +226,55 @@ class tmdb extends CI_Controller{
 		
 		return json_decode($response);
 	}
+	/**
+	 * 	Makes the call to the API and retrieves the data as a JSON
+	 *
+	 * 	@param string $action	API specific function name for in the URL
+	 * 	@param string $appendToResponse	The extra append of the request
+	 * 	@return string
+	 */
+	private function _call($action, $appendToResponse){
+
+		$url = self::_API_URL_.$action .'?api_key='. $this->getApikey() .'&language='. $this->getLang() .'&'.$appendToResponse;
+		 // echo $url.'<br>';die;
+		if($action=='tv/'){
+			echo $url; die();
+		}
+		if ($this->_debug) {
+			//echo '<pre><a href="' . $url . '">check request</a></pre>';
+		}
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+
+		$results = curl_exec($ch);
+
+		curl_close($ch);
+
+		return (array) json_decode(($results), true);
+	}
 	public function getSimilar($id=0,$type='movie'){
 		//pr($page);die();
-		$ch = curl_init();
+		$appendToResponse="append_to_response=trailers,images,credits,translations,runtime";
+		$url = 'http://api.themoviedb.org/3/'.$type.'/'.$id.'/similar?api_key='. $this->getApikey() .'&language='. $this->getLang() .'&'.$appendToResponse;
 		
-		curl_setopt($ch, CURLOPT_URL, "http://api.themoviedb.org/3/".$type."/".$id."/similar?api_key=".$this->getApikey()."&language=".$this->getLang()."");
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt($ch, CURLOPT_HEADER, FALSE);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_FAILONERROR, 1);
 
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-		  "Accept: application/json"
-		));
+		$results = curl_exec($ch);
 
-		$response = curl_exec($ch);
 		curl_close($ch);
 		
-		return json_decode($response);
+		
+		
+		
+		return json_decode($results);
 	}
 	public function getReview($id=0,$type='movie'){
 		//pr($page);die();
@@ -361,7 +394,7 @@ class tmdb extends CI_Controller{
 		$start=$page*$per_page;
 		
 		$get_data_sql="SELECT * FROM movie_data LIMIT ".$start.",".$per_page."";	
-		 echo $get_data_sql;
+		 // echo $get_data_sql;
 		
 		$h=mysql_query($get_data_sql);
 		$data=array();
@@ -370,6 +403,17 @@ class tmdb extends CI_Controller{
 		}
 		// $out['results']=$data;	
 		return $data;
+	}
+	public function getMovies($id=1){
+
+		$get_data_sql="SELECT original FROM movie_data s WHERE id_tmdb=".$id."";					
+		$h=$this->CI->db->query($get_data_sql)->result_array();
+		$data=array();
+		foreach($h as $dd=>$dth){
+			$data[]=@unserialize($dth['original']);
+		}
+		return $data;
+		
 	}
 	public function getMovieByGenre($id=28,$page=1){
 		//pr($page);die();
@@ -388,36 +432,6 @@ class tmdb extends CI_Controller{
 		curl_close($ch);
 		
 		return json_decode($response);
-	}
-	/**
-	 * 	Makes the call to the API and retrieves the data as a JSON
-	 *
-	 * 	@param string $action	API specific function name for in the URL
-	 * 	@param string $appendToResponse	The extra append of the request
-	 * 	@return string
-	 */
-	private function _call($action, $appendToResponse){
-
-		$url = self::_API_URL_.$action .'?api_key='. $this->getApikey() .'&language='. $this->getLang() .'&'.$appendToResponse;
-		 // echo $url.'<br>';die;
-		if($action=='tv/'){
-			echo $url; die();
-		}
-		if ($this->_debug) {
-			//echo '<pre><a href="' . $url . '">check request</a></pre>';
-		}
-
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_HEADER, 0);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_FAILONERROR, 1);
-
-		$results = curl_exec($ch);
-
-		curl_close($ch);
-
-		return (array) json_decode(($results), true);
 	}
 
 	//------------------------------------------------------------------------------
@@ -1267,7 +1281,6 @@ class tmdb extends CI_Controller{
 		}	
 	}
 	public function set_detail($id=0,$type='movie',$season=0,$episodes=0){
-		
 		//SET DETAIL
 		$playerback=array('movie_back.png','20thFox.png','1280x720-6sr.jpg','paramount_intro_sample_by_icepony64-d88n81s.jpg','fox_video_2010_by_charmedpiper1973-d429owp.png.jpg');
 		$ky=array_rand($playerback);
@@ -1275,6 +1288,7 @@ class tmdb extends CI_Controller{
 		if(@$type=='tv' OR $season!=0 AND $episodes!=0){
 			if(isset($season) AND isset($episodes)){
 				$movies=$this->getEpisode($id,$season,$episodes);
+				// pr($movies);die;
 				$tvs=$this->getTVShow($id);
 				$numseason=$tvs->getNumSeasons();
 				for($ises=1;$ises<=$numseason;$ises++){
@@ -1297,10 +1311,12 @@ class tmdb extends CI_Controller{
 
 		}elseif(@$type=='movie'){
 			$movies=$this->getMovie($id);
+			
 			$backd=$this->getbackd($movies);
 				// file_get_contents(base_url().''.$type.'-tag/'.$movies->getTitle().'');
 		}else{
 			$movies=$this->getMovie($id);
+			pr($movies);die();
 			$backd=$this->getbackd($movies);
 				// file_get_contents(base_url().''.$type.'-tag/'.$movies->getTitle().'');
 		}
@@ -1308,7 +1324,7 @@ class tmdb extends CI_Controller{
 		// $redirect_url='http://'.$domain_name.'/watch_download/'.$type.'/'.str_replace(' ','-',$movies->getTitle()); 
 		
 		
-		  $trailer=$movies->getTrailers();
+		  // $trailer=$movies->getTrailers();
 	      if(isset($trailer['youtube'][0]['source']) && $trailer['youtube'][0]['source']!=''){
 				$trailer='http://www.youtube.com/v/'.$trailer['youtube'][0]['source'];
 		  }else{

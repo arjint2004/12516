@@ -127,11 +127,10 @@
         <!-- Swiper slider -->
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/idangerous.swiper.min.js"></script>
         <!-- Share buttons -->
-        <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-        <script type="text/javascript" src="../s7.addthis.com/js/300/addthis_widget.js#pubid=ra-525fd5e9061e7ef0"></script>
+        <!--<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/addthis.js"></script>-->
+		
 
-        <!--*** Google map infobox  ***-->
-        <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/infobox.js"></script>
         <!-- Form element -->
         <script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/external/form-element.js"></script>
         <!-- Form validation -->

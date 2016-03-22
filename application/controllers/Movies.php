@@ -20,9 +20,10 @@ class Movies extends My_controller {
 	{
 		$out=$this->tmdb->set_detail($id,'movie');
 		$data['movies']=$out['movies'];
-		$data['images']=$out['movies']->loadImage();
+		// $data['images']=$out['movies']->loadImage();
 		$data['trailer']=$out['trailer'];
 		$data['backd']=$out['backd'];
+		$data['artist']=$out['movies']->getCastArray();
 		
 		$this->load->section('player', 'themes/'.THEMESET.'/layout/player',$data);
 		$this->output->set_template('single');

@@ -22,7 +22,20 @@ class Tv extends My_controller {
 	{
 		//$this->load->view('welcome_message');
 	}
-	
+	public function play($id=0,$season=1,$episodes=1,$tag_title='')
+	{
+		$out=$this->tmdb->set_detail($id,'tv',1,1);
+
+		$data['movies']=$out['movies'];
+		// $data['images']=$out['movies']->loadImage();
+		$data['trailer']=$out['trailer'];
+		$data['backd']=$out['backd'];
+		$data['artist']=$out['movies']->getCastArray();
+		
+		$this->load->section('player', 'themes/'.THEMESET.'/layout/player',$data);
+		$this->output->set_template('single');
+		$this->load->view('themes/'.THEMESET.'/tv/play',$data);
+	}	
 	public function on_the_air($page=1)
 	{
 		$data['title']='Ont the Air';

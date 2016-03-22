@@ -10,7 +10,7 @@
 							$xx++;
 						}
 						// echo $datanowplay->poster_path;die;
-						$imgurl=$this->tmdb->getImageURL('w300') . $datanowplay->poster_path;
+						$imgurl=$this->tmdb->getImageURL('w154') . $datanowplay->poster_path;
 						// $fileExists = checkExternalFile($imgurl);
 						if($datanowplay->poster_path==''){$imgurl=$this->tmdb->getBlankImage();}
 					?>
@@ -18,7 +18,7 @@
                             <div class="movie movie--test movie--test--dark movie--test--<?php if($xx%2==0){echo 'left';}else{echo 'right';}?>">
                                 <div class="movie__images">
                                     <a href="movie-page-left.html" class="movie-beta__link">
-                                        <img alt='' src="<?php echo $imgurl; ?>">
+                                         <img alt='' src="<?php echo $imgurl; ?>" width="100%">
                                     </a>
                                 </div>
 								<?php $rnd=rand(1,50)/10;?>

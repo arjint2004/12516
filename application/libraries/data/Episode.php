@@ -20,7 +20,9 @@ class Episode extends TMDBObject {
         parent::__construct( $data );
         $this->_data['tvshow_id'] = $idTVShow;
     }
-
+	public function getCastArray() {
+		return $this->_data['credits']['cast'];
+	}
     //------------------------------------------------------------------------------
     // Get Variables
     //------------------------------------------------------------------------------

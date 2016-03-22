@@ -1882,7 +1882,7 @@ function init_Cinema () {
                   });
 
     //4. Init map
-    				var mapOptions = {
+    				/*var mapOptions = {
                         scaleControl: true,
                         center: new google.maps.LatLng(51.508798, -0.131687),
                         zoom: 16,
@@ -1951,7 +1951,7 @@ function init_Cinema () {
                      infoboxA.open(map, this);
                      //Sets the Glastonbury marker to be the center of the map.
                      map.setCenter(marker.getPosition());
-                    });
+                    });*/
 }
 
 function init_SinglePage () {

@@ -4,14 +4,14 @@
                      <?php
 						  // pr($toprated);
 						foreach($toprated as $dtatop){
-					 	$imgurl=$this->tmdb->getImageURL('w300') . $dtatop->poster_path;
+					 	$imgurl=$this->tmdb->getImageURL('w154') . $dtatop->poster_path;
 						// $fileExists = checkExternalFile($imgurl);
 						
 						if($dtatop->poster_path==''){$imgurl=$this->tmdb->getBlankImage();}
 						
 					 ?>
 					 <div class="movie-beta__item ">
-                        <img alt='' src="<?php echo $imgurl;?>">
+                        <img alt='' src="<?php echo $imgurl;?>" width="100%">
                          <span class="best-rate"><?php echo round($dtatop->vote_average,1);?></span>
 
                          <ul class="movie-beta__info">
