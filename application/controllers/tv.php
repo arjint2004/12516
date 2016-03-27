@@ -24,12 +24,15 @@ class Tv extends My_controller {
 	}
 	public function play($id=0,$season=1,$episodes=1,$tag_title='')
 	{
-		$out=$this->tmdb->set_detail($id,'tv',1,1);
-
+		$out=$this->tmdb->set_detail($id,'tv',$season,$episodes);
 		$data['movies']=$out['movies'];
 		// $data['images']=$out['movies']->loadImage();
 		$data['trailer']=$out['trailer'];
+		$data['seasson']=$out['seasson'];
+		$data['id']=$id;
 		$data['backd']=$out['backd'];
+		$data['type']='tv';
+		$data['tvs']=$out['tvs'];
 		$data['artist']=$out['movies']->getCastArray();
 		
 		$this->load->section('player', 'themes/'.THEMESET.'/layout/player',$data);

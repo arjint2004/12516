@@ -188,7 +188,7 @@
 											$fileExists = checkExternalFile($imgurl);
 											if($fileExists==400){$imgurl=base_url().'/assets/img/noback.gif';}
 											
-											if($movi%2==0){
+											if($art%2==0){
 											?>
 												<div class="clearfix"></div>
 											<?php

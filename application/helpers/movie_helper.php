@@ -64,6 +64,22 @@ if (!function_exists('getgenrebyid')) {
 			}
 		}
 		
-		return $grnout;
+		return substr($grnout,0,-2);
+	}
+}
+if (!function_exists('getgenretv')) {
+	function getgenretv($id=array())
+	{
+		$grnout='';
+		$CI = & get_instance();
+		$genre=$CI->session->userdata('genre');
+		
+		foreach($id as $idgen){
+			if(isset($genre[$idgen->id])){
+				$grnout .=$genre[$idgen->id] .' | ';
+			}
+		}
+		
+		return substr($grnout,0,-2);
 	}
 }

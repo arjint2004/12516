@@ -22,6 +22,9 @@ class TVShow extends TMDBObject {
     public function getTitle() {
         return $this->_data['original_name'];
     }
+    public function getdata() {
+        return $this->_data;
+    }
     public function getLanguage() {
         return $this->_data['original_language'];
     }
@@ -75,7 +78,11 @@ class TVShow extends TMDBObject {
      *  @param int $numSeason The season number
      * 	@return int
      */
+    public function getSeasonob() {
+        return $this->_data['seasons'];
+    }
     public function getSeason($numSeason) {
+		
         foreach($this->_data['seasons'] as $season){
             if ($season['season_number'] == $numSeason){
                 $data = $season;
@@ -171,6 +178,26 @@ class TVShow extends TMDBObject {
      *
      * 	@return person[]
      */
+	public function getCastArray() {
+		return $this->_data['credits']['cast'];
+	} 
+	public function getCrewDirector() {
+		
+		$gnr='';
+		$group=array();
+		foreach ( $this->_data['credits']['crew'] as $value ) {
+			if($value['job']=='Director'){
+				$group[$value['name']] = $value;
+			}
+		}
+		foreach($group as $gn){
+			$gnr .=$gn['name'].', ';
+		}
+		return $gnr;
+	}
+	public function getAirDate() {
+        return $this->_data['air_date'];
+    }
     public function getCast() {
          $cast = array();
 

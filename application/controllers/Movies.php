@@ -23,6 +23,7 @@ class Movies extends My_controller {
 		// $data['images']=$out['movies']->loadImage();
 		$data['trailer']=$out['trailer'];
 		$data['backd']=$out['backd'];
+		$data['type']='movie';
 		$data['artist']=$out['movies']->getCastArray();
 		
 		$this->load->section('player', 'themes/'.THEMESET.'/layout/player',$data);

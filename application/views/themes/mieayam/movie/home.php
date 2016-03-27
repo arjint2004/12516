@@ -43,11 +43,12 @@
 					<br style="clear:both;"/>
 					<h2  id='target' class="page-heading heading--outcontainer">TV Series</h2>
 					<?php 
-					  // pr($tv['results']);
+					  //pr($tv['results']);
 					$xx=1;
 					$ix=0;
 					foreach($tv['results'] as $kmovie=>$datamovie){
-						if(!empty($datamovie) && $datamovie->poster_path!=''){
+					 // pr($datamovie);
+						if(!empty($datamovie) && @$datamovie->poster_path!=''){
 						if($ix%2==0){
 							$xx++;
 						}
@@ -69,7 +70,7 @@
 
                                     <p class="movie__time"><?php echo $datamovie->first_air_date;?></p>
 
-                                    <p class="movie__option"><?php echo getgenrebyid($datamovie->genre_ids);?></p>
+                                    <p class="movie__option"><?php echo getgenretv($datamovie->genres);?></p>
                                     
                                     <div class="movie__rate">
                                         <div class="score" style="cursor: pointer; width: 130px;">

@@ -144,7 +144,9 @@ class tmdb extends CI_Controller{
 	 * 	@return boolean
 	 */
 	private function _loadConfig() {
-		$this->_configuration = new Configuration($this->_call('configuration', ''));
+		
+		//$this->_configuration = new Configuration($this->_call('configuration', ''));
+		$this->_configuration = new Configuration(json_decode('{"images":{"base_url":"http://image.tmdb.org/t/p/","secure_base_url":"https://image.tmdb.org/t/p/","backdrop_sizes":["w300","w780","w1280","original"],"logo_sizes":["w45","w92","w154","w185","w300","w500","original"],"poster_sizes":["w92","w154","w185","w342","w500","w780","original"],"profile_sizes":["w45","w185","h632","original"],"still_sizes":["w92","w185","w300","original"]},"change_keys":["adult","air_date","also_known_as","alternative_titles","biography","birthday","budget","cast","certifications","character_names","created_by","crew","deathday","episode","episode_number","episode_run_time","freebase_id","freebase_mid","general","genres","guest_stars","homepage","images","imdb_id","languages","name","network","origin_country","original_name","original_title","overview","parts","place_of_birth","plot_keywords","production_code","production_companies","production_countries","releases","revenue","runtime","season","season_number","season_regular","spoken_languages","status","tagline","title","translations","tvdb_id","tvrage_id","type","video","videos"]}',true));
 
 		return ! empty($this->_configuration);
 	}
@@ -233,11 +235,11 @@ class tmdb extends CI_Controller{
 	 * 	@param string $appendToResponse	The extra append of the request
 	 * 	@return string
 	 */
-	private function _call($action, $appendToResponse){
+	private function _call($action, $appendToResponse,$array=true){
 
 		$url = self::_API_URL_.$action .'?api_key='. $this->getApikey() .'&language='. $this->getLang() .'&'.$appendToResponse;
-		 // echo $url.'<br>';die;
-		if($action=='tv/'){
+		  // echo $url.'<br>';die;
+		/*if($action=='tv/'){
 			echo $url; die();
 		}
 		if ($this->_debug) {
@@ -252,9 +254,9 @@ class tmdb extends CI_Controller{
 
 		$results = curl_exec($ch);
 
-		curl_close($ch);
-
-		return (array) json_decode(($results), true);
+		curl_close($ch);*/
+		$results=file_get_contents($url);
+		return (array) json_decode(($results), $array);
 	}
 	public function getSimilar($id=0,$type='movie'){
 		//pr($page);die();
@@ -382,7 +384,7 @@ class tmdb extends CI_Controller{
 		
 		$data=array();
 		foreach($h as $dd=>$dth){
-			$data[]=@unserialize($dth['original']);
+			$data[]=@json_decode($dth['original']);
 		}
 		$out['results']=$data;	
 		return $out;
@@ -404,13 +406,24 @@ class tmdb extends CI_Controller{
 		// $out['results']=$data;	
 		return $data;
 	}
+	public function getTvs($id=1,$season=1,$episodes=1){
+
+		$get_data_sql="SELECT original FROM movie_data s WHERE id_tmdb=".$id."";					
+		$h=$this->CI->db->query($get_data_sql)->result_array();
+		$data=array();
+		foreach($h as $dd=>$dth){
+			$data[]=@json_decode($dth['original']);
+		}
+		return $data;
+		
+	}
 	public function getMovies($id=1){
 
 		$get_data_sql="SELECT original FROM movie_data s WHERE id_tmdb=".$id."";					
 		$h=$this->CI->db->query($get_data_sql)->result_array();
 		$data=array();
 		foreach($h as $dd=>$dth){
-			$data[]=@unserialize($dth['original']);
+			$data[]=@json_decode($dth['original']);
 		}
 		return $data;
 		
@@ -459,6 +472,21 @@ class tmdb extends CI_Controller{
 	public function getTVShow($idTVShow, $appendToResponse = 'append_to_response=trailers,images,credits,translations,keywords,external_ids'){
 		return new TVShow($this->_call('tv/' . $idTVShow, $appendToResponse));
 	}
+	
+	public function getTVShowDb($idTVShow, $appendToResponse = 'append_to_response=trailers,images,credits,translations,keywords,external_ids'){
+		$datasave=$this->CI->db->query("SELECT * FROM movie_data WHERE id_tmdb=".$idTVShow." AND type='tv'")->result_array();
+		if(empty($datasave)){ //echo 22;
+			$original = new TVShow($this->_call('tv/' . $idTVShow, $appendToResponse));
+			$originals=(object)$original->getdata();
+
+			$keywords=$originals->name;
+			$sqlinsert="INSERT INTO movie_data SET id_tmdb='".$idTVShow."', id_genre='', original='".@mysql_real_escape_string(json_encode($originals))."', seasons=0,episodes=0,type='tv', keywords='".mysql_real_escape_string($keywords)."'";
+			$this->CI->db->query($sqlinsert);
+		}else{//echo 33;
+			$original = new TVShow((array)json_decode($datasave[0]['original']), $idTVShow);
+		}
+		return $original;
+	}
 
 	/**
 	 * 	Get a Season
@@ -483,6 +511,27 @@ class tmdb extends CI_Controller{
 	 */
 	public function getEpisode($idTVShow, $numSeason, $numEpisode, $appendToResponse = 'append_to_response=trailers,images,credits,translations'){
 		return new Episode($this->_call('tv/'. $idTVShow .'/season/'. $numSeason .'/episode/'. $numEpisode, $appendToResponse), $idTVShow);
+	}
+	public function getEpisodeDb($idTVShow, $numSeason, $numEpisode, $appendToResponse = 'append_to_response=trailers,images,credits,translations'){
+		$datasave=$this->CI->db->query("SELECT * FROM movie_data WHERE id_tmdb=".$idTVShow.$numSeason.$numEpisode." AND seasons=".$numSeason." AND episodes=".$numEpisode." AND type='tv'")->result_array();
+		if(empty($datasave)){
+			/*$url = self::_API_URL_.'tv/'. $idTVShow .'/season/'. $numSeason .'/episode/'. $numEpisode .'?api_key='. $this->getApikey() .'&language='. $this->getLang() .'&'.$appendToResponse;
+			$results=file_get_contents($url);
+			$original=json_decode(($results), false);*/
+			$originals = new Episode($this->_call('tv/'. $idTVShow .'/season/'. $numSeason .'/episode/'. $numEpisode, $appendToResponse), $idTVShow);
+			$original=$originals->getdata();
+
+			$keywords=$originals->getTitle();
+			$datacurrent=$this->CI->db->query("SELECT count(*) as cnt FROM movie_data WHERE parent_id_tmdb=".$idTVShow." AND seasons=".$numSeason." AND episodes=".$numEpisode." AND type='tv'")->result_array();
+			if($datacurrent[0]['cnt']==0){
+				$sqlinsert="INSERT INTO movie_data SET id_tmdb='".$idTVShow.$numSeason.$numEpisode."', parent_id_tmdb='".$idTVShow."', id_genre='', original='".@mysql_real_escape_string(json_encode($original))."', seasons=".$numSeason.",episodes=".$numEpisode.",type='tv', keywords='".mysql_real_escape_string($keywords)."'";
+				$this->CI->db->query($sqlinsert);
+			}
+		}else{
+			$originals = new Episode(json_decode($datasave[0]['original'],true), $idTVShow);
+			// $original=json_decode($datasave[0]['original']);
+		}
+		return $originals;
 	}
 
 	/**
@@ -1012,12 +1061,12 @@ class tmdb extends CI_Controller{
 	}
 	public function getRandTvMovie($type='movie'){
 		$data=array();							
-		$get_data_sql="SELECT original FROM movie_data WHERE  type='".$type."'  ORDER BY RAND() LIMIT 25";
-		// echo $get_data_sql.'<br />';
+		$get_data_sql="SELECT original FROM movie_data WHERE  type='".$type."' AND parent_id_tmdb=0  ORDER BY RAND() LIMIT 25";
+		 echo $get_data_sql.'<br />';
 		$h=$this->CI->db->query($get_data_sql)->result_array();
 
 		foreach($h as $dd=>$dth){
-			$data[]=@unserialize($dth['original']);
+			$data[]=@json_decode($dth['original']);
 		}
 		$out['results']=$data;	
 		return $out;
@@ -1102,14 +1151,13 @@ class tmdb extends CI_Controller{
 				if($type=='movie'){
 					//$keywords=$this->getKeywordsmovie($datasave->id).' '.$datasave->original_title.' '.$terms;
 					 $keywords=$datasave->original_title.' '.$terms;
-					$sqlinsert="INSERT INTO movie_data SET id_tmdb='".$datasave->id."', id_genre='".implode(' ',$datasave->genre_ids)."', original='".mysql_real_escape_string(serialize($datasave))."', type='".$type."', keywords='".mysql_real_escape_string($keywords)."'";
+					$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb='".$datasave->id."', id_genre='".implode(' ',$datasave->genre_ids)."', original='".@mysql_real_escape_string(json_encode($datasave))."', type='".$type."', keywords='".@mysql_real_escape_string($keywords)."'";
 				}elseif($type=='tv'){
 					//$keywords=$this->getKeywordsmovie($datasave->id).' '.$datasave->name.' '.$terms;
 					$keywords=$datasave->name.' '.$terms;
-					$sqlinsert="INSERT INTO movie_data SET id_tmdb='".$datasave->id."', id_genre='".implode(' ',$datasave->genre_ids)."', original='".mysql_real_escape_string(serialize($datasave))."', type='".$type."', keywords='".mysql_real_escape_string($keywords)."'";			
+					$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb='".$datasave->id."', id_genre='".implode(' ',$datasave->genre_ids)."', original='".mysql_real_escape_string(json_encode($datasave))."', type='".$type."', keywords='".mysql_real_escape_string($keywords)."'";			
 				}
-			 
-				mysql_query($sqlinsert);
+				$this->CI->db->query($sqlinsert);
 			}
 			$this->cinmovie++;
 		}
@@ -1148,7 +1196,7 @@ class tmdb extends CI_Controller{
 			$h=mysql_query($get_data_sql);
 			$data=array();
 			while($res=mysql_fetch_assoc($h)){
-				$data[]=unserialize($res['original']);
+				$data[]=json_decode($res['original']);
 			}			
 		}
 		
@@ -1177,9 +1225,8 @@ class tmdb extends CI_Controller{
 	private function cekexistterms($slug='',$type='movie'){
 		$get_data_sql="SELECT count(*) as c FROM movie_terms  WHERE k_slug IN('".$slug."') AND type='".$type."'";
 		// echo $get_data_sql;
-		$h=mysql_query($get_data_sql);
-		$res=mysql_fetch_assoc($h);
-		return $res['c'];
+		$h=$this->CI->db->query($get_data_sql)->result_array();
+		return $h[0]['c'];
 	}
 	public function saveterms($type='movie'){
 		//insert data by movie keyword
@@ -1246,7 +1293,7 @@ class tmdb extends CI_Controller{
 	}	
 
 	public function searchterms(){
-		if(isset($_GET['s']) && strpos($_SERVER['REQUEST_URI'],'search.php')){
+		if(isset($_GET['s']) && isset($_GET['type']) ){
 			$_GET['s']=$this->word_fliter($_GET['s']);
 			if($_GET['s']==''){
 				$_GET['s']="action";
@@ -1285,26 +1332,30 @@ class tmdb extends CI_Controller{
 		$playerback=array('movie_back.png','20thFox.png','1280x720-6sr.jpg','paramount_intro_sample_by_icepony64-d88n81s.jpg','fox_video_2010_by_charmedpiper1973-d429owp.png.jpg');
 		$ky=array_rand($playerback);
 		$usmg=$playerback[$ky];
-		if(@$type=='tv' OR $season!=0 AND $episodes!=0){
-			if(isset($season) AND isset($episodes)){
-				$movies=$this->getEpisode($id,$season,$episodes);
-				// pr($movies);die;
-				$tvs=$this->getTVShow($id);
-				$numseason=$tvs->getNumSeasons();
-				for($ises=1;$ises<=$numseason;$ises++){
-					$seassonlist=$this->getSeason($id,$ises);
-					$seasson[$ises]=$seassonlist->getEpisodesdata();
-				}			
+		$seasson=array();
+		if(@$type=='tv' /*OR $season!=0 AND $episodes!=0*/ ){
+			if($season!=0 AND $episodes!=0){
+				$movies=$this->getEpisodeDb($id,$season,$episodes);
+				$tvs=$this->getTVShowDb($id);
+				// pr($tvs);die;
+				$sess=$tvs->getSeasonob();
+				unset($sess[0]);
+				foreach($sess as $ises=>$dtssn){
+					for($eps=1;$eps<=$dtssn->episode_count;$eps++){
+						$seasson[$ises][$eps]=$eps;
+					}
+				}		
+				
 				$backd=$this->getbackdtv($movies);
 				// file_get_contents(base_url().''.$type.'-tag/'.$tvs->getTitle().'');
 			}else{
 				$movies=$this->getTVShow($id);
-				$numseason=$movies->getNumSeasons();
+				/*$numseason=$movies->getNumSeasons();
 				for($ises=1;$ises<=$numseason;$ises++){
 					$seassonlist=$this->getSeason($id,$ises);
 					$seasson[$ises]=$seassonlist->getEpisodesdata();
 				}
-				$lastEpisodes=end(end($seasson));
+				$lastEpisodes=end(end($seasson));*/
 				$backd=$this->getbackd($movies);
 				// file_get_contents(base_url().''.$type.'-tag/'.$movies->getTitle().'');
 			}
@@ -1316,7 +1367,7 @@ class tmdb extends CI_Controller{
 				// file_get_contents(base_url().''.$type.'-tag/'.$movies->getTitle().'');
 		}else{
 			$movies=$this->getMovie($id);
-			pr($movies);die();
+			// pr($movies);die();
 			$backd=$this->getbackd($movies);
 				// file_get_contents(base_url().''.$type.'-tag/'.$movies->getTitle().'');
 		}
@@ -1324,7 +1375,7 @@ class tmdb extends CI_Controller{
 		// $redirect_url='http://'.$domain_name.'/watch_download/'.$type.'/'.str_replace(' ','-',$movies->getTitle()); 
 		
 		
-		  // $trailer=$movies->getTrailers();
+		  $trailer=$movies->getTrailers();
 	      if(isset($trailer['youtube'][0]['source']) && $trailer['youtube'][0]['source']!=''){
 				$trailer='http://www.youtube.com/v/'.$trailer['youtube'][0]['source'];
 		  }else{
@@ -1342,7 +1393,7 @@ class tmdb extends CI_Controller{
 		  $client->setDeveloperKey($DEVELOPER_KEY);
 
 		  $youtube = new Google_YoutubeService($client);
-
+			
 		  try {
 			$datavids = $youtube->search->listSearch('id,snippet', array(
 			  'q' => "".str_replace(' ','+',$Title)."+Official+Trailer",
@@ -1372,7 +1423,7 @@ class tmdb extends CI_Controller{
 			$trailer='http://www.youtube.com/v/'.$datavids['items'][$keymax]['id']['videoId'];
 			// define('TRAILER', $trailer . "&vq=small");
 		}
-		return array('trailer'=>$trailer."&vq=small",'movies'=>$movies,'backd'=>$backd);
+		return array('trailer'=>$trailer."&vq=small",'movies'=>$movies,'backd'=>$backd,'seasson'=>$seasson,'tvs'=>@$tvs);
 	}
 }
 ?>

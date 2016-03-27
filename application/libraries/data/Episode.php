@@ -23,6 +23,24 @@ class Episode extends TMDBObject {
 	public function getCastArray() {
 		return $this->_data['credits']['cast'];
 	}
+	public function getdata() {
+		return $this->_data;
+	}
+	public function getRating() {
+		return $this->_data['popularity'];
+	}	
+	public function getCast() {
+		
+		$gnr='';
+		$group=array();
+		foreach ( $this->_data['credits']['cast'] as $value ) {
+			$group[$value['name']] = $value;
+		}
+		foreach($group as $gn){
+			$gnr .=$gn['name'].', ';
+		}
+		return $gnr;
+	}		
     //------------------------------------------------------------------------------
     // Get Variables
     //------------------------------------------------------------------------------
@@ -46,6 +64,10 @@ class Episode extends TMDBObject {
      */
     public function getSeasonNumber() {
         return $this->_data['season_number'];
+    }
+    public function getTrailers() {
+		$trailer['youtube'][0]['source']='xxx';
+        return $trailer;
     }
 
     /**
@@ -92,7 +114,20 @@ class Episode extends TMDBObject {
     public function getTagline() {
         return $this->_data['name'];
     }
-
+	public function getCrewDirector() {
+		
+		$gnr='';
+		$group=array();
+		foreach ( $this->_data['credits']['crew'] as $value ) {
+			if($value['job']=='Director'){
+				$group[$value['name']] = $value;
+			}
+		}
+		foreach($group as $gn){
+			$gnr .=$gn['name'].', ';
+		}
+		return $gnr;
+	}
     public function getStar() {
         return $this->_data['guest_stars'];
     }

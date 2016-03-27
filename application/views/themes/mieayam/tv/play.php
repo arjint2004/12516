@@ -1,4 +1,7 @@
-<?php echo $this->load->get_section('player'); ?>
+<?php
+  // pr($tvs);die;
+echo $this->load->get_section('player'); 
+?>
 <div class="cinema cinema--full">
                <!-- <p class="cinema__title">Artist</p>
                 <!--<div class="cinema__rating">5.0</div>-->
@@ -34,9 +37,9 @@
                       <div class="container">
                           <ul class="nav nav-tabs" id="hTab">
                             <li class="active"><a href="#detail1" data-toggle="tab">Detail</a></li>
-                            <li><a href="#movie1" data-toggle="tab">Simillar Movies</a></li>
-                            <!--<li><a href="#comment1" data-toggle="tab">Review</a></li>-->
-                            <li><a href="#map1" data-toggle="tab">Trailler</a></li>
+                            <li><a href="#movie1" data-toggle="tab">Other Episodes</a></li>
+                            <!--<li><a href="#comment1" data-toggle="tab">Review</a></li>
+                            <li><a href="#map1" data-toggle="tab">Trailler</a></li>-->
                             <li><a href="#star1" data-toggle="tab">Artist</a></li>
                           </ul>
                       </div>
@@ -59,24 +62,26 @@
 										<?PHP //pr($movies);?>
 										<div class="col-sm-9 col-md-10 col-lg-10 movie__about">
 												<a class="movie__title link--huge" href=""><?php echo $movies->getTitle();?></a>
-
 												<p class="movie__time"><?php //echo $movies->getrunTime();?> min</p>
 
 												<p class="movie__option"><strong>Overview: </strong><?php echo $movies->getOverview();?></p>
-												<p class="movie__option"><strong>Country: </strong><?php //echo $movies->getProductionCountry();?></p>
-												<p class="movie__option"><strong>Category: </strong><?php //echo $movies->getGenres();?></p>
-												<p class="movie__option"><strong>Release date: </strong><?php //echo $movies->getReleaseDate();?></p>
-												<p class="movie__option"><strong>Director: </strong><?php //echo $movies->getCrewDirector();?></p>
-												<p class="movie__option"><strong>Actors: </strong><?php //echo $movies->getCast();?></p>
-												<p class="movie__option"><strong>Popularity: </strong><?php //echo $movies->getRating();?></p>
+												<!--<p class="movie__option"><strong>Country: </strong><?php //echo $movies->getProductionCountry();?></p>
+												<p class="movie__option"><strong>Category: </strong><?php //echo $movies->getGenres();?></p>-->
+												<p class="movie__option"><strong>Air date: </strong><?php echo $movies->getAirDate();?></p>
+												<p class="movie__option"><strong>Director: </strong><?php echo $movies->getCrewDirector();?></p>
+												<p class="movie__option"><strong>Actors: </strong><?php echo $movies->getCast();?></p>
+												<p class="movie__option"><strong>Season: </strong><?php echo $movies->getSeasonNumber();?></p>
+												<p class="movie__option"><strong>Episode: </strong><?php echo $movies->getEpisodeNumber();?></p>
+												<!--<p class="movie__option"><strong>Popularity: </strong><?php //echo $movies->getRating();?></p>-->
 
 												<div class="preview-footer">
 													<div class="movie__rate"><div class="score" style="cursor: pointer; width: 130px;">
 														<?php //echo imgreate($movies->getVoteAverage());?>
 													</div>
-													<span class="movie__rate-number"><?php // echo $movies->getVoteCount();?> votes</span> 
-													<span class="movie__rating"><?php  //echo $movies->getVoteAverage();?></span></div>
+													<span class="movie__rate-number"><?php  echo $movies->getVoteCount();?> votes</span> 
+													<span class="movie__rating"><?php  echo round($movies->getVoteAverage(),1);?></span></div>
 												</div>
+													
 										</div>
 									</div>							
 								</div>							
@@ -84,60 +89,17 @@
                             <div class="tab-pane" id="movie1">
                                 <div class="container">
                                     <div class="movie-time-wrap">
-
-                                    <!--<div class="datepicker">
-                                      <span class="datepicker__marker"><i class="fa fa-calendar"></i>Date</span>
-                                      <input type="text" id="datepicker" value='03/10/2014' class="datepicker__input">
-                                    </div>-->
-
-										<?php
-										$Similarmovies=$this->tmdb->getSimilar($movies->getID());
-										// pr($Similarmovies);die();
-										foreach($Similarmovies->results as $movi=>$Similarmovie){
-										$imgurl=$this->tmdb->getImageURL('w154').$Similarmovie->poster_path;
-										$fileExists = checkExternalFile($imgurl);
-										if($fileExists==400){$imgurl=base_url().'/assets/img/noback.gif';}
-										
-										if($movi%2==0){
-										?>
-											<div class="clearfix"></div>
-										<?php
-										}
-										?>
-										
-										<div class="col-sm-6">
-                                            <!-- Movie variant with time -->
-                                            <div class="movie movie--time">
-                                                <div class="row">
-                                                    <div class="col-sm-6 col-md-5">
-                                                        <div class="movie__images">
-                                                            <span class="movie__rating"><?php echo round($Similarmovie->vote_average,1);?></span>
-                                                            <img alt='' src="<?php echo $imgurl;?>" width="100%">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-6 col-md-7">
-                                                        <a href='movie-page-left.html' class="movie__title"><?php echo $Similarmovie->original_title;?></a>
-                                                        <p class="movie__time">Date: <?php echo $Similarmovie->release_date;?></p>
-
-                                                        <p class="movie__option"><?php echo getgenrebyid($Similarmovie->genre_ids);?></p>
-                                                        <p class="movie__option"><?php echo substr($Similarmovie->overview,0,300);?></p>
-                                                    </div>
-                                                        <!--<div class="time-select">
-                                                            <ul class="items-wrap">
-                                                                <li class="time-select__item" data-time='09:40'>09:40</li>
-                                                                <li class="time-select__item" data-time='13:45'>13:45</li>
-                                                                <li class="time-select__item" data-time='15:45'>15:45</li>
-                                                                <li class="time-select__item" data-time='19:50'>19:50</li>
-                                                                <li class="time-select__item" data-time='21:50'>21:50</li>
-                                                            </ul>
-                                                        </div>-->
-                                                    
-                                                </div>
-                                            </div>
-                                            <!-- Movie variant with time -->
-                                        </div>
-										<?php } ?>
+										<ul>
+											<?php foreach($seasson as $season_num=>$dataepisodes){ ?>
+												<li><b>Season <?php echo $season_num?></b>
+													<ul style="padding:0 0 0 20px;">
+														<?php foreach($dataepisodes as $dataepisode){ ?>
+															<li>Episode <?php echo $dataepisode?> <a  class="category__item" href="<?php echo base_url();?>tv/play/<?php echo $id;?>/<?php echo $season_num; ?>/<?php echo $dataepisode; ?>">[ View Detail & Download ]</a></li>
+														<?php } ?>
+													</ul>
+												</li>
+											<?php } ?>
+										</ul>
                                     </div>
                                 </div>
                             </div>
@@ -171,12 +133,12 @@
                                           </div>
                                     </div>
                                 </div>
-                            </div>-->
+                            </div>
                             <div class="tab-pane" id="map1">
 								<div class="container">
-									<iframe id="video" width="100%" height="500" src="<?php echo $trailer; ?>"></iframe> 
+									<iframe id="video" width="100%" height="500" src="<?php //echo $trailer; ?>"></iframe> 
 								</div>
-                            </div>
+                            </div>-->
                             <div class="tab-pane" id="star1">
 									<div class="container">
 										<div class="movie-time-wrap">
@@ -188,7 +150,7 @@
 											$fileExists = checkExternalFile($imgurl);
 											if($fileExists==400){$imgurl=base_url().'/assets/img/noback.gif';}
 											
-											if($movi%2==0){
+											if($art%2==0){
 											?>
 												<div class="clearfix"></div>
 											<?php

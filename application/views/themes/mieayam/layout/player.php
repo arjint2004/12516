@@ -14,7 +14,13 @@
 	<div class="row" style="width:50%;margin: 0 auto">
         	<div id="player">
                 		<div class="vcontainer">
-								<div class="vtitle"><?php echo $movies->getTitle()?></div>
+								<div class="vtitle">
+								<?php 
+								if($type=='tv'){
+									echo @$tvs->getTitle().' >> Season '.$movies->getSeasonNumber().' >> Episodes '.$movies->getEpisodeNumber().' >>';
+								}
+								?> 
+								<?php echo $movies->getTitle()?></div>
                         		<div id="streaming">
                                 		<img class="img-backdrop" src="<?php echo $backd; ?>" alt="" itemprop="image" height="524" width="720">
                                 		<span class="mpaa">HD</span>
