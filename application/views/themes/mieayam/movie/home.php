@@ -2,7 +2,7 @@
                     
 					<h2 id='target' class="page-heading heading--outcontainer">Movies</h2>
 					<?php 
-					 // pr($movie['results']);
+					  // pr($movie['results']);
 					$xx=1;
 					$ix=0;
 					foreach($movie['results'] as $kmovie=>$datamovie){
@@ -23,7 +23,7 @@
                                     </a>
                                 </div>
                                 <div class="movie__info">
-                                    <a href='movie-page-left.html' class="movie__title"><?php echo $datamovie->original_title;?></a>
+                                    <a href='<?php echo make_url_detail($datamovie->id,$datamovie->original_title,'movie');?>' class="movie__title"><?php echo $datamovie->original_title;?></a>
 
                                     <p class="movie__time"><?php echo $datamovie->release_date;?></p>
 
@@ -47,7 +47,7 @@
 					$xx=1;
 					$ix=0;
 					foreach($tv['results'] as $kmovie=>$datamovie){
-					 // pr($datamovie);
+					  // pr($datamovie);
 						if(!empty($datamovie) && @$datamovie->poster_path!=''){
 						if($ix%2==0){
 							$xx++;
@@ -66,11 +66,11 @@
                                 </div>
 								<?php $rnd=rand(1,50)/10;?>
                                 <div class="movie__info">
-                                    <a href='movie-page-left.html' class="movie__title"><?php echo $datamovie->original_name;?></a>
+                                    <a href='<?php echo make_url_detail($datamovie->id,$datamovie->original_name,'tv');?>' class="movie__title"><?php echo $datamovie->original_name;?></a>
 
                                     <p class="movie__time"><?php echo $datamovie->first_air_date;?></p>
 
-                                    <p class="movie__option"><?php echo getgenretv($datamovie->genres);?></p>
+                                    <p class="movie__option"><?php if(isset($datamovie->genres)){echo getgenretv($datamovie->genres);}elseif(isset($datamovie->genre_ids)){echo getgenrebyid($datamovie->genre_ids);};?></p>
                                     
                                     <div class="movie__rate">
                                         <div class="score" style="cursor: pointer; width: 130px;">

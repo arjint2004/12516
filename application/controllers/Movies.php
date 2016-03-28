@@ -81,10 +81,13 @@ class Movies extends My_controller {
 		$this->tmdb->searchterms();
 		if($_GET['type']=='movie'){
 			$movies['movies']=$this->tmdb->searchMovies($_GET['s'],$_GET['page'],'movie');
+			$movies['type']='movie';
 		}elseif($_GET['type']=='tv'){
 			$movies['movies']=$this->tmdb->searchMovies($_GET['s'],$_GET['page'],'tv');
+			$movies['type']='tv';
 		}else{
 			$movies['movies']=$this->tmdb->searchMovies($_GET['s'],$_GET['page'],'movie');
+			$movies['type']='movie';
 		}
 		$this->load->view('themes/'.THEMESET.'/movie/search',$movies);
 	}

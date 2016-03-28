@@ -91,8 +91,9 @@
                                     </div>-->
 
 										<?php
-										$Similarmovies=$this->tmdb->getSimilar($movies->getID());
-										// pr($Similarmovies);die();
+										 //$Similarmovies=$this->tmdb->getSimilar($movies->getID());
+										$Similarmovies=$this->tmdb->getSimilarDB($movies->getGenre(), $movies->getTitle());
+										// pr($Similarmovies);die;
 										foreach($Similarmovies->results as $movi=>$Similarmovie){
 										$imgurl=$this->tmdb->getImageURL('w154').$Similarmovie->poster_path;
 										$fileExists = checkExternalFile($imgurl);

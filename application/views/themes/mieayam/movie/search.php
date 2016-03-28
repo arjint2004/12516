@@ -17,15 +17,15 @@
                         <!-- Movie variant with time -->
                             <div class="movie movie--test movie--test--dark movie--test--<?php if($xx%2==0){echo 'left';}else{echo 'right';}?>">
                                 <div class="movie__images">
-                                    <a href="movie-page-left.html" class="movie-beta__link">
+                                    <a href="<?php echo make_url_detail($datagenre->id,$datagenre->original_name,'tv');?>" class="movie-beta__link">
                                          <img alt='' src="<?php echo $imgurl; ?>" width="100%">
                                     </a>
                                 </div>
 								<?php $rnd=rand(1,50)/10;?>
                                 <div class="movie__info">
-                                    <a href='movie-page-left.html' class="movie__title"><?php echo $datagenre->original_title;?></a>
+                                    <a href='movie-page-left.html' class="movie__title"><?php if($type=='movie'){echo $datagenre->original_title;}elseif($type=='tv'){echo $datagenre->name;}?></a>
 
-                                    <p class="movie__time"><?php echo $datagenre->release_date;?></p>
+                                    <p class="movie__time"><?php if($type=='movie'){echo $datagenre->release_date;}elseif($type=='tv'){echo $datagenre->first_air_date;}?></p>
 
                                     <p class="movie__option"><?php echo getgenrebyid($datagenre->genre_ids);?></p>
                                     

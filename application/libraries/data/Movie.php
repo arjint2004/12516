@@ -87,6 +87,9 @@ class Movie extends TMDBObject {
 		}
 		return $gnr;
 	}	
+	public function getGenre() {
+		return $this->_data['genres'];
+	}	
 	public function getGenres() {
 		$gnr='';
 		foreach($this->_data['genres'] as $gn){

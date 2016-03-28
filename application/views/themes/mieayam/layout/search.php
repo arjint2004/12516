@@ -25,7 +25,7 @@
                           
                           <div class="select__btn">
                             <a href="#" onclick="$('form#formsearch').submit();" class="btn btn-md btn--danger cinema" style="display: inline-block;">Find <span class="hidden-exrtasm">Movie</span></a>
-                            <a href="#" class="btn btn-md btn--danger actors">Find <span class="hidden-exrtasm">TV Series</span></a>
+                            <a href="#" onclick="$('form#formsearch').submit();" class="btn btn-md btn--danger actors">Find <span class="hidden-exrtasm">TV Series</span></a>
                           </div>
 						  <?php echo form_close();?>
                           <div class="select__dropdowns">
