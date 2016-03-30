@@ -2,7 +2,7 @@
                     
 					<h2 id='target' class="page-heading heading--outcontainer">Movies</h2>
 					<?php 
-					  // pr($movie['results']);
+					   // pr($movie['results']);
 					$xx=1;
 					$ix=0;
 					foreach($movie['results'] as $kmovie=>$datamovie){
@@ -27,7 +27,11 @@
 
                                     <p class="movie__time"><?php echo $datamovie->release_date;?></p>
 
-                                    <p class="movie__option"><?php echo getgenrebyid($datamovie->genre_ids);?></p>
+                                    <p class="movie__option"><?php 
+									if(isset($datamovie->genre_ids)){$gnrss=$datamovie->genre_ids;}elseif(isset($datamovie->genres)){$gnrss=$datamovie->genres;}
+									// pr((array)$gnrss);
+									echo getgenrebyid((array)$gnrss);
+									?></p>
                                     
                                     <div class="movie__rate">
                                         <div class="score" style="cursor: pointer; width: 130px;">

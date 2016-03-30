@@ -23,6 +23,9 @@ class Movie extends TMDBObject {
 	
 	public function getTitle() {
 		return $this->_data['title'];
+	}
+	public function getdata() {
+		return $this->_data;
 	}	
 	public function getrunTime() {
 		return $this->_data['runtime'];
