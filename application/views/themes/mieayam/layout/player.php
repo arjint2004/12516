@@ -104,7 +104,7 @@
                         </div>
                 </div>
                 <div class="modal-footer bg-info">
-                        <a class="btn btn-danger" href="">Sign Up For Free</a>
+                        <a class="btn btn-danger" href="<?php echo base_url('movies/watch_download/'.$aff_link.'')?>">Sign Up For Free</a>
                 </div>
         </div>
 </div>

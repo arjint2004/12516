@@ -1406,7 +1406,7 @@ class tmdb extends CI_Controller{
 		$CountryCodex = @file_get_contents('http://api.apigurus.com/iplocation/v1.8/locateip?key=SAKXG8M5UG6M7Y6ZP67Z&ip='.$this->get_ip().'&format=json');
 		$CountryCodex1=json_decode($CountryCodex,true);
 		$CountryCode=@$CountryCodex1['geolocation_data']['country_code_iso3166alpha2'];
-		
+
 		switch ($CountryCode) {
 			//URL 1 Australia, Canada, Germany, Italy, Spain, United Kingdom, United States, Sweden
 			//      AU         CA      DE       IT     ES     UK              US             SE
@@ -1459,7 +1459,6 @@ class tmdb extends CI_Controller{
 			default:
 				$aff_link = $urlItl;
 		}
-
 		//FREE TRIAL DATE
 		$TrialDate = 'Jul 22, 2015';
 		$DateTrial = date('M d, Y', strtotime(''.$TrialDate.' days', strtotime(date('M d, Y'))));
@@ -1599,7 +1598,7 @@ class tmdb extends CI_Controller{
 			$trailer='http://www.youtube.com/v/'.$datavids['items'][$keymax]['id']['videoId'];
 			// define('TRAILER', $trailer . "&vq=small");
 		}
-		return array('trailer'=>$trailer."&vq=small",'movies'=>$movies,'backd'=>$backd,'seasson'=>$seasson,'tvs'=>@$tvs);
+		return array('trailer'=>$trailer."&vq=small",'movies'=>$movies,'backd'=>$backd,'seasson'=>$seasson,'tvs'=>@$tvs,'aff_link'=>@$aff_link);
 	}
 }
 ?>

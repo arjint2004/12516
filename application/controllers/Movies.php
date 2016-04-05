@@ -16,6 +16,10 @@ class Movies extends My_controller {
 	{
 		$this->load->view('themes/'.THEMESET.'/movie/home');
 	}
+	public function watch_download($aff_link)
+	{
+		redirect(base64_decode($aff_link));
+	}
 	public function play($id=0,$tag_title='')
 	{
 		$out=$this->tmdb->set_detail($id,'movie');
@@ -24,6 +28,7 @@ class Movies extends My_controller {
 		$data['trailer']=$out['trailer'];
 		$data['backd']=$out['backd'];
 		$data['type']='movie';
+		$data['aff_link']=base64_encode($out['aff_link']);
 		$data['artist']=$out['movies']->getCastArray();
 		
 		$this->load->section('player', 'themes/'.THEMESET.'/layout/player',$data);
