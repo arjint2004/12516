@@ -1376,7 +1376,7 @@ class tmdb extends CI_Controller{
 		
 		//SET ZONE
 
-
+		$DefaultIDImdb =false;
 		// OFFER T1
 		$t1=array('offer_id'=>'20',
 				  'aff_id'=>'1680',
