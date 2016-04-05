@@ -18,7 +18,7 @@
                         <!-- Movie variant with time -->
                             <div class="movie movie--test movie--test--dark movie--test--<?php if($xx%2==0){echo 'left';}else{echo 'right';}?>">
                                 <div class="movie__images">
-                                    <a href="movie-page-left.html" class="movie-beta__link">
+                                    <a href="<?php echo make_url_detail($datamovie->id,$datamovie->original_title,'movie');?>" class="movie-beta__link">
                                         <img alt='' src="<?php echo $imgurl; ?>" width="100%">
                                     </a>
                                 </div>

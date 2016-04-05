@@ -65,7 +65,7 @@
                 <div class="modal-body clearfix">
                         <div class="row">
                                 <div class="col-md-6" id="login">
-                                        <img class="img-responsive" src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/images/player/Jshz1Iv33im4hXhHJCI9FklihE.jpg">
+                                        <img class="img-responsive" src="<?php echo $backd; ?>">
                                         <hr>
                                         <h5>Member Login</h5>
                                         <div class="form-group">
@@ -104,7 +104,7 @@
                         </div>
                 </div>
                 <div class="modal-footer bg-info">
-                        <a class="btn btn-danger" href="http://ocim.tk/signup.php">Sign Up For Free</a>
+                        <a class="btn btn-danger" href="">Sign Up For Free</a>
                 </div>
         </div>
 </div>
