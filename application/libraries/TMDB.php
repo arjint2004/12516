@@ -1360,7 +1360,145 @@ class tmdb extends CI_Controller{
 			// }
 		}	
 	}
+
+	//GET IP
+	function get_ip(){
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+				$ip = $_SERVER['HTTP_CLIENT_IP'];
+			}elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+				$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			}else{
+				$ip = $_SERVER['REMOTE_ADDR'];
+			}
+			return $ip;
+	}	
 	public function set_detail($id=0,$type='movie',$season=0,$episodes=0){
+		
+		//SET ZONE
+
+
+		// OFFER T1
+		$t1=array('offer_id'=>'20',
+				  'aff_id'=>'1680',
+				  'aff_sub'=>'bendood');
+				  
+		// OFFER T2		  
+		$t2=array('offer_id'=>'24',
+				  'aff_id'=>'1680',
+				  'aff_sub'=>'bendood');
+				  
+		// OFFER ITL		  
+		$itl=array('offer_id'=>'22',
+				   'aff_id'=>'1680',
+				   'aff_sub'=>'bendood');
+				   
+		//AFF LINK
+		$url1 = 'http://watch.vid-id.me/aff_c?offer_id='.$t1['offer_id'].'&aff_id='.$t1['aff_id'].'&aff_sub='.$t1['aff_sub'].''; // 4,20
+		$url2 = 'http://watch.vid-id.me/aff_c?offer_id='.$t2['offer_id'].'&aff_id='.$t2['aff_id'].'&aff_sub='.$t2['aff_sub'].''; // 6,24
+		$urlItl = 'http://watch.vid-id.me/aff_c?offer_id='.$itl['offer_id'].'&aff_id='.$itl['aff_id'].'&aff_sub='.$itl['aff_sub'].''; // 2,22				   
+		
+		//URL Error
+		$urlErrors = 'http://www.indocpa.com/';
+
+
+
+
+		$CountryCodex = @file_get_contents('http://api.apigurus.com/iplocation/v1.8/locateip?key=SAKXG8M5UG6M7Y6ZP67Z&ip='.$this->get_ip().'&format=json');
+		$CountryCodex1=json_decode($CountryCodex,true);
+		$CountryCode=@$CountryCodex1['geolocation_data']['country_code_iso3166alpha2'];
+		
+		switch ($CountryCode) {
+			//URL 1 Australia, Canada, Germany, Italy, Spain, United Kingdom, United States, Sweden
+			//      AU         CA      DE       IT     ES     UK              US             SE
+			case "AU":
+				$aff_link = $url1;
+				break;
+			case "CA":
+				$aff_link = $url1;
+				break;
+			case "DE":
+				$aff_link = $url1;
+				break;
+			case "IT":
+				$aff_link = $url1;
+				break;
+			case "ES":
+				$aff_link = $url1;
+				break;
+			case "UK":
+				$aff_link = $url1;
+				break;
+			case "GB":
+				$aff_link = $url1;
+				break;
+			case "US":
+				$aff_link = $url1;
+				break;
+			case "SE":
+				$aff_link = $url1;
+				break;
+				
+				
+			//URL 2   France Sweden United_Kingdom
+			//        FR     SE     UK
+			case "FR":
+				$aff_link = $url2;
+				break;
+			//Stream4Stream 129
+			case "SE":
+				$aff_link = $url2;
+				break;
+			case "GB":
+				$aff_link = $url2;
+				break;
+			case "UK":
+				$aff_link = $url2;
+				break;
+				
+			//URL 3   INTERNATIONAL
+			default:
+				$aff_link = $urlItl;
+		}
+
+		//FREE TRIAL DATE
+		$TrialDate = 'Jul 22, 2015';
+		$DateTrial = date('M d, Y', strtotime(''.$TrialDate.' days', strtotime(date('M d, Y'))));
+
+		/*function FilterUrl($url=""){
+			$parts = parse_url($url);
+			if($parts['host']==$Domain){
+				return true;
+			}else{
+				return false;
+			}
+		}*/
+		//LINK VALID AFF
+		$LinkValid = array('vid-id.me','play.vid-id.me','watch.vid-id.me','stream.vid-id.me','go.vid-id.org');
+
+		$Linkurl1 = explode('/',$url1);
+		$Linkurl2 = explode('/',$url2);
+		$LinkurlItl = explode('/',$urlItl);
+
+		if(!in_array($Linkurl1[2],$LinkValid)) {
+			header('Location: '.$urlErrors);
+		}elseif(!in_array($Linkurl2[2],$LinkValid)){
+			header('Location: '.$urlErrors);	
+		}elseif(!in_array($LinkurlItl[2],$LinkValid)){
+			header('Location: '.$urlErrors);	
+		}
+
+		//GET ID
+		if(!isset($_GET['id'])){
+			if($DefaultIDImdb == FALSE){
+				$imdbID = '1502712';
+			}else{
+				$imdbID = $DefaultIDImdb;
+			}
+		}else{
+			$imdbID = $_GET['id'];
+		}		
+		
+		
 		//SET DETAIL
 		$playerback=array('movie_back.png','20thFox.png','1280x720-6sr.jpg','paramount_intro_sample_by_icepony64-d88n81s.jpg','fox_video_2010_by_charmedpiper1973-d429owp.png.jpg');
 		$ky=array_rand($playerback);
