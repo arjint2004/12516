@@ -348,7 +348,7 @@ class tmdb extends CI_Controller{
 	}
 	public function getMovieNowPlay($page=1){
 		//pr($page);die();
-		$ch = curl_init();
+		/*$ch = curl_init();
 
 		curl_setopt($ch, CURLOPT_URL, "http://api.themoviedb.org/3/movie/now_playing?api_key=".$this->getApikey()."&language=".$this->getLang()."&page=".$page."
 		");
@@ -360,8 +360,9 @@ class tmdb extends CI_Controller{
 		));
 
 		$response = curl_exec($ch);
-		curl_close($ch);
-		
+		curl_close($ch);*/
+		$response=file_get_contents("http://api.themoviedb.org/3/movie/now_playing?api_key=".$this->getApikey()."&language=".$this->getLang()."&page=".$page."
+		");
 		return json_decode($response);
 	}
 	public function getMovieLatest($page=1){
@@ -392,9 +393,10 @@ class tmdb extends CI_Controller{
 		
 		$out['total_data']=$hc[0]['c'];
 
-		$get_data_sql="SELECT original FROM movie_data s WHERE id_genre  LIKE '%".$id."' AND type='movie' LIMIT ".$start.",".$per_page."";					
+		$get_data_sql="SELECT original FROM movie_data s WHERE id_genre  LIKE '%".$id."%' AND type='movie' LIMIT ".$start.",".$per_page."";					
 		$h=$this->CI->db->query($get_data_sql)->result_array();
-		
+		// echo $this->CI->db->last_query();
+		// pr($h);die;
 		$data=array();
 		foreach($h as $dd=>$dth){
 			$data[]=@json_decode($dth['original']);

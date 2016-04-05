@@ -14,7 +14,7 @@
 							<h3 class="heading-special lower--hight">Movie Tags</h3>
 							<ul class="tags tags--dark">
 							<?php foreach($termsmovie as $popix=>$termsdata){?>
-								<li class="item-wrap"><a class="tags__item" href="<?php //echo make_url_detail($termsdata['id'],$termsdata['k_name'],'movie');?>"><?php echo $termsdata['k_name']?></a></li>
+								<li class="item-wrap"><a class="tags__item" href="<?php echo make_url_meta($termsdata['k_name'],'movie');?>"><?php echo $termsdata['k_name']?></a></li>
 							<?php } ?>
 							</ul>
                             <div class="category category--discuss category--count marginb-sm mobile-category ls-cat">
@@ -28,7 +28,7 @@
 							<h3 class="heading-special lower--hight">TV Tags</h3>
 							<ul class="tags tags--dark">
 								<?php foreach($termstv as $popix=>$termsdata){?>
-								<li class="item-wrap"><a class="tags__item" href="<?php //echo make_url_detail($termsdata['id'],$termsdata['k_name'],'tv');?>"><?php echo $termsdata['k_name']?></a></li>
+								<li class="item-wrap"><a class="tags__item" href="<?php echo make_url_meta($termsdata['k_name'],'tv');?>"><?php echo $termsdata['k_name']?></a></li>
 							<?php } ?>
 							</ul>
                         </div>

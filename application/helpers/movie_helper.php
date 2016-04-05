@@ -21,6 +21,18 @@ if (!function_exists('make_genre')) {
 		return $gnr;
 	}
 }
+if (!function_exists('make_url_meta')) {
+	function make_url_meta($str='',$type='movie')
+	{
+		$clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $str);
+		$clean = strtolower(trim($clean, '-'));
+		$clean = preg_replace("/[\/_|+ -]+/", '-', $clean);
+		$clean=str_replace("-","+",$clean);
+		$url=base_url('movies/search?s='.$clean.'&type='.$type.'&page=1');
+		
+		return $url;
+	}
+}
 if (!function_exists('make_url_detail')) {
 	function make_url_detail($id='',$str='',$type='movie',$season=1,$episodes=1)
 	{
