@@ -23,8 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://www.ourcinema.us';
-
+$config['base_url'] = 'http://webdevel/indoCPA/agc_tmdb_movie_2/trunk/';
 /*
 |--------------------------------------------------------------------------
 | Index File
