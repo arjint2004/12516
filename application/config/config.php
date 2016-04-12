@@ -512,28 +512,9 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 $config['domain'] = $config['base_url'];
 $config['tmdb_api_key'] = 'b3c354729c8d4a13a1e90cb65cd1cae0';
-define('THEMESET','mieayam');
 
-//setting multi domain
-$settiingdomain=array(
-	1=>array(
-		'domain'=>'satu.com',
-		'database'=>'satucom',
-		'thme'=>'satucom',
-		'status'=>'active'
-	),
-	2=>array(
-		'domain'=>'dua.com',
-		'database'=>'dua',
-		'thme'=>'satucom',
-		'status'=>'disable'
-	),
-	3=>array(
-		'domain'=>'tiga.com',
-		'database'=>'tiga',
-		'thme'=>'satucom',
-		'status'=>'disable'
-	),
-);
+define('THEMESETADMIN','admin');
+
+
 
 

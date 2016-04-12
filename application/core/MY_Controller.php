@@ -2,21 +2,76 @@
 class My_controller extends CI_Controller {
     
 	public $layout='default';
+	public $domain=array();
 	public function __construct() {
         parent::__construct();
 		
 		$this->load->helper('url');
 		$this->load->library('session');
-		$this->load->library('tmdb',array('apikey'=>$this->config->item('tmdb_api_key')));
+		$this->config->load('agc');
+		foreach($this->config->item('domain') as $namadomain=>$setting){
+			if($setting['status']==1){
+				$this->domain=$setting;
+				break;
+			}
+		}
+		define('THEMESET',$this->domain["theme"]);
+		// if(empty($this->session->userdata('domain'))){
+			$this->session->set_userdata('domain', $this->domain);
+		// }
+		
 		// $this->tmdb->setApikey($this->config->item('tmdb_api_key'));
+		$this->_auth();
 		$this->_init();
     }
 	
+	private function _auth($username='',$password=''){
+		// echo md5('indoCPA20016');die;
+		if($this->router->fetch_class()=='admin'){
+			if(isset($_POST['username']) && isset($_POST['password']) && $_POST['username']==$this->config->item('useradmin') && $_POST['password']==$this->config->item('passwordadmin')){
+			
+			}
+		}else{
+		
+		}
+	}
 	private function _init()
 	{
+
+		$usedomain=$this->session->userdata('domain');
+		switch($usedomain['offer']){
+			case"aliexpress":
+				$this->_aliexpress();
+			break;
+			case"alibaba":
+				$this->_alibaba();
+			break;
+			case"agoda":
+				$this->_agoda();
+			break;
+			case"movie":
+				$this->_movie();
+			break;
+		}
+	}
+	private function _aliexpress()
+	{
+		$this->_theme();
+	}
+	private function _alibaba()
+	{
+		$this->_theme();
+	}
+	
+	private function _agoda()
+	{
+		$this->_theme();
+	}
+	private function _movie()
+	{
+		$this->load->library('tmdb',array('apikey'=>$this->config->item('tmdb_api_key')));
 		$this->tmdb->saveterms();
 		$this->tmdb->saveterms('tv');
-		
 			
 		if(empty($this->session->userdata('genre'))){
 				$genre=$this->tmdb->getGenre();
@@ -53,11 +108,24 @@ class My_controller extends CI_Controller {
 		}else{
 			
 		}
-		$this->load->section('header', 'themes/'.THEMESET.'/layout/header');
-		$this->load->section('footer', 'themes/'.THEMESET.'/layout/footer');
-		
-		$this->output->set_template($this->layout);
+		$this->_theme();
 	}
 
+
+	private function _theme($theme='')
+	{
 	
+		if($this->router->fetch_class()=='admin'){
+			// pr($this->domain['theme']);die;
+			$this->load->section('header', 'themes/'.THEMESETADMIN.'/layout/header');
+			$this->load->section('footer', 'themes/'.THEMESETADMIN.'/layout/footer');	
+			$this->output->set_template($this->layout,1);	
+		}else{	
+			// pr($this->domain['theme']);die;
+			$domain=$this->domain["theme"];
+			$this->load->section('header', 'themes/'.$domain.'/layout/header');
+			$this->load->section('footer', 'themes/'.$domain.'/layout/footer');
+			$this->output->set_template($this->layout,0,$domain);		
+		}	
+	}	
 }

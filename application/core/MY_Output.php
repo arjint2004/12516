@@ -42,10 +42,15 @@ class MY_Output extends CI_Output {
 	 * @param string $template_view
 	 * @return void
 	 */
-	function set_template($template_view){
+	function set_template($template_view,$isadmin=0,$theme='default'){
 		$this->set_mode(self::OUTPUT_MODE_TEMPLATE);
 		$template_view = str_replace(".php", "", $template_view);
-		$this->_template = "themes/".THEMESET."/layout/" . $template_view;
+		
+		if($isadmin==1){
+			$this->_template = "themes/".THEMESETADMIN."/layout/" . $template_view;
+		}else{
+			$this->_template = "themes/".$theme."/layout/" . $template_view;
+		}
 	}
 
 	/**set_mode alias
