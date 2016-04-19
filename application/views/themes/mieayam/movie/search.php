@@ -1,6 +1,6 @@
 					
                     <?php //pr($genre); ?>
-					<h2 id='target' class="page-heading heading--outcontainer">Movies</h2>
+					<h2 id='target' class="page-heading heading--outcontainer"><?php echo strtoupper($_GET['type']);?></h2>
 					<?php 
 					$xx=1;
 					$ix=0;

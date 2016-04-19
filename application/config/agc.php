@@ -23,7 +23,7 @@ $config['domain'] =array(
 								'status'=>0 //0 adalah disable
 							),
 							'movie.com'=>array(
-								'domain'=>'http://webdevel/indoCPA/agc_tmdb_movie_2/trunk/',
+								'domain'=>'localhost/indocpa/agc_tmdb_ci/trunk/',
 								'database'=>'movie',
 								'offer'=>'movie',
 								'theme'=>'mieayam',
@@ -33,13 +33,13 @@ $config['domain'] =array(
 						
 $config['t1']=array('offer_id'=>'20',
 				  'aff_id'=>'1680',
-				  'aff_sub'=>'bendood');
+				  'aff_sub'=>'arjint');
 $config['t2']=array('offer_id'=>'24',
 				  'aff_id'=>'1680',
-				  'aff_sub'=>'bendood');
+				  'aff_sub'=>'arjint');
 $config['itl']=array('offer_id'=>'22',
 				   'aff_id'=>'1680',
-				   'aff_sub'=>'bendood');
+				   'aff_sub'=>'arjint');
 
 
 

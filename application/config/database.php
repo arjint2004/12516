@@ -6,10 +6,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => '',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'indocpa_movieinstall2',
+	'database' => 'indocpa_movieinstall1',
 
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

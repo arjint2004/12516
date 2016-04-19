@@ -50,7 +50,7 @@
         
 
 		<?php echo $this->load->get_section('header'); ?>
-		<?php echo $this->load->get_section('slider'); ?>
+		<?php //echo $this->load->get_section('slider'); ?>
         
         
         <!-- Main content -->

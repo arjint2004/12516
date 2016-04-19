@@ -424,16 +424,13 @@ class tmdb extends CI_Controller{
 		
 		//$page=$page-1;
 		$per_page=10;
-		$start=$page*$per_page;
+		$start=($page*$per_page)-$per_page;
 		
 		$get_data_sql="SELECT * FROM movie_data LIMIT ".$start.",".$per_page."";	
-		 // echo $get_data_sql;
+		// echo $get_data_sql;
 		
-		$h=mysql_query($get_data_sql);
-		$data=array();
-		while($res=mysql_fetch_assoc($h)){
-			$data[]=$res;
-		}
+		$data=$this->CI->db->query($get_data_sql)->result_array();
+		// pr($data);
 		// $out['results']=$data;	
 		return $data;
 	}
@@ -1280,9 +1277,9 @@ class tmdb extends CI_Controller{
 				$keywdata=trim($keywdata);
 				$slug=str_replace(' ','-',$keywdata).'.html';
 				if($keywdata!='' && $this->cekexistterms($slug,$type)==0){
-					$sql="INSERT INTO movie_terms SET k_name='".mysql_real_escape_string($keywdata)."', k_slug='".mysql_real_escape_string($slug)."', 	k_date='".date('Y-m-d H:i:s')."', 	k_count_view='0',type='".$type."',source='keywordinject'";
-					mysql_query($sql);
+					$this->CI->db->query("INSERT INTO movie_terms SET k_name=?, k_slug=?,k_date=?, 	k_count_view='0',type='".$type."',source='keywordinject'",array($keywdata,$slug,date('Y-m-d H:i:s')));
 					// echo $sql;
+					$this->savehasilterms($keywdata,$type,1);
 					$cnt++;
 					if($cnt>500){
 						$filew .=$keywdata;
@@ -1373,7 +1370,7 @@ class tmdb extends CI_Controller{
 			return $ip;
 	}	
 	public function set_detail($id=0,$type='movie',$season=0,$episodes=0){
-		
+
 		//SET ZONE
 
 		$DefaultIDImdb =false;

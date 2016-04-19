@@ -41,9 +41,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Create database
-$sql = "CREATE DATABASE ".$_POST['database']."";
-if ($conn->query($sql) === TRUE) {
 	mysqli_select_db($conn,$_POST['database']);
     // sql to create table
 	$sql1 = "CREATE TABLE IF NOT EXISTS `movie_data` (
@@ -107,10 +104,7 @@ if ($conn->query($sql) === TRUE) {
 	} else {
 		echo "Error creating table: " . $conn->error;
 	}
-	
-} else {
-    echo "Error creating database: " . $conn->error;
-}
+
 
 $conn->close();
 
@@ -216,7 +210,7 @@ header('location:'.str_replace('install/','',base_url()).'');
 <h3>Instalasi AGC MOVIE IndoCPA</h3>
 <form action="" method="post" class="smart-green">
     <h1>Database Setting
-        <span>Masukkan setting konesi database</span>
+        <span>Buat Database kemudian masukkan detail settingnya</span>
     </h1>
     <label>
         <span>hostname :</span>
