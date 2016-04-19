@@ -65,6 +65,7 @@ class My_controller extends CI_Controller {
 	
 	private function _agoda()
 	{
+		$this->load->library(array('AuthToken'=>$this->config->item('AuthToken')));
 		$this->_theme();
 	}
 	private function _movie()

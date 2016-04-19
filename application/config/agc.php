@@ -32,4 +32,5 @@ $config['domain'] =array(
 						);
 						
 $config['useradmin']='admin';
+$config['AuthToken']='0030b064-d0c1-4090-bd00-0a49c9e94151';
 $config['passwordadmin']='9d0fa3bb01d558aa8fdeb18fc0557622';
