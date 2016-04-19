@@ -412,8 +412,8 @@ class tmdb extends CI_Controller{
 			$originals=$original->getdata();
 
 			if(isset($originals->original_title)){$keywords=$originals->original_title;}elseif(isset($originals['original_title'])){$keywords=$originals['original_title'];}
-			$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb='".$id."', id_genre='', original='".@mysql_real_escape_string(json_encode($originals))."', seasons=0,episodes=0,type='movie', keywords='".@mysql_real_escape_string($keywords)."'";
-			$this->CI->db->query($sqlinsert);
+			$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre='', original=?, seasons=0,episodes=0,type='movie', keywords=?";
+			$this->CI->db->query($sqlinsert,array($id,json_encode($originals),$keywords));
 		}else{//echo 33;
 			$original = new Movie(json_decode($datasave[0]['original'],true), $id);
 		}
@@ -1252,9 +1252,9 @@ class tmdb extends CI_Controller{
 	public function savetermsnofile($keywdata='',$type='movie'){
 		$slug=str_replace(' ','-',$keywdata).'.html';
 		if($keywdata!='' && $this->cekexistterms($slug,$type)==0){
-		$sql="INSERT INTO movie_terms SET k_name='".@mysql_real_escape_string($keywdata)."', k_slug='".@mysql_real_escape_string($slug)."', 	k_date='".date('Y-m-d H:i:s')."', 	k_count_view='0',type='".$type."',source='key_search'";
+		$sql="INSERT INTO movie_terms SET k_name=?, k_slug=?, 	k_date=?, 	k_count_view='0',type=?,source='key_search'";
 		// echo $sql;
-		return $this->CI->db->query($sql);
+		return $this->CI->db->query($sql,array($keywdata,$slug,date('Y-m-d H:i:s'),$type));
 		}else{
 			return false;
 		}
