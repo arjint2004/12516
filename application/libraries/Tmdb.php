@@ -1179,15 +1179,21 @@ class tmdb extends CI_Controller{
 			if($this->cinmovie<60){
 				//$keywords='';
 				if($type=='movie'){
+					$original = $this->getMovie($datasave->id);
 					//$keywords=$this->getKeywordsmovie($datasave->id).' '.$datasave->original_title.' '.$terms;
 					 $keywords=$datasave->original_title.' '.$terms;
-					$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb='".$datasave->id."', id_genre='".implode(' ',$datasave->genre_ids)."', original='".@mysql_real_escape_string(json_encode($datasave))."', type='".$type."', keywords='".@mysql_real_escape_string($keywords)."'";
+					$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre=?, original=?, type=?, keywords=?";
+					$this->CI->db->query($sqlinsert,array($datasave->id,implode(' ',$datasave->genre_ids),json_encode($original->getdata()),$type,$keywords));
 				}elseif($type=='tv'){
+					$appendToResponse = 'append_to_response=trailers,images,credits,translations,keywords,external_ids';
+					$original = new TVShow($this->_call('tv/' . $datasave->id, $appendToResponse));
+					$originals=(object)$original->getdata();
+					//pr(json_encode($originals));die;
 					//$keywords=$this->getKeywordsmovie($datasave->id).' '.$datasave->name.' '.$terms;
 					$keywords=$datasave->name.' '.$terms;
-					$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb='".$datasave->id."', id_genre='".implode(' ',$datasave->genre_ids)."', original='".@mysql_real_escape_string(json_encode($datasave))."', type='".$type."', keywords='".@mysql_real_escape_string($keywords)."'";			
+					$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre=?, original=?, type=?, keywords=?";	
+					$this->CI->db->query($sqlinsert,array($datasave->id,implode(' ',$datasave->genre_ids),json_encode($originals),$type,$keywords));
 				}
-				$this->CI->db->query($sqlinsert);
 			}
 			$this->cinmovie++;
 		}
@@ -1198,6 +1204,7 @@ class tmdb extends CI_Controller{
 		$this->savetermsnofile($terms,$type);
 		$like='';
 		$terms=str_replace('.html','',$terms);
+		$data=array();
 		if(empty($data)){
 			$pecahkey=explode('-',$terms);
 			// pr($pecahkey);die();
