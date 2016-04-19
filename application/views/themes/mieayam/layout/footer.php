@@ -37,19 +37,19 @@
                 </div>
                 <div class="col-xs-12 col-md-6">
                     <div class="footer-info">
-                        <p class="heading-special--small">A.Movie<br><span class="title-edition">in the social media</span></p>
+                        <p class="heading-special--small"><?php echo $this->session->userdata('namadomain');?><br><span class="title-edition">in the social media</span></p>
 
                         <div class="social">
-                            <a href='#' class="social__variant fa fa-facebook"></a>
-                            <a href='#' class="social__variant fa fa-twitter"></a>
-                            <a href='#' class="social__variant fa fa-vk"></a>
-                            <a href='#' class="social__variant fa fa-instagram"></a>
-                            <a href='#' class="social__variant fa fa-tumblr"></a>
-                            <a href='#' class="social__variant fa fa-pinterest"></a>
+                            <!--<a href='<?php //echo $this->session->userdata('aff_link');?>' class="social__variant fa fa-facebook"></a>
+                            <a href='<?php //echo $this->session->userdata('aff_link');?>' class="social__variant fa fa-twitter"></a>
+                            <a href='<?php //echo $this->session->userdata('aff_link');?>' class="social__variant fa fa-vk"></a>
+                            <a href='<?php //echo $this->session->userdata('aff_link');?>' class="social__variant fa fa-instagram"></a>
+                            <a href='<?php //echo $this->session->userdata('aff_link');?>' class="social__variant fa fa-tumblr"></a>
+                            <a href='<?php //echo $this->session->userdata('aff_link');?>' class="social__variant fa fa-pinterest"></a>-->
                         </div>
                         
                         <div class="clearfix"></div>
-                        <p class="copy">&copy; A.Movie, 2013. All rights reserved. Done by Olia Gozha</p>
+                        <p class="copy">&copy; <?php echo $this->session->userdata('namadomain');?>, 2016. All rights reserved. Done by <?php echo $this->session->userdata('namadomain');?></p>
                     </div>
                 </div>
             </section>
@@ -64,7 +64,7 @@
                 <div class="col-sm-4 col-sm-offset-4">
                     <button type="button" class="overlay-close">Close</button>
                     <form id="login-form" class="login" method='get' novalidate=''>
-                        <p class="login__title">sign in <br><span class="login-edition">welcome to A.Movie</span></p>
+                        <p class="login__title">sign in <br><span class="login-edition">welcome to <?php echo $this->session->userdata('namadomain');?></span></p>
 
                         <div class="social social--colored">
                                 <a href='#' class="social__variant fa fa-facebook"></a>

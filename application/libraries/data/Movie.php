@@ -28,7 +28,7 @@ class Movie extends TMDBObject {
 		return $this->_data;
 	}	
 	public function getrunTime() {
-		return $this->_data['runtime'];
+		return @$this->_data['runtime'];
 	}	
 	public function getRating() {
 		return $this->_data['popularity'];
@@ -81,7 +81,7 @@ class Movie extends TMDBObject {
 		return $gnr;
 	}			
 	public function getCastArray() {
-		return $this->_data['credits']['cast'];
+		return @$this->_data['credits']['cast'];
 	}	
 	public function getProduction() {
 		$gnr='';
@@ -102,8 +102,10 @@ class Movie extends TMDBObject {
 	}	
 	public function getProductionCountry() {
 		$gnr='';
-		foreach($this->_data['production_countries'] as $gn){
-			$gnr .=$gn['name'].', ';
+		if(isset($this->_data['production_countries'])){
+			foreach($this->_data['production_countries'] as $gn){
+				$gnr .=$gn['name'].', ';
+			}
 		}
 		return $gnr;
 	}	
@@ -174,7 +176,7 @@ class Movie extends TMDBObject {
 			$this->loadTrailer();
 		}
 
-		return $this->_data['trailers'];
+		return @$this->_data['trailers'];
 	}
 
 	/** 

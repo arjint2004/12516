@@ -24,7 +24,7 @@
                         		<div id="streaming">
                                 		<img class="img-backdrop" src="<?php echo $backd; ?>" alt="" itemprop="image" height="524" width="720">
                                 		<span class="mpaa">HD</span>
-                                		<div class="watermark"><?php echo $this->config->item('domain');?></div>
+                                		<div class="watermark"><?php echo $this->session->userdata('namadomain');?></div>
                                 		<div class="inline play-button registration">
                                         		<span style="display: none;" class="player-loader"></span>
                                         		<i style="visibility: visible;" class="fa fa-youtube-play"></i>

@@ -16,13 +16,23 @@ class Movies extends My_controller {
 	{
 		$this->load->view('themes/'.THEMESET.'/movie/home');
 	}
+	public function errordb()
+	{
+	
+	}
 	public function watch_download($aff_link)
 	{
-		redirect(base64_decode($aff_link));
+		if($this->session->userdata('aff_link')!=''){
+			$red=$this->session->userdata('aff_link');
+		}else{
+			$red=base64_decode($aff_link);
+		}
+		redirect($red);
 	}
 	public function play($id=0,$tag_title='')
 	{
 		$out=$this->tmdb->set_detail($id,'movie');
+		$this->session->set_userdata('aff_link', $out['aff_link']);
 		$data['movies']=$out['movies'];
 		// $data['images']=$out['movies']->loadImage();
 		$data['trailer']=$out['trailer'];

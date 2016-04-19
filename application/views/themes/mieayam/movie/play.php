@@ -118,7 +118,7 @@
                                                     </div>
 
                                                     <div class="col-sm-6 col-md-7">
-                                                        <a href='movie-page-left.html' class="movie__title"><?php echo $Similarmovie->original_title;?></a>
+                                                        <a href='<?php echo make_url_detail($Similarmovie->id,$Similarmovie->original_title,'movie');?>' class="movie__title"><?php echo $Similarmovie->original_title;?></a>
                                                         <p class="movie__time">Date: <?php echo $Similarmovie->release_date;?></p>
 
                                                         <p class="movie__option"><?php echo getgenrebyid($Similarmovie->genre_ids);?></p>
@@ -206,7 +206,7 @@
 															</div>
 														</div>	
 														<div class="col-sm-6 col-md-7">
-															<a href='movie-page-left.html' class="movie__title"><?php echo $dataartist['name'];?></a>
+															<a  class="movie__title"><?php echo $dataartist['name'];?></a>
 															<p class="movie__date">character: <?php echo $dataartist['character'];?></p>
 
 															<p class="movie__option"><?php //echo getgenrebyid($dataartist['']);?></p>

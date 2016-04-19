@@ -1378,19 +1378,13 @@ class tmdb extends CI_Controller{
 
 		$DefaultIDImdb =false;
 		// OFFER T1
-		$t1=array('offer_id'=>'20',
-				  'aff_id'=>'1680',
-				  'aff_sub'=>'bendood');
+		$t1=$this->CI->config->item('t1');
 				  
 		// OFFER T2		  
-		$t2=array('offer_id'=>'24',
-				  'aff_id'=>'1680',
-				  'aff_sub'=>'bendood');
+		$t2=$this->CI->config->item('t2');
 				  
 		// OFFER ITL		  
-		$itl=array('offer_id'=>'22',
-				   'aff_id'=>'1680',
-				   'aff_sub'=>'bendood');
+		$itl=$this->CI->config->item('itl');
 				   
 		//AFF LINK
 		$url1 = 'http://watch.vid-id.me/aff_c?offer_id='.$t1['offer_id'].'&aff_id='.$t1['aff_id'].'&aff_sub='.$t1['aff_sub'].''; // 4,20

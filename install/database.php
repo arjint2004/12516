@@ -8,8 +8,8 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => '',
-	'database' => 'indocpa_movieinstall2',
+	'password' => 'root34',
+	'database' => 'acg',
 
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

@@ -42,7 +42,7 @@ class MY_Output extends CI_Output {
 	 * @param string $template_view
 	 * @return void
 	 */
-	function set_template($template_view,$isadmin=0,$theme='default'){
+	function set_template($template_view,$isadmin=0,$theme=THEMESET){
 		$this->set_mode(self::OUTPUT_MODE_TEMPLATE);
 		$template_view = str_replace(".php", "", $template_view);
 		

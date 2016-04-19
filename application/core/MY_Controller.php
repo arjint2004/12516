@@ -4,6 +4,7 @@ class My_controller extends CI_Controller {
 	public $layout='default';
 	public $domain=array();
 	public function __construct() {
+	
         parent::__construct();
 		
 		$this->load->helper('url');
@@ -18,6 +19,7 @@ class My_controller extends CI_Controller {
 		define('THEMESET',$this->domain["theme"]);
 		// if(empty($this->session->userdata('domain'))){
 			$this->session->set_userdata('domain', $this->domain);
+			$this->session->set_userdata('namadomain', $this->domain['domain']);
 		// }
 		
 		// $this->tmdb->setApikey($this->config->item('tmdb_api_key'));
@@ -37,7 +39,7 @@ class My_controller extends CI_Controller {
 	}
 	private function _init()
 	{
-
+	
 		$usedomain=$this->session->userdata('domain');
 		switch($usedomain['offer']){
 			case"aliexpress":

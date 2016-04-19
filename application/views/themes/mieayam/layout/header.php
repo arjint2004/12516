@@ -87,7 +87,7 @@
                           
                         </span>
                       </div>
-                      <a href="#" class="btn btn--sign btn--singin">
+                      <!--<a href="#" class="btn btn--sign btn--singin">
                           Log In
                       </a>
                         <ul class="auth__function">
@@ -95,7 +95,7 @@
                             <li><a href="#" class="auth__function-item">Booked tickets</a></li>
                             <li><a href="#" class="auth__function-item">Discussion</a></li>
                             <li><a href="#" class="auth__function-item">Settings</a></li>
-                        </ul>
+                        </ul>-->
 
                     </div>
                     
