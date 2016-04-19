@@ -75,34 +75,34 @@ if ($conn->connect_error) {
 			MODIFY `k_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;";
 
 	if ($conn->query($sql1) === TRUE) {
-		echo "Table MyGuests created successfully";
+		// echo "Table MyGuests created successfully";
 	} else {
 		echo "Error creating table: " . $conn->error;
 	}
 	if ($conn->query($sql2) === TRUE) {
 		echo "Table MyGuests created successfully";
 	} else {
-		echo "Error creating table: " . $conn->error;
+		// echo "Error creating table: " . $conn->error;
 	}
 	if ($conn->query($sql3) === TRUE) {
-		echo "Table MyGuests created successfully";
+		// echo "Table MyGuests created successfully";
 	} else {
-		echo "Error creating table: " . $conn->error;
+		// echo "Error creating table: " . $conn->error;
 	}
 	if ($conn->query($sql4) === TRUE) {
-		echo "Table MyGuests created successfully";
+		// echo "Table MyGuests created successfully";
 	} else {
-		echo "Error creating table: " . $conn->error;
+		// echo "Error creating table: " . $conn->error;
 	}
 	if ($conn->query($sql5) === TRUE) {
-		echo "Table MyGuests created successfully";
+		// echo "Table MyGuests created successfully";
 	} else {
-		echo "Error creating table: " . $conn->error;
+		// echo "Error creating table: " . $conn->error;
 	}
 	if ($conn->query($sql6) === TRUE) {
-		echo "Table MyGuests created successfully";
+		// echo "Table MyGuests created successfully";
 	} else {
-		echo "Error creating table: " . $conn->error;
+		// echo "Error creating table: " . $conn->error;
 	}
 
 
