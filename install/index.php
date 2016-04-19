@@ -77,10 +77,10 @@ if ($conn->connect_error) {
 	if ($conn->query($sql1) === TRUE) {
 		// echo "Table MyGuests created successfully";
 	} else {
-		echo "Error creating table: " . $conn->error;
+		// echo "Error creating table: " . $conn->error;
 	}
 	if ($conn->query($sql2) === TRUE) {
-		echo "Table MyGuests created successfully";
+		// echo "Table MyGuests created successfully";
 	} else {
 		// echo "Error creating table: " . $conn->error;
 	}
