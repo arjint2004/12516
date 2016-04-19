@@ -28,6 +28,12 @@ function base_url($atRoot=FALSE, $atCore=FALSE, $parse=FALSE){
 
 if( isset($_POST['hostname'] ) && isset($_POST['username'] ) && isset($_POST['password'] ) && isset($_POST['database'] )){
 
+$rootPath = dirname(__FILE__);
+	
+$rootPathDb=str_replace("install","",$rootPath)."application/config/database.php";
+$rootPathAgc=str_replace("install","",$rootPath)."application/config/agc.php";
+// print_r($rootPathDb);
+// print_r($rootPathAgc); die;
 
 $servername = $_POST['hostname'];
 $username = $_POST['username'];
@@ -108,11 +114,6 @@ if ($conn->connect_error) {
 
 $conn->close();
 
-
-$rootPath = dirname(__FILE__);
-	
-$rootPathDb=str_replace("install","",$rootPath)."application\config\database.php";
-$rootPathAgc=str_replace("install","",$rootPath)."application\config\agc.php";
 
 $settingdb='<?php
 defined(\'BASEPATH\') OR exit(\'No direct script access allowed\');
