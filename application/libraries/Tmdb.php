@@ -508,8 +508,8 @@ class tmdb extends CI_Controller{
 			$originals=(object)$original->getdata();
 
 			$keywords=$originals->name;
-			$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb='".$idTVShow."', id_genre='', original='".@mysql_real_escape_string(json_encode($originals))."', seasons=0,episodes=0,type='tv', keywords='".mysql_real_escape_string($keywords)."'";
-			$this->CI->db->query($sqlinsert);
+			$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre='', original=?, seasons=0,episodes=0,type='tv', keywords=?";
+			$this->CI->db->query($sqlinsert,array($idTVShow,json_encode($originals),$keywords));
 		}else{//echo 33;
 			$original = new TVShow((array)json_decode($datasave[0]['original']), $idTVShow);
 		}
@@ -553,8 +553,8 @@ class tmdb extends CI_Controller{
 			$keywords=$originals->getTitle();
 			$datacurrent=$this->CI->db->query("SELECT count(*) as cnt FROM movie_data WHERE parent_id_tmdb=".$idTVShow." AND seasons=".$numSeason." AND episodes=".$numEpisode." AND type='tv'")->result_array();
 			if($datacurrent[0]['cnt']==0){
-				$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb='".$idTVShow.$numSeason.$numEpisode."', parent_id_tmdb='".$idTVShow."', id_genre='', original='".@mysql_real_escape_string(json_encode($original))."', seasons=".$numSeason.",episodes=".$numEpisode.",type='tv', keywords='".mysql_real_escape_string($keywords)."'";
-				$this->CI->db->query($sqlinsert);
+				$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, parent_id_tmdb=?, id_genre='', original=?, seasons=?,episodes=?,type='tv', keywords=?";
+				$this->CI->db->query($sqlinsert,array($idTVShow.$numSeason.$numEpisode,$idTVShow,json_encode($original),$numSeason,$numEpisode,$keywords));
 			}
 		}else{
 			$originals = new Episode(json_decode($datasave[0]['original'],true), $idTVShow);
