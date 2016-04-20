@@ -1,4 +1,5 @@
 <?php
+print_r($_POST);
 if(isset($_GET['allowinstall']) && $_GET['allowinstall']=="9d0fa3bb01d558aa8fdeb18fc0557622"){
 function base_url($atRoot=FALSE, $atCore=FALSE, $parse=FALSE){
 			if (isset($_SERVER['HTTP_HOST'])) {
@@ -30,7 +31,7 @@ $rootPath = dirname(__FILE__);
 $rootPathDb=str_replace("install","",$rootPath)."application/config/database.php";
 $rootPathAgc=str_replace("install","",$rootPath)."application/config/agc.php";
 
-if( isset($_POST['hostname'] ) && isset($_POST['username'] ) && isset($_POST['password'] ) && isset($_POST['database'] )&&$_POST['hostname']!='' && $_POST['username']!='' && $_POST['password']!='' && $_POST['database']!='' ){
+if( isset($_POST['hostname'] ) && isset($_POST['username'] ) && isset($_POST['password'] ) && isset($_POST['database'] )&&$_POST['hostname']!='' && $_POST['username']!=''  && $_POST['database']!='' ){
 
 // print_r($rootPathDb);
 // print_r($rootPathAgc); die;
@@ -208,13 +209,13 @@ $warndb='';
 $warnagc='';
 if(substr(sprintf('%o', fileperms($rootPathDb)), -4)!=='0777'){
 	$cssdb='border: 1px solid red; color: red;';
-	$disabled='disabled';
+	$disabled='';
 	$warndb='set permision ke 0777';
 	
 }
 if(substr(sprintf('%o', fileperms($rootPathAgc)), -4)!=='0777'){
 	$cssagc='border: 1px solid red; color: red;';
-	$disabled='disabled';
+	$disabled='';
 	$warnagc='set permision ke 0777';
 }
 
