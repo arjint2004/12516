@@ -25,13 +25,13 @@ function base_url($atRoot=FALSE, $atCore=FALSE, $parse=FALSE){
 
 
 
-
-if( isset($_POST['hostname'] ) && isset($_POST['username'] ) && isset($_POST['password'] ) && isset($_POST['database'] )){
-
 $rootPath = dirname(__FILE__);
 	
 $rootPathDb=str_replace("install","",$rootPath)."application/config/database.php";
 $rootPathAgc=str_replace("install","",$rootPath)."application/config/agc.php";
+
+if( isset($_POST['hostname'] ) && isset($_POST['username'] ) && isset($_POST['password'] ) && isset($_POST['database'] )){
+
 // print_r($rootPathDb);
 // print_r($rootPathAgc); die;
 
@@ -200,6 +200,8 @@ file_put_contents($rootPathAgc,$settingagc);
 
 header('location:'.str_replace('install/','',base_url()).'/welcome/start');
 }
+echo fileperms($rootPathDb);
+// echo fileperms($rootPathAgc);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -212,23 +214,36 @@ header('location:'.str_replace('install/','',base_url()).'/welcome/start');
 <body>
 <h3>Instalasi AGC MOVIE IndoCPA</h3>
 <form action="" method="post" class="smart-green">
+    <h1>Set writable file
+        <span>Pastikan permission file dibawah writable (set chmod 777)</span>
+    </h1>
+    <label>
+        <span>AGC config file :</span>
+        <input readonly type="text"  value="application/config/agc.php" />
+		<span>Database config file :</span>
+        <input readonly type="text"  value="application/config/database.php" />
+    </label>
+ 
+	<br />
+	<br />
+	<br />
     <h1>Database Setting
         <span>Buat Database kemudian masukkan detail settingnya</span>
     </h1>
     <label>
-        <span>hostname :</span>
+        <span>Hostname Database :</span>
         <input id="name" type="text" name="hostname" placeholder="Database Host" />
     </label>
     <label>
-        <span>username :</span>
+        <span>Username Database :</span>
         <input id="name" type="text" name="username" placeholder="Username database" />
     </label>
     <label>
-        <span>password :</span>
+        <span>Password Database :</span>
         <input id="name" type="text" name="password" placeholder="Password database" />
     </label>
     <label>
-        <span>database :</span>
+        <span>Nama Database :</span>
         <input id="name" type="text" name="database" placeholder="Nama Database" />
     </label>
  
