@@ -22,7 +22,16 @@
         <input readonly type="text" style="cursor:pointer;" onclick="window.location='http://<?php echo $this->session->userdata('namadomain');?>/sitemaps'" value="<?php echo $this->session->userdata('namadomain');?>/sitemaps" />
     </label>
     <label>
-        <span style="color:green;">WARNING: Segera Hapus folder install setelah proses instalasi berhasil</span>
+		<br />
+        <br />
+        <br />
+        <span style="color:green;width:100%;">- Segera Hapus folder install setelah proses instalasi berhasil</span><br />
+        <span style="color:green;width:100%;">- Input keyword movie di file /keywordsmovie.txt</span><br />
+        <span style="color:green;width:100%;">- Input keyword TV di file /keywordstv.txt</span>
+        <br />
+        <br />
+        <br />
+        <br />
         <br />
         <br />
         <br />
