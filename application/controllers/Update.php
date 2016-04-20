@@ -4,16 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Update extends Ci_Controller {
 
 	private $zipfile=WEBROOT."assets/update/update.zip";
-	private $extractPath=WEBROOT.'update';
+	private $extractPath=WEBROOT;
 	public function __construct() {
         parent::__construct();
 		$this->load->helper('url');
 		$this->load->library('session');
 	}
-	public function index()
-	{
-		$this->load->view('welcome_message');
-	}
+
 	private function unzip()
 	{
 		/* Open the Zip file */
