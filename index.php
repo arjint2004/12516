@@ -296,4 +296,6 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
+define('WEBROOT', str_replace("system/","",BASEPATH));
+echo WEBROOT;
 require_once BASEPATH.'core/CodeIgniter.php';
