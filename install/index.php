@@ -58,6 +58,7 @@ if ($conn->connect_error) {
 			  `episodes` int(5) NOT NULL,
 			  `keywords` text NOT NULL,
 			  `original` longtext NOT NULL,
+			  `date` datetime NOT NULL,
 			  `type` enum('movie','tv') NOT NULL
 			) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;";
 	$sql2 = "CREATE TABLE IF NOT EXISTS `movie_terms` (
@@ -67,6 +68,7 @@ if ($conn->connect_error) {
 			  `k_date` datetime NOT NULL,
 			  `k_count_view` varchar(10) NOT NULL,
 			  `status` int(1) NOT NULL,
+			  `date` datetime NOT NULL,
 			  `type` enum('tv','movie') NOT NULL,
 			  `source` enum('key_search','keywordinject') NOT NULL
 			) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;";
@@ -147,28 +149,28 @@ file_put_contents($rootPathDb,$settingdb);
 $settingagc='<?php
 //config domain
 $config[\'domain\'] =array(
-							\'aliexpress.com\'=>array(
+							\'aliexpress\'=>array(
 								\'domain\'=>\'aliexpress.com\',
 								\'database\'=>\'satucom\',
 								\'offer\'=>\'aliexpress\',
 								\'theme\'=>\'satucom\',
 								\'status\'=>0 // 1 adalah enable 
 							),
-							\'alibaba.com\'=>array(
+							\'alibaba\'=>array(
 								\'domain\'=>\'alibaba.com\',
 								\'database\'=>\'dua\',
 								\'offer\'=>\'alibaba\',
 								\'theme\'=>\'satucom\',
 								\'status\'=>0 //0 adalah disable
 							),
-							\'agoda.com\'=>array(
+							\'agoda\'=>array(
 								\'domain\'=>\'agoda.com\',
 								\'database\'=>\'agoda\',
 								\'offer\'=>\'agoda\',
 								\'theme\'=>\'satucom\',
 								\'status\'=>0 //0 adalah disable
 							),
-							\'movie.com\'=>array(
+							\'movie\'=>array(
 								\'domain\'=>\''.$_POST['namadomain'].'\',
 								\'database\'=>\'movie\',
 								\'offer\'=>\'movie\',
@@ -196,7 +198,7 @@ $config[\'passwordadmin\']=\'9d0fa3bb01d558aa8fdeb18fc0557622\';';
 
 file_put_contents($rootPathAgc,$settingagc);
 
-header('location:'.str_replace('install/','',base_url()).'');
+header('location:'.str_replace('install/','',base_url()).'/welcome/start');
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

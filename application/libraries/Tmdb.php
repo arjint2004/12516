@@ -412,8 +412,8 @@ class tmdb extends CI_Controller{
 			$originals=$original->getdata();
 
 			if(isset($originals->original_title)){$keywords=$originals->original_title;}elseif(isset($originals['original_title'])){$keywords=$originals['original_title'];}
-			$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre='', original=?, seasons=0,episodes=0,type='movie', keywords=?";
-			$this->CI->db->query($sqlinsert,array($id,json_encode($originals),$keywords));
+			$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre='', original=?, seasons=0,episodes=0,date=?,type='movie', keywords=?";
+			$this->CI->db->query($sqlinsert,array($id,json_encode($originals),date('Y-m-d H:i:s'),$keywords));
 		}else{//echo 33;
 			$original = new Movie(json_decode($datasave[0]['original'],true), $id);
 		}
@@ -508,8 +508,8 @@ class tmdb extends CI_Controller{
 			$originals=(object)$original->getdata();
 
 			$keywords=$originals->name;
-			$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre='', original=?, seasons=0,episodes=0,type='tv', keywords=?";
-			$this->CI->db->query($sqlinsert,array($idTVShow,json_encode($originals),$keywords));
+			$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre='', original=?, seasons=0,episodes=0,date=?,type='tv', keywords=?";
+			$this->CI->db->query($sqlinsert,array($idTVShow,json_encode($originals),date('Y-m-d H:i:s'),$keywords));
 		}else{//echo 33;
 			$original = new TVShow((array)json_decode($datasave[0]['original']), $idTVShow);
 		}
@@ -553,8 +553,8 @@ class tmdb extends CI_Controller{
 			$keywords=$originals->getTitle();
 			$datacurrent=$this->CI->db->query("SELECT count(*) as cnt FROM movie_data WHERE parent_id_tmdb=".$idTVShow." AND seasons=".$numSeason." AND episodes=".$numEpisode." AND type='tv'")->result_array();
 			if($datacurrent[0]['cnt']==0){
-				$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, parent_id_tmdb=?, id_genre='', original=?, seasons=?,episodes=?,type='tv', keywords=?";
-				$this->CI->db->query($sqlinsert,array($idTVShow.$numSeason.$numEpisode,$idTVShow,json_encode($original),$numSeason,$numEpisode,$keywords));
+				$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, parent_id_tmdb=?, id_genre='', original=?, seasons=?,episodes=?,date=?,type='tv', keywords=?";
+				$this->CI->db->query($sqlinsert,array($idTVShow.$numSeason.$numEpisode,$idTVShow,json_encode($original),$numSeason,$numEpisode,date('Y-m-d H:i:s'),$keywords));
 			}
 		}else{
 			$originals = new Episode(json_decode($datasave[0]['original'],true), $idTVShow);
@@ -1182,8 +1182,8 @@ class tmdb extends CI_Controller{
 					$original = $this->getMovie($datasave->id);
 					//$keywords=$this->getKeywordsmovie($datasave->id).' '.$datasave->original_title.' '.$terms;
 					 $keywords=$datasave->original_title.' '.$terms;
-					$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre=?, original=?, type=?, keywords=?";
-					$this->CI->db->query($sqlinsert,array($datasave->id,implode(' ',$datasave->genre_ids),json_encode($original->getdata()),$type,$keywords));
+					$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre=?, original=?,date=?, type=?, keywords=?";
+					$this->CI->db->query($sqlinsert,array($datasave->id,implode(' ',$datasave->genre_ids),json_encode($original->getdata()),date('Y-m-d H:i:s'),$type,$keywords));
 				}elseif($type=='tv'){
 					$appendToResponse = 'append_to_response=trailers,images,credits,translations,keywords,external_ids';
 					$original = new TVShow($this->_call('tv/' . $datasave->id, $appendToResponse));
@@ -1191,8 +1191,8 @@ class tmdb extends CI_Controller{
 					//pr(json_encode($originals));die;
 					//$keywords=$this->getKeywordsmovie($datasave->id).' '.$datasave->name.' '.$terms;
 					$keywords=$datasave->name.' '.$terms;
-					$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre=?, original=?, type=?, keywords=?";	
-					$this->CI->db->query($sqlinsert,array($datasave->id,implode(' ',$datasave->genre_ids),json_encode($originals),$type,$keywords));
+					$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre=?, original=?,date=?, type=?, keywords=?";	
+					$this->CI->db->query($sqlinsert,array($datasave->id,implode(' ',$datasave->genre_ids),json_encode($originals),date('Y-m-d H:i:s'),$type,$keywords));
 				}
 			}
 			$this->cinmovie++;
