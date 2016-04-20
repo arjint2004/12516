@@ -13,6 +13,7 @@ div.playersasb #streaming {
         /*z-index: 800;*/
         cursor: pointer;
         position: relative;
+		overflow:hidden;
 }
 div.playersasb .marquee {
         color: #70E847;
@@ -36,7 +37,7 @@ div.playersasb .marquee span:hover {
 div.playersasb .img-backdrop {
         width: 100%;
         height: auto;
-        max-height: 580px;
+        height: auto;
 }
 /* Make it move */
 @keyframes marquee {
