@@ -1,5 +1,4 @@
 <?php
-print_r($_POST);
 if(isset($_GET['allowinstall']) && $_GET['allowinstall']=="9d0fa3bb01d558aa8fdeb18fc0557622"){
 function base_url($atRoot=FALSE, $atCore=FALSE, $parse=FALSE){
 			if (isset($_SERVER['HTTP_HOST'])) {
