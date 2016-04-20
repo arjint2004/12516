@@ -27,8 +27,8 @@ class Sitemap extends Ci_Controller {
 	{
 		$datacount=$this->db->query("SELECT count(*) as jml  FROM movie_data")->result_array();
 		if($namasitemap==''){
-			// $jumlah_sitemap=$datacount[0]['jml']/5000;
-			$jumlah_sitemap=150000/5000;
+			 $jumlah_sitemap=$datacount[0]['jml']/5000;
+			//$jumlah_sitemap=150000/5000;
 			if($jumlah_sitemap<1) $jumlah_sitemap=1;
 			for($i=1;$i<=$jumlah_sitemap;$i++){
 				echo '<a href="'.base_url('sitemaps/sitemap_'.$i.'_.xml').'">sitemap_'.$i.'_.xml </a> <br />';
