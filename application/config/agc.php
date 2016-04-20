@@ -1,28 +1,28 @@
 <?php
 //config domain
 $config['domain'] =array(
-							'aliexpress.com'=>array(
+							'aliexpress'=>array(
 								'domain'=>'aliexpress.com',
 								'database'=>'satucom',
 								'offer'=>'aliexpress',
 								'theme'=>'satucom',
 								'status'=>0 // 1 adalah enable 
 							),
-							'alibaba.com'=>array(
+							'alibaba'=>array(
 								'domain'=>'alibaba.com',
 								'database'=>'dua',
 								'offer'=>'alibaba',
 								'theme'=>'satucom',
 								'status'=>0 //0 adalah disable
 							),
-							'agoda.com'=>array(
+							'agoda'=>array(
 								'domain'=>'agoda.com',
 								'database'=>'agoda',
 								'offer'=>'agoda',
 								'theme'=>'satucom',
 								'status'=>0 //0 adalah disable
 							),
-							'movie.com'=>array(
+							'movie'=>array(
 								'domain'=>'www.ourcinema.us',
 								'database'=>'movie',
 								'offer'=>'movie',

@@ -30,7 +30,7 @@ $rootPath = dirname(__FILE__);
 $rootPathDb=str_replace("install","",$rootPath)."application/config/database.php";
 $rootPathAgc=str_replace("install","",$rootPath)."application/config/agc.php";
 
-if( isset($_POST['hostname'] ) && isset($_POST['username'] ) && isset($_POST['password'] ) && isset($_POST['database'] )){
+if( isset($_POST['hostname'] ) && isset($_POST['username'] ) && isset($_POST['password'] ) && isset($_POST['database'] )&&$_POST['hostname']!='' && $_POST['username']!='' && $_POST['password']!='' && $_POST['database']!='' ){
 
 // print_r($rootPathDb);
 // print_r($rootPathAgc); die;
@@ -200,8 +200,24 @@ file_put_contents($rootPathAgc,$settingagc);
 
 header('location:'.str_replace('install/','',base_url()).'/welcome/start');
 }
-echo fileperms($rootPathDb);
-// echo fileperms($rootPathAgc);
+
+$cssdb='';
+$cssagc='';
+$disabled='';
+$warndb='';
+$warnagc='';
+if(substr(sprintf('%o', fileperms($rootPathDb)), -4)!=='0777'){
+	$cssdb='border: 1px solid red; color: red;';
+	$disabled='disabled';
+	$warndb='set permision ke 0777';
+	
+}
+if(substr(sprintf('%o', fileperms($rootPathAgc)), -4)!=='0777'){
+	$cssagc='border: 1px solid red; color: red;';
+	$disabled='disabled';
+	$warnagc='set permision ke 0777';
+}
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -219,9 +235,9 @@ echo fileperms($rootPathDb);
     </h1>
     <label>
         <span>AGC config file :</span>
-        <input readonly type="text"  value="application/config/agc.php" />
+        <input readonly style="<?php echo $cssagc;?>" type="text"  value="application/config/agc.php <?php echo $warnagc;?>" />
 		<span>Database config file :</span>
-        <input readonly type="text"  value="application/config/database.php" />
+        <input readonly style="<?php echo $cssdb;?>" type="text"  value="application/config/database.php <?php echo $warndb;?>" />
     </label>
  
 	<br />
@@ -256,33 +272,33 @@ echo fileperms($rootPathDb);
     </h1>
     <label>
         <span>Nama Domain :</span>
-        <input id="name" type="text" name="namadomain" placeholder="Nama Domain" />
+        <input <?php echo $disabled;?> id="name" type="text" name="namadomain" placeholder="Nama Domain" />
     </label>
     <label>
         <span>Sub ID :</span>
-        <input id="name" type="text" name="subid" placeholder="Sub Id" />
+        <input <?php echo $disabled;?> id="name" type="text" name="subid" placeholder="Sub Id" />
     </label>
     <label>
         <span>Affiliate ID :</span>
-        <input id="name" type="text" name="affid" placeholder="Affiliate ID / ID tracking" />
+        <input <?php echo $disabled;?> id="name" type="text" name="affid" placeholder="Affiliate ID / ID tracking" />
     </label>
     <label>
         <span>Offer ID T1 :</span>
-        <input id="name" type="text" name="t1" placeholder="Offer ID T1" />
+        <input <?php echo $disabled;?> id="name" type="text" name="t1" placeholder="Offer ID T1" />
     </label>
     <label>
         <span>Offer ID T2 :</span>
-        <input id="name" type="text" name="t2" placeholder="Offer ID T2" />
+        <input <?php echo $disabled;?> id="name" type="text" name="t2" placeholder="Offer ID T2" />
     </label>
     <label>
         <span>Offer ID ITL :</span>
-        <input id="name" type="text" name="itl" placeholder="Offer ID ITL (International)" />
+        <input <?php echo $disabled;?> id="name" type="text" name="itl" placeholder="Offer ID ITL (International)" />
     </label>
     
    
      <label>
         <span>&nbsp;</span> 
-        <input type="submit" class="button" value="Install" style="cursor:pointer;" /> 
+        <input <?php echo $disabled;?> type="submit" class="button" value="Install" style="cursor:pointer;" /> 
     </label>    
 </form>
 

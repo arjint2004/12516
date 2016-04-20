@@ -19,10 +19,10 @@
     </label>
     <label>
         <span>Sitemap</span>
-        <input readonly type="text" value="www.namadomain.com/sitemap.xml" />
+        <input readonly type="text" style="cursor:pointer;" onclick="window.location='http://<?php echo $this->session->userdata('namadomain');?>/sitemaps'" value="<?php echo $this->session->userdata('namadomain');?>/sitemaps" />
     </label>
     <label>
-        <span style="color:red;">WARNING: Segera Hapus folder install setelah proses instalasi berhasil</span>
+        <span style="color:green;">WARNING: Segera Hapus folder install setelah proses instalasi berhasil</span>
         <br />
         <br />
         <br />
