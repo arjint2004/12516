@@ -17,13 +17,13 @@
                         <!-- Movie variant with time -->
                             <div class="movie movie--test movie--test--dark movie--test--<?php if($xx%2==0){echo 'left';}else{echo 'right';}?>">
                                 <div class="movie__images">
-                                    <a href="<?php echo make_url_detail($datanowplay->id,$datanowplay->original_name,'movie');?>" class="movie-beta__link">
+                                    <a href="<?php echo make_url_detail($datanowplay->id,$datanowplay->original_name,'tv');?>" class="movie-beta__link">
                                         <img alt='' src="<?php echo $imgurl; ?>">
                                     </a>
                                 </div>
 								<?php $rnd=rand(1,50)/10;?>
                                 <div class="movie__info">
-                                    <a href='<?php echo make_url_detail($datanowplay->id,$datanowplay->original_name,'movie');?>' class="movie__title"><?php echo $datanowplay->original_name;?></a>
+                                    <a href='<?php echo make_url_detail($datanowplay->id,$datanowplay->original_name,'tv');?>' class="movie__title"><?php echo $datanowplay->original_name;?></a>
 
                                     <p class="movie__time"><?php echo $datanowplay->first_air_date;?></p>
 
