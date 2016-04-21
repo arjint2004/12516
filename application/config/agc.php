@@ -23,7 +23,7 @@ $config['domain'] =array(
 								'status'=>0 //0 adalah disable
 							),
 							'movie'=>array(
-								'domain'=>'www.ourcinema.us',
+								'domain'=>'localhost/indocpa/agc_tmdb_ci/trunk/',
 								'database'=>'movie',
 								'offer'=>'movie',
 								'theme'=>'mieayam',

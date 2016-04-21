@@ -2,14 +2,12 @@
 class My_controller extends CI_Controller {
     
 	public $layout='default';
+	public $is_admin=0;
 	public $domain=array();
-	public function __construct() {
-	
+	public function __construct($is_admin='') {
+		$this->is_admin=$is_admin;
         parent::__construct();
 		
-		$this->load->helper('url');
-		$this->load->library('session');
-		$this->config->load('agc');
 		foreach($this->config->item('domain') as $namadomain=>$setting){
 			if($setting['status']==1){
 				$this->domain=$setting;
@@ -23,18 +21,23 @@ class My_controller extends CI_Controller {
 		// }
 		
 		// $this->tmdb->setApikey($this->config->item('tmdb_api_key'));
-		$this->_auth();
-		$this->_init();
+		
+		if($this->router->fetch_class()=='admin' || $this->is_admin=='admin'){
+			$this->_admin();
+		}else{
+			$this->_init();
+		}
+		
     }
 	
-	private function _auth($username='',$password=''){
-		// echo md5('indoCPA20016');die;
-		if($this->router->fetch_class()=='admin'){
-			if(isset($_POST['username']) && isset($_POST['password']) && $_POST['username']==$this->config->item('useradmin') && $_POST['password']==$this->config->item('passwordadmin')){
-			
+	public function _auth($username='',$password=''){
+		if($this->router->fetch_class().'/'.$this->router->fetch_method()!='admin/login'){
+			if($this->session->userdata('logged_in')!=''){
+				 
+			}else{
+				$this->session->unset_userdata('logged_in');
+				redirect('admin/login');
 			}
-		}else{
-		
 		}
 	}
 	private function _init()
@@ -55,6 +58,13 @@ class My_controller extends CI_Controller {
 				$this->_movie();
 			break;
 		}
+	}
+	private function _admin()
+	{
+		$this->_auth();
+		$this->_theme();
+		$sidebar='';
+		$this->load->section('sidebar', 'themes/'.THEMESETADMIN.'/layout/sidebar',$sidebar);
 	}
 	private function _aliexpress()
 	{
@@ -118,7 +128,7 @@ class My_controller extends CI_Controller {
 	private function _theme($theme='')
 	{
 	
-		if($this->router->fetch_class()=='admin'){
+		if($this->router->fetch_class()=='admin' || $this->is_admin=='admin'){
 			// pr($this->domain['theme']);die;
 			$this->load->section('header', 'themes/'.THEMESETADMIN.'/layout/header');
 			$this->load->section('footer', 'themes/'.THEMESETADMIN.'/layout/footer');	

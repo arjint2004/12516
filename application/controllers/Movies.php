@@ -14,7 +14,7 @@ class Movies extends My_controller {
 
 	public function index()
 	{
-		$this->load->view('themes/'.THEMESET.'/movie/home');
+		$this->home();
 	}
 	public function errordb()
 	{
