@@ -49,6 +49,7 @@ class Admin extends My_controller {
  
 	function check_database($password)
 	 {
+	   // echo md5('indocpa2016');die;
 	   //Field validation succeeded.  Validate against database
 	   $username = $this->input->post('username');
 	   if($this->config->item('passwordadmin')==md5($password) && $this->config->item('useradmin')==$username)
