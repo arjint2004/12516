@@ -132,6 +132,7 @@ class My_controller extends CI_Controller {
 			// pr($this->domain['theme']);die;
 			$this->load->section('header', 'themes/'.THEMESETADMIN.'/layout/header');
 			$this->load->section('footer', 'themes/'.THEMESETADMIN.'/layout/footer');	
+			$this->load->section('custom', 'themes/'.THEMESETADMIN.'/layout/custom');	
 			$this->output->set_template($this->layout,1);	
 		}else{	
 			// pr($this->domain['theme']);die;

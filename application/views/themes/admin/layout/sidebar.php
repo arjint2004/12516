@@ -1,4 +1,33 @@
-<div id="sidebar" class="sidebar                  responsive">
+		<style>
+			/* Error Message Section */
+
+			.error-box {
+				background: url("../images/ajax-loader-2.gif") no-repeat scroll 16px 13px #4bb008;
+				border-radius: 10px;
+				color: white;
+				display: none;
+				left: 90px;
+				opacity: 0.8;
+				padding: 20px;
+				position: relative;
+				text-align: center;
+				top: 30px;
+				width: 250px;
+				z-index: 99999;
+			}
+			.content-box{
+				height:0px;
+			}
+			.error-box p {
+				text-align:left;
+				margin-bottom: 5px;
+			}
+			.error-boxtop{
+				display: block; position: fixed; width: 100%; left: 0px; top: 0px;
+			}
+		</style>
+		
+		<div id="sidebar" class="sidebar responsive">
 				<script type="text/javascript">
 					try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 				</script>
@@ -38,7 +67,7 @@
 
 				<ul class="nav nav-list">
 					<li class="active">
-						<a href="index.html">
+						<a href="<?php echo base_url('admin');?>">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Dashboard </span>
 						</a>
@@ -46,7 +75,7 @@
 						<b class="arrow"></b>
 					</li>
 
-					<li class="">
+					<li class="" id="agc_menu">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-desktop"></i>
 							<span class="menu-text">
@@ -60,7 +89,7 @@
 
 						<ul class="submenu">
 
-							<li class="">
+							<li class="" id="aliexpress">
 								<a href="typography.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Aliexpress
@@ -69,7 +98,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
+							<li class="" id="alibaba">
 								<a href="elements.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Alibaba
@@ -78,7 +107,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
+							<li class="" id="agoda">
 								<a href="buttons.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Agoda
@@ -87,8 +116,8 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
-								<a href="content-slider.html">
+							<li class="" id="movie">
+								<a href="#">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Movie
 								</a>
@@ -99,7 +128,7 @@
 						</ul>
 					</li>
 
-					<li class="">
+					<li class=""  id="setting_menu">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon menu-icon ace-icon fa fa-cogs"></i>
 							<span class="menu-text"> Settings </span>

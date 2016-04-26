@@ -10,7 +10,29 @@ class Movies extends My_controller {
  
 	function index()
 	{
-		//echo 'admin movie';
+		
+		$this->output->set_template('white',1);		
+		$this->load->view('themes/admin/movies/index');
+	}
+	function tambahdomain()
+	{
+		$this->output->set_template('white',1);		
+		$this->load->view('themes/admin/movies/tambahdomain');
+	}
+	function setting()
+	{
+		$this->output->set_template('white',1);		
+		$this->load->view('themes/admin/movies/setting');
+	}
+	function sitemap()
+	{
+		$this->output->set_template('white',1);		
+		$this->load->view('themes/admin/movies/sitemap');
+	}
+	function histats()
+	{
+		$this->output->set_template('white',1);		
+		$this->load->view('themes/admin/movies/histats');
 	}
 	
 }

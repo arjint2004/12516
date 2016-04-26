@@ -11,7 +11,8 @@ class Admin extends My_controller {
 	
 	public function index()
 	{
-
+	
+	   $this->load->view('themes/admin/index');
 	}
 
  
