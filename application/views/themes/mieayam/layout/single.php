@@ -5,10 +5,10 @@
 <head> 
 	<!-- Basic Page Needs -->
         <meta charset="utf-8">
-        <title>AMovie -Single cinema</title>
-        <meta name="description" content="A Template by Gozha.net">
-        <meta name="keywords" content="HTML, CSS, JavaScript">
-        <meta name="author" content="Gozha.net">
+        <title><?php echo get_meta('single_title');?></title>
+        <meta name="description" content="<?php echo get_meta('single_description');?>">
+        <meta name="keywords" content="<?php echo get_meta('single_keywords');?>">
+        <meta name="author" content="<?php echo $this->session->userdata('namadomain');?>">
     
     <!-- Mobile Specific Metas-->
     	<meta name="viewport" content="width=device-width, initial-scale=1.0">

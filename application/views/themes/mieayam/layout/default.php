@@ -1,14 +1,13 @@
 <!doctype html>
 <html>
-
 <!-- Mirrored from amovie.designzway.com/ by HTTrack Website Copier/3.x [XR&CO'2004], Wed, 08 Jul 2015 06:10:44 GMT -->
 <head>
 	<!-- Basic Page Needs -->
         <meta charset="utf-8">
-        <title>AMovie</title>
-        <meta name="description" content="A Template by Gozha.net">
-        <meta name="keywords" content="HTML, CSS, JavaScript">
-        <meta name="author" content="Gozha.net">
+        <title><?php echo get_meta('title');?></title>
+        <meta name="description" content="<?php echo get_meta('description');?>">
+        <meta name="keywords" content="<?php echo get_meta('keywords');?>">
+        <meta name="author" content="<?php echo $this->session->userdata('namadomain');?>">
     
     <!-- Mobile Specific Metas-->
     	<meta name="viewport" content="width=device-width, initial-scale=1.0">

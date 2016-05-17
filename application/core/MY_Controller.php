@@ -14,8 +14,10 @@ class My_controller extends CI_Controller {
 				break;
 			}
 		}
+		
 		define('THEMESET',$this->domain["theme"]);
 		// if(empty($this->session->userdata('domain'))){
+			// $this->session->set_userdata('meta', $this->generate_meta($this->domain));
 			$this->session->set_userdata('domain', $this->domain);
 			$this->session->set_userdata('namadomain', $this->domain['domain']);
 		// }
@@ -29,7 +31,16 @@ class My_controller extends CI_Controller {
 		}
 		
     }
-	
+	function generate_meta($setting=array()){
+		//pr($setting);die;
+		$out['domain']			=$setting['domain'];
+		$out['webTitle']		=$setting['webTitle'];
+		$out['metaDesc']		=$setting['metaDesc'];
+		$out['metaKeywords']	=$setting['metaKeywords'];
+		
+		return $out;
+		
+	}
 	public function _auth($username='',$password=''){
 		if($this->router->fetch_class().'/'.$this->router->fetch_method()!='admin/login'){
 			if($this->session->userdata('logged_in')!=''){

@@ -7,9 +7,9 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'ourcinem_movieci',
-	'password' => 'movieci123',
-	'database' => 'ourcinem_movieci',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'indocpa_movieinstall1',
 
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

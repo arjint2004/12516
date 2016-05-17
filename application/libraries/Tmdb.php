@@ -1598,5 +1598,16 @@ class tmdb extends CI_Controller{
 		}
 		return array('trailer'=>$trailer."&vq=small",'movies'=>$movies,'backd'=>$backd,'seasson'=>$seasson,'tvs'=>@$tvs,'aff_link'=>@$aff_link);
 	}
+	
+	function generate_meta($setting=array()){
+		//pr($setting);die;
+		$out['domain']			=$setting['domain'];
+		$out['webTitle']		=$setting['webTitle'];
+		$out['metaDesc']		=$setting['metaDesc'];
+		$out['metaKeywords']	=$setting['metaKeywords'];
+		
+		return $out;
+		
+	}
 }
 ?>
