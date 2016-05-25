@@ -5,7 +5,7 @@
 <head> 
 	<!-- Basic Page Needs -->
         <meta charset="utf-8">
-        <title><?php echo get_meta('single_title');?></title>
+        <title><?php echo get_meta('single_title',$movies);?></title>
         <meta name="description" content="<?php echo get_meta('single_description');?>">
         <meta name="keywords" content="<?php echo get_meta('single_keywords');?>">
         <meta name="author" content="<?php echo $this->session->userdata('namadomain');?>">
