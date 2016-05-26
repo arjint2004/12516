@@ -2,7 +2,7 @@
         <header class="header-wrapper">
             <div class="container">
                 <!-- Logo link-->
-                <a href='index-2.html' class="logo">
+                <a href='<?php echo base_url();?>' class="logo">
                     <img alt='logo' src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/images/logo.png">
                 </a>
                 
