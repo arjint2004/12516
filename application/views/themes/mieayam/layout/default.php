@@ -110,7 +110,7 @@
                 init_Home();
               });
 		    </script>
-
+		<?php $settinghst=$this->session->userdata('domain');echo $settinghst['histats'];?>
 </body>
 
 <!-- Mirrored from amovie.designzway.com/ by HTTrack Website Copier/3.x [XR&CO'2004], Wed, 08 Jul 2015 06:10:50 GMT -->

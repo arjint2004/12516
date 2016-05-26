@@ -23,11 +23,11 @@ $config['domain'] =array(
 								/* format <meta name="description" content=""> tag. [TITLE] adalah tempat di mana nama produk/keyword akan muncul */
 								'metaDescSingle' => 'Get popular [TYPE] [TITLE] free. [DESC]',
 								/* format <meta name="keywords" content=""> tag. [TITLE] adalah tempat di mana nama produk/keyword akan muncul */
-								'metaKeywordsSingle' => 'Watch [TYPE], [TITLE] Free download ',
+								'metaKeywordsSingle' => 'Watch [TYPE] [GENRE],[TITLE] ,Free download ',
 								/* META Google Webmaster */
 								'metaGoogle' => '',
 								/* Histats Source Code */
-								'histats' => ''
+								'histats' => ""
 							)
 						);
 						
