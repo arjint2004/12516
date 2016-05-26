@@ -149,33 +149,33 @@ file_put_contents($rootPathDb,$settingdb);
 $settingagc='<?php
 //config domain
 $config[\'domain\'] =array(
-							\'aliexpress\'=>array(
-								\'domain\'=>\'aliexpress.com\',
-								\'database\'=>\'satucom\',
-								\'offer\'=>\'aliexpress\',
-								\'theme\'=>\'satucom\',
-								\'status\'=>0 // 1 adalah enable 
-							),
-							\'alibaba\'=>array(
-								\'domain\'=>\'alibaba.com\',
-								\'database\'=>\'dua\',
-								\'offer\'=>\'alibaba\',
-								\'theme\'=>\'satucom\',
-								\'status\'=>0 //0 adalah disable
-							),
-							\'agoda\'=>array(
-								\'domain\'=>\'agoda.com\',
-								\'database\'=>\'agoda\',
-								\'offer\'=>\'agoda\',
-								\'theme\'=>\'satucom\',
-								\'status\'=>0 //0 adalah disable
-							),
 							\'movie\'=>array(
+								/* Nama Domain */
 								\'domain\'=>\''.$_POST['namadomain'].'\',
+								/* Nama Database */
 								\'database\'=>\'movie\',
+								/* Offer indocpa yang digunakan */
 								\'offer\'=>\'movie\',
+								/* nama template yang aktif */
 								\'theme\'=>\'mieayam\',
-								\'status\'=>1 //0 adalah disable
+								/* Status AGC Yang Aktif */
+								\'status\'=>1,
+								/* suffix permalink: ".html", ".asp", ".discount", ".promo", dan lain-lain */
+								\'suffPerm\' => \'.html\',
+								/* identify website */
+								\'webTitle\' => \'Watch Online or download Full Movie\',
+								\'metaDesc\' => \'Best Movie, You can download or watch online popular movies and TV series\',
+								\'metaKeywords\' => \'Popular Movie, Download, Watch Online, Action, Drama, Thriller, Commedy \',
+								/* format <title> tag. [TITLE] adalah tempat di mana judul akan muncul */
+								\'metaTitleSingle\' => \'Best and popular [TYPE] [TITLE]\',
+								/* format <meta name="description" content=""> tag. [TITLE] adalah tempat di mana nama produk/keyword akan muncul */
+								\'metaDescSingle\' => \'Get popular [TYPE] [TITLE] free. [DESC]\',
+								/* format <meta name="keywords" content=""> tag. [TITLE] adalah tempat di mana nama produk/keyword akan muncul */
+								\'metaKeywordsSingle\' => \'Watch [TYPE], [TITLE] Free download \',
+								/* META Google Webmaster */
+								\'metaGoogle\' => \'\',
+								/* Histats Source Code */
+								\'histats\' => \'\'
 							)
 						);
 						
@@ -188,8 +188,6 @@ $config[\'t2\']=array(\'offer_id\'=>\''.$_POST['t2'].'\',
 $config[\'itl\']=array(\'offer_id\'=>\''.$_POST['itl'].'\',
 				   \'aff_id\'=>\''.$_POST['affid'].'\',
 				   \'aff_sub\'=>\''.$_POST['subid'].'\');
-
-
 
 		
 $config[\'useradmin\']=\'admin\';
