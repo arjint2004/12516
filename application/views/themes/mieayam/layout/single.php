@@ -5,10 +5,10 @@
 <head> 
 	<!-- Basic Page Needs -->
         <meta charset="utf-8">
-        <title><?php echo get_meta('single_title',$movies);?></title>
-        <meta name="description" content="<?php echo get_meta('single_description');?>">
-        <meta name="keywords" content="<?php echo get_meta('single_keywords');?>">
-        <meta name="author" content="<?php echo $this->session->userdata('namadomain');?>">
+        <title><?php echo get_meta('single_title',$movies,$type);?></title>
+        <meta name="description" content="<?php echo get_meta('single_description',$movies,$type);?>">
+        <meta name="keywords" content="<?php echo get_meta('single_keywords',$movies,$type);?>">
+        <meta name="author" content="<?php echo $this->session->userdata('namadomain',$movies,$type);?>">
     
     <!-- Mobile Specific Metas-->
     	<meta name="viewport" content="width=device-width, initial-scale=1.0">

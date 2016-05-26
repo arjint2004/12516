@@ -19,11 +19,11 @@ $config['domain'] =array(
 								'metaDesc' => 'Best Movie, You can download or watch online popular movies and TV series',
 								'metaKeywords' => 'Popular Movie, Download, Watch Online, Action, Drama, Thriller, Commedy ',
 								/* format <title> tag. [TITLE] adalah tempat di mana judul akan muncul */
-								'metaTitleSingle' => '[TITLE]',
+								'metaTitleSingle' => 'Best and popular [TYPE] [TITLE]',
 								/* format <meta name="description" content=""> tag. [TITLE] adalah tempat di mana nama produk/keyword akan muncul */
-								'metaDescSingle' => 'Get popular movie or TV series  [TITLE] free',
+								'metaDescSingle' => 'Get popular [TYPE] [TITLE] free. [DESC]',
 								/* format <meta name="keywords" content=""> tag. [TITLE] adalah tempat di mana nama produk/keyword akan muncul */
-								'metaKeywordsSingle' => 'Watch Movie [TYPE] [GENRE], [TITLE] Free download ',
+								'metaKeywordsSingle' => 'Watch [TYPE], [TITLE] Free download ',
 								/* META Google Webmaster */
 								'metaGoogle' => '',
 								/* Histats Source Code */

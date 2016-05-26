@@ -9,7 +9,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'indocpa_movieinstall1',
+	'database' => 'indocpa_movieinstall2',
 
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
