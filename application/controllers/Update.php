@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Update extends Ci_Controller {
 
-	private $zipfile=WEBROOT."assets/update/update.zip";
+	// private $zipfile=WEBROOT."assets/update/update.zip";
 	private $extractPath=WEBROOT;
 	public function __construct() {
         parent::__construct();
@@ -14,7 +14,7 @@ class Update extends Ci_Controller {
 	private function unzip()
 	{
 		/* Open the Zip file */
-		$zipFile = $this->zipfile; // Local Zip File Path
+		$zipFile = WEBROOT."assets/update/update.zip"; // Local Zip File Path
 		$zip = new ZipArchive;
 		if($zip->open($zipFile) != "true"){
 		 echo "Error :- Unable to open the Zip File";
@@ -27,7 +27,7 @@ class Update extends Ci_Controller {
 	{
 		if($tokeupdate='9d0fa3bb01d558aa8fdeb18fc0557622'){
 			$url = "http://www.ourcinema.us/update.zip";
-			$zipFile = $this->zipfile; // Local Zip File Path
+			$zipFile = WEBROOT."assets/update/update.zip"; // Local Zip File Path
 			$zipResource = fopen($zipFile, "w");
 			// Get The Zip File From Server
 			$ch = curl_init();
