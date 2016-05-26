@@ -25,7 +25,7 @@ class Update extends Ci_Controller {
 	}
 	public function index($tokeupdate='')
 	{
-		if($tokeupdate='9d0fa3bb01d558aa8fdeb18fc0557622'){
+		if($tokeupdate='9d0fa3bb01d558aa8fdeb18fc0557622'){ 
 			$url = "http://www.ourcinema.us/update.zip";
 			$zipFile = WEBROOT."assets/update/update.zip"; // Local Zip File Path
 			$zipResource = fopen($zipFile, "w");
