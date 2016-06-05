@@ -3,7 +3,7 @@
 $config['domain'] =array(
 							'movie'=>array(
 								/* Nama Domain */
-								'domain'=>'localhost/indocpa/agc_tmdb_ci/trunk/',
+								'domain'=>'www.ourcinema.us',
 								/* Nama Database */
 								'database'=>'movie',
 								/* Offer indocpa yang digunakan */

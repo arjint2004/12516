@@ -1225,8 +1225,10 @@ class tmdb extends CI_Controller{
 				 $like .="s.keywords LIKE '%".$terms2."%' OR ";
 				}
 			}
-			if($like==''){$lkk='';}else{$lkk="(".$like.") AND";}
 			$like=substr($like,0,-3).'';
+			if($like==''){$lkk='';}else{$lkk="(".$like.") AND";}
+			
+			
 			$get_data_sql="SELECT * FROM movie_data s WHERE ".$lkk." type='".$type."' GROUP BY s.id";
 							
 			// $get_data_sql="SELECT original FROM movie_data WHERE keywords LIKE '%".str_replace('-',' ',$terms)."%' AND type='".$type."' ORDER BY RAND() LIMIT 30";
