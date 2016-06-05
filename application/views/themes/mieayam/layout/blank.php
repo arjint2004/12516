@@ -23,7 +23,7 @@
 	?>
 </head>
 <body>
-<?php echo $this->load->get_section('player'); ?>
-<?php //echo $output;?>
+<?php //echo $this->load->get_section('player'); ?>
+<?php echo $output;?>
 </body>
 </html>
