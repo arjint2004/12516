@@ -50,8 +50,8 @@ if ($conn->connect_error) {
 	mysqli_select_db($conn,$_POST['database']);
     // sql to create table
 	$sql1 = "CREATE TABLE IF NOT EXISTS `movie_data` (
-			`id` int(15) NOT NULL,
-			  `id_tmdb` int(15) NOT NULL,
+			`id` int(15) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+			  `id_tmdb` int(15) NOT NULL UNIQUE,
 			  `parent_id_tmdb` int(12) NOT NULL,
 			  `id_genre` varchar(200) NOT NULL,
 			  `seasons` int(5) NOT NULL,
@@ -62,8 +62,8 @@ if ($conn->connect_error) {
 			  `type` enum('movie','tv') NOT NULL
 			) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;";
 	$sql2 = "CREATE TABLE IF NOT EXISTS `movie_terms` (
-			`k_ID` int(11) NOT NULL,
-			  `k_name` varchar(255) NOT NULL,
+			`k_ID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+			  `k_name` varchar(255) NOT NULL UNIQUE,
 			  `k_slug` varchar(255) NOT NULL,
 			  `k_date` datetime NOT NULL,
 			  `k_count_view` varchar(10) NOT NULL,
@@ -72,7 +72,7 @@ if ($conn->connect_error) {
 			  `type` enum('tv','movie') NOT NULL,
 			  `source` enum('key_search','keywordinject') NOT NULL
 			) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;";
-	$sql3 = "ALTER TABLE `movie_data`
+	/*$sql3 = "ALTER TABLE `movie_data`
 			ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id_tmdb` (`id_tmdb`);";
 	$sql4 = "
 			ALTER TABLE `movie_terms`
@@ -80,7 +80,7 @@ if ($conn->connect_error) {
 	$sql5 = "ALTER TABLE `movie_data`
 			MODIFY `id` int(15) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;";
 	$sql6 = "ALTER TABLE `movie_terms`
-			MODIFY `k_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;";
+			MODIFY `k_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;";*/
 
 	if ($conn->query($sql1) === TRUE) {
 		// echo "Table MyGuests created successfully";
@@ -92,7 +92,7 @@ if ($conn->connect_error) {
 	} else {
 		// echo "Error creating table: " . $conn->error;
 	}
-	if ($conn->query($sql3) === TRUE) {
+	/*if ($conn->query($sql3) === TRUE) {
 		// echo "Table MyGuests created successfully";
 	} else {
 		// echo "Error creating table: " . $conn->error;
@@ -111,7 +111,7 @@ if ($conn->connect_error) {
 		// echo "Table MyGuests created successfully";
 	} else {
 		// echo "Error creating table: " . $conn->error;
-	}
+	}*/
 
 
 $conn->close();

@@ -413,7 +413,7 @@ class tmdb extends CI_Controller{
 
 			if(isset($originals->original_title)){$keywords=$originals->original_title;}elseif(isset($originals['original_title'])){$keywords=$originals['original_title'];}
 			$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre='', original=?, seasons=0,episodes=0,date=?,type='movie', keywords=?";
-			$this->CI->db->query($sqlinsert,array($id,json_encode($originals),date('Y-m-d H:i:s'),$keywords));
+			$this->CI->db->query($sqlinsert,array($id,json_encode($originals),date('Y-m-d H:i:s'),$this->clean($keywords)));
 		}else{//echo 33;
 			$original = new Movie(json_decode($datasave[0]['original'],true), $id);
 		}
@@ -509,7 +509,7 @@ class tmdb extends CI_Controller{
 
 			$keywords=$originals->name;
 			$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre='', original=?, seasons=0,episodes=0,date=?,type='tv', keywords=?";
-			$this->CI->db->query($sqlinsert,array($idTVShow,json_encode($originals),date('Y-m-d H:i:s'),$keywords));
+			$this->CI->db->query($sqlinsert,array($idTVShow,json_encode($originals),date('Y-m-d H:i:s'),$this->clean($keywords)));
 		}else{//echo 33;
 			$original = new TVShow((array)json_decode($datasave[0]['original']), $idTVShow);
 		}
@@ -554,7 +554,7 @@ class tmdb extends CI_Controller{
 			$datacurrent=$this->CI->db->query("SELECT count(*) as cnt FROM movie_data WHERE parent_id_tmdb=".$idTVShow." AND seasons=".$numSeason." AND episodes=".$numEpisode." AND type='tv'")->result_array();
 			if($datacurrent[0]['cnt']==0){
 				$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, parent_id_tmdb=?, id_genre='', original=?, seasons=?,episodes=?,date=?,type='tv', keywords=?";
-				$this->CI->db->query($sqlinsert,array($idTVShow.$numSeason.$numEpisode,$idTVShow,json_encode($original),$numSeason,$numEpisode,date('Y-m-d H:i:s'),$keywords));
+				$this->CI->db->query($sqlinsert,array($idTVShow.$numSeason.$numEpisode,$idTVShow,json_encode($original),$numSeason,$numEpisode,date('Y-m-d H:i:s'),$this->clean($keywords)));
 			}
 		}else{
 			$originals = new Episode(json_decode($datasave[0]['original'],true), $idTVShow);
@@ -1171,8 +1171,30 @@ class tmdb extends CI_Controller{
 
 		return $results;
 	}
-	private function savehasilterms($terms='',$type='movie',$page=1){
+	public function noduplicate($text) {
+		$words = array_unique(explode(' ',strtolower($text)));
+		return implode(' ',$words);
+	}
+	public function clean($temsnya) {
+	    $clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $temsnya);
+		$clean = strtolower(trim($clean, '-'));
+		$clean = preg_replace("/[\/_|+ -]+/", ' ', $clean);
+		return $this->noduplicate($clean);
+	}
+	private function savehasilterms($terms='',$type='movie',$page=1,$self=0){
 		$results=$this->searches($terms,$type,$page);
+		if($self==0){
+			$expterms=explode(' ',$terms);
+			if(!empty($expterms)){
+				foreach($expterms as $temsnya){
+					if(strlen($temsnya)>3){
+						
+						$clean = $this->clean($temsnya);
+						$this->savetermsnofile($clean,$type);
+					}
+				}
+			}
+		}
 		foreach($results->results as $datasave){
 			$imgurl=$datasave->poster_path;
 			
@@ -1181,19 +1203,23 @@ class tmdb extends CI_Controller{
 				if($type=='movie'){
 					$original = $this->getMovie($datasave->id);
 					//$keywords=$this->getKeywordsmovie($datasave->id).' '.$datasave->original_title.' '.$terms;
-					 $keywords=$datasave->original_title.' '.$terms;
+					$keywords=$datasave->original_title.' '.$terms;
 					$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre=?, original=?,date=?, type=?, keywords=?";
-					$this->CI->db->query($sqlinsert,array($datasave->id,implode(' ',$datasave->genre_ids),json_encode($original->getdata()),date('Y-m-d H:i:s'),$type,$keywords));
+					$this->CI->db->query($sqlinsert,array($datasave->id,implode(' ',$datasave->genre_ids),json_encode($original->getdata()),date('Y-m-d H:i:s'),$type,$this->clean($keywords)));
 				}elseif($type=='tv'){
 					$appendToResponse = 'append_to_response=trailers,images,credits,translations,keywords,external_ids';
 					$original = new TVShow($this->_call('tv/' . $datasave->id, $appendToResponse));
 					$originals=(object)$original->getdata();
 					//pr(json_encode($originals));die;
 					//$keywords=$this->getKeywordsmovie($datasave->id).' '.$datasave->name.' '.$terms;
+					
 					$keywords=$datasave->name.' '.$terms;
+					
+					
 					$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre=?, original=?,date=?, type=?, keywords=?";	
-					$this->CI->db->query($sqlinsert,array($datasave->id,implode(' ',$datasave->genre_ids),json_encode($originals),date('Y-m-d H:i:s'),$type,$keywords));
+					$this->CI->db->query($sqlinsert,array($datasave->id,implode(' ',$datasave->genre_ids),json_encode($originals),date('Y-m-d H:i:s'),$type,$this->clean($keywords)));
 				}
+				
 			}
 			$this->cinmovie++;
 		}
@@ -1247,20 +1273,21 @@ class tmdb extends CI_Controller{
 	}
 	
 	public function getterms($type='movie'){
-		$get_data_sql="SELECT * FROM movie_terms WHERE type='".$type."' ORDER BY RAND() LIMIT 30";
+		// $get_data_sql="SELECT * FROM movie_terms WHERE type='".$type."' ORDER BY RAND() LIMIT 30";
+		$get_data_sql="SELECT * FROM movie_terms ORDER BY RAND() LIMIT 30";
 			   //s echo $get_data_sql.'<br />';
 			$data=$this->CI->db->query($get_data_sql)->result_array();
 			return $data;
 	}
 	public function savetermsnofile($keywdata='',$type='movie'){
 		$slug=str_replace(' ','-',$keywdata).'.html';
-		if($keywdata!='' && $this->cekexistterms($slug,$type)==0){
-		$sql="INSERT INTO movie_terms SET k_name=?, k_slug=?, 	k_date=?, 	k_count_view='0',type=?,source='key_search'";
+		//if($keywdata!='' && $this->cekexistterms($slug,$type)==0){
+		$sql="INSERT IGNORE INTO movie_terms SET k_name=?, k_slug=?, 	k_date=?, 	k_count_view='0',type=?,source='key_search'";
 		// echo $sql;
 		return $this->CI->db->query($sql,array($keywdata,$slug,date('Y-m-d H:i:s'),$type));
-		}else{
-			return false;
-		}
+		//}else{
+		//	return false;
+		//}
 	}
 	private function cekexistterms($slug='',$type='movie'){
 		$get_data_sql="SELECT count(*) as c FROM movie_terms  WHERE k_slug IN('".$slug."') AND type='".$type."'";
@@ -1287,9 +1314,9 @@ class tmdb extends CI_Controller{
 				$keywdata=trim($keywdata);
 				$slug=str_replace(' ','-',$keywdata).'.html';
 				if($keywdata!='' && $this->cekexistterms($slug,$type)==0){
-					$this->CI->db->query("INSERT INTO movie_terms SET k_name=?, k_slug=?,k_date=?, 	k_count_view='0',type='".$type."',source='keywordinject'",array($keywdata,$slug,date('Y-m-d H:i:s')));
+					$this->CI->db->query("INSERT IGNORE INTO movie_terms SET k_name=?, k_slug=?,k_date=?, 	k_count_view='0',type='".$type."',source='keywordinject'",array($keywdata,$slug,date('Y-m-d H:i:s')));
 					// echo $sql;
-					$this->savehasilterms($keywdata,$type,1);
+					$this->savehasilterms($keywdata,$type,1,1);
 					$cnt++;
 					if($cnt>500){
 						$filew .=$keywdata;
@@ -1505,6 +1532,7 @@ class tmdb extends CI_Controller{
 		$usmg=$playerback[$ky];
 		$seasson=array();
 		if(@$type=='tv' /*OR $season!=0 AND $episodes!=0*/ ){
+
 			if($season!=0 AND $episodes!=0){
 				$movies=$this->getEpisodeDb($id,$season,$episodes);
 				$tvs=$this->getTVShowDb($id);
@@ -1521,6 +1549,7 @@ class tmdb extends CI_Controller{
 				}		
 				
 				$backd=$this->getbackdtv($movies);
+				$this->savehasilterms($tvs->getTitle(),$type,1);
 				// file_get_contents(base_url().''.$type.'-tag/'.$tvs->getTitle().'');
 			}else{
 				$movies=$this->getTVShow($id);
@@ -1531,6 +1560,7 @@ class tmdb extends CI_Controller{
 				}
 				$lastEpisodes=end(end($seasson));*/
 				$backd=$this->getbackd($movies);
+				$this->savehasilterms($movies->getTitle(),$type,1);
 				// file_get_contents(base_url().''.$type.'-tag/'.$movies->getTitle().'');
 			}
 
@@ -1538,11 +1568,13 @@ class tmdb extends CI_Controller{
 			$movies=$this->getMovieDbById($id);
 			
 			$backd=$this->getbackd($movies);
+			$this->savehasilterms($movies->getTitle(),$type,1);
 				// file_get_contents(base_url().''.$type.'-tag/'.$movies->getTitle().'');
 		}else{
 			$movies=$this->getMovieDbById($id);
 			// pr($movies);die();
 			$backd=$this->getbackd($movies);
+			$this->savehasilterms($movies->getTitle(),$type,1);
 				// file_get_contents(base_url().''.$type.'-tag/'.$movies->getTitle().'');
 		}
 		
