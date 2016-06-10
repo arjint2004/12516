@@ -184,7 +184,7 @@
 
 											<?php
 											foreach($artist as $art=>$dataartist){
-											if($art<=10){
+											//if($art<=10){
 											$imgurl=$this->tmdb->getImageURL('w154').$dataartist['profile_path'];
 											$fileExists = checkExternalFile($imgurl);
 											if($fileExists==400){$imgurl=base_url().'/assets/img/noback.gif';}
@@ -216,7 +216,7 @@
 												</div>
 												<!-- Movie variant with time -->
 											</div>
-											<?php }  } ?>
+											<?php } // } ?>
 										</div>
 									</div>
                             </div>
