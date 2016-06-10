@@ -29,6 +29,12 @@ class Movies extends My_controller {
 		}
 		redirect($red);
 	}
+	public function artist($id)
+	{
+		$person=$this->tmdb->getPerson($id);
+		$data['person']=$person->get_data();
+		$this->load->view('themes/'.THEMESET.'/movie/person',$data);
+	}
 	public function play($id=0,$tag_title='')
 	{
 		$out=$this->tmdb->set_detail($id,'movie');
@@ -86,14 +92,30 @@ class Movies extends My_controller {
 	}
 	public function genre($id_genre=0,$Page=1,$genre='')
 	{
+		if($id_genre==0 && $genre!=''){
+		
+			if(empty($this->session->userdata('genre'))){
+				$this->session->set_userdata('genre', $this->tmdb->getGenre());
+				$listGenre=$this->session->userdata('genre');
+			}else{
+				$listGenre=$this->session->userdata('genre');
+			}
+			$id_genre=array_search($genre,$listGenre);
+		}
+		$this->tmdb->savehasilterms($genre,'movie',1);
 		$data['genrenya']=$genre;
 		$data['genre']=$this->tmdb->getMovieByGenreDb($id_genre,$Page);
 		$this->load->view('themes/'.THEMESET.'/movie/genre',$data);
 	}
-	public function search()
+	public function search($type='',$page='',$s='')
 	{
-
+		$s=str_replace('.html','',$s);
+		if($s!=''){$_GET['s']=$s;}
+		if($page!=''){$_GET['page']=$page;}
+		if($type!=''){$_GET['type']=$type;}
 		$this->tmdb->searchterms();
+		$_GET['s']=str_replace('-',' ',$_GET['s']);
+		
 		if($_GET['type']=='movie'){
 			$movies['movies']=$this->tmdb->searchMovies($_GET['s'],$_GET['page'],'movie');
 			$movies['type']='movie';

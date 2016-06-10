@@ -2,13 +2,14 @@
 if (!function_exists('checkExternalFile')) {
 	function checkExternalFile($url)
 	{
-		$ch = curl_init($url);
+		/*$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_NOBODY, true);
 		curl_exec($ch);
 		$retCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
 
-		return $retCode;
+		return $retCode;*/
+		return 0;
 	}
 }
 if (!function_exists('make_genre')) {
@@ -19,6 +20,18 @@ if (!function_exists('make_genre')) {
 			$gnr .=$gn['name'].', ';
 		}
 		return $gnr;
+	}
+}
+if (!function_exists('clean_url')) {
+	function clean_url($str='')
+	{
+		$clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $str);
+		$clean = strtolower(trim($clean, '-'));
+		$clean = preg_replace("/[\/_|+ -]+/", '-', $clean);
+		$clean=str_replace(" ","-",$clean);
+		
+		
+		return $clean;
 	}
 }
 if (!function_exists('make_url_meta')) {
@@ -73,9 +86,10 @@ if (!function_exists('getgenrebyid')) {
 			
 			
 			if(isset($idgen->id)){
-				$grnout .=$genre[$idgen->id] .' | ';
+				$grnout .='<a title="'.$genre[$idgen->id].'" href="'.base_url('movies/genre/'.$idgen->id.'/1/'.$genre[$idgen->id].'').'">'.$genre[$idgen->id].'</a> | ';
 			}elseif(isset($genre[$idgen])){
-				$grnout .=$genre[$idgen] .' | ';
+				$grnout .='<a title="'.$genre[$idgen].'" href="'.base_url('movies/genre/'.$idgen.'/1/'.$genre[$idgen].'').'">'.$genre[$idgen].'</a> | ';
+				
 			}
 		}
 		
@@ -91,7 +105,7 @@ if (!function_exists('getgenretv')) {
 		
 		foreach($id as $idgen){
 			if(isset($genre[$idgen->id])){
-				$grnout .=$genre[$idgen->id] .' | ';
+				$grnout .='<a title="'.$genre[$idgen->id].'" href="'.base_url('movies/genre/'.$idgen->id.'/1/'.$genre[$idgen->id].'').'">'.$genre[$idgen->id].'</a> | ';
 			}
 		}
 		

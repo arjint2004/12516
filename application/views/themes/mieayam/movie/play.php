@@ -56,7 +56,7 @@
 													<a class="movie__feature-item movie__feature--photo" href="#">352</a>
 												</div>-->
 										</div>
-										<?PHP //pr($movies);?>
+										<?php //pr($movies);?>
 										<div class="col-sm-9 col-md-10 col-lg-10 movie__about">
 												<a class="movie__title link--huge" href=""><?php echo $movies->getTitle();?></a>
 
@@ -183,8 +183,8 @@
 										<div class="movie-time-wrap">
 
 											<?php
-
 											foreach($artist as $art=>$dataartist){
+											if($art<=10){
 											$imgurl=$this->tmdb->getImageURL('w154').$dataartist['profile_path'];
 											$fileExists = checkExternalFile($imgurl);
 											if($fileExists==400){$imgurl=base_url().'/assets/img/noback.gif';}
@@ -202,11 +202,11 @@
 													<div class="row">
 														<div class="col-sm-6 col-md-5">
 															<div class="movie__images">
-																<img alt='' src="<?php echo $imgurl;?>" width="100%">
+																<img alt='<?php echo $dataartist['name'];?>' src="<?php echo $imgurl;?>" width="100%">
 															</div>
 														</div>	
 														<div class="col-sm-6 col-md-7">
-															<a  class="movie__title"><?php echo $dataartist['name'];?></a>
+															<a  class="movie__title" title="<?php echo $dataartist['name'];?>" href="<?php echo base_url('artist/'.$dataartist['id'].'');?>"><?php echo $dataartist['name'];?></a>
 															<p class="movie__date">character: <?php echo $dataartist['character'];?></p>
 
 															<p class="movie__option"><?php //echo getgenrebyid($dataartist['']);?></p>
@@ -216,7 +216,7 @@
 												</div>
 												<!-- Movie variant with time -->
 											</div>
-											<?php } ?>
+											<?php } break; } ?>
 										</div>
 									</div>
                             </div>

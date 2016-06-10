@@ -50,6 +50,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
+$route['artist/(:any)'] = 'movies/artist/$1';
+$route['artist/(:any)/(:any)'] = 'movies/artist/$1/$1';
 $route['admin/movie'] = 'admin/movie';
 $route['sitemaps'] = 'sitemap/sitemaps';
 $route['sitemaps/(:any)'] = 'sitemap/sitemaps/$1';

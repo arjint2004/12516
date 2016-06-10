@@ -163,11 +163,11 @@ echo $this->load->get_section('player');
 													<div class="row">
 														<div class="col-sm-6 col-md-5">
 															<div class="movie__images">
-																<img alt='' src="<?php echo $imgurl;?>" width="100%">
+																<img alt='<?php echo $dataartist['name'];?>' src="<?php echo $imgurl;?>" width="100%">
 															</div>
 														</div>	
 														<div class="col-sm-6 col-md-7">
-															<a  class="movie__title"><?php echo $dataartist['name'];?></a>
+															<a  class="movie__title" title="<?php echo $dataartist['name'];?>" href="<?php echo base_url('artist/'.$dataartist['id'].'/'.clean_url($dataartist['name']).'.html');?>"><?php echo $dataartist['name'];?></a>
 															<p class="movie__date">character: <?php echo $dataartist['character'];?></p>
 
 															<p class="movie__option"><?php //echo getgenrebyid($dataartist['']);?></p>

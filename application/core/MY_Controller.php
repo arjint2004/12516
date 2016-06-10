@@ -105,8 +105,22 @@ class My_controller extends CI_Controller {
 			$sidebar['termsmovie']=$this->tmdb->getterms();
 			$sidebar['termstv']=$this->tmdb->getterms('tv');
 			
-			$sidebar['popular']=$this->tmdb->getMoviePopular(rand(1,10));
-			$sidebar['tvpopular']=$this->tmdb->getTv(1,'popular');
+			
+			if(empty($this->session->userdata('popular'))){
+				$this->session->set_userdata('popular', $this->tmdb->getMoviePopular(rand(1,10)));
+				$sidebar['popular']=$this->session->userdata('popular');
+			}else{
+				$sidebar['popular']=$this->session->userdata('popular');
+			}
+			
+			
+			if(empty($this->session->userdata('tvpopular'))){
+				$this->session->set_userdata('tvpopular', $this->tmdb->getTv(1,'popular'));
+				$sidebar['tvpopular']=$this->session->userdata('tvpopular');
+			}else{
+				$sidebar['tvpopular']=$this->session->userdata('tvpopular');
+			}
+			
 			
 			$slider=array(
 							'dataslider'=>''
@@ -118,7 +132,13 @@ class My_controller extends CI_Controller {
 			shuffle($upcoming);
 			$upcoming['upcoming']=array(@$upcoming[1],@$upcoming[2],@$upcoming[3]);*/
 
-			$toprated=$this->tmdb->getMovieTop_rated(rand(1,10));		
+			if(empty($this->session->userdata('toprated'))){
+				$this->session->set_userdata('toprated', $this->tmdb->getMovieTop_rated(rand(1,10)));
+				$toprated=$this->session->userdata('toprated');
+			}else{
+				$toprated=$this->session->userdata('toprated');
+			}
+
 			$toprated=$toprated->results;
 			shuffle($toprated);
 			shuffle($toprated);

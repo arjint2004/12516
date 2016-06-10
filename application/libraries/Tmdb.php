@@ -262,7 +262,8 @@ class tmdb extends CI_Controller{
 		shuffle($genre);
 		shuffle($genre);
 		shuffle($genre);
-		$datasave=$this->CI->db->query("SELECT original FROM movie_data WHERE id_genre LIKE '%".$genre[0]['id']."%' AND type='movie'")->result_array();
+		$datasave=$this->CI->db->query("SELECT original FROM movie_data WHERE id_genre LIKE '%".$genre[0]['id']."%' AND type='movie' LIMIT 10")->result_array();
+		// $datasave=$this->CI->db->query("SELECT original FROM movie_data WHERE type='movie' ORDER BY rand() LIMIT 10")->result_array();
 		foreach($datasave as $ori){
 			$cvb['results'][]=json_decode($ori['original'],false);
 		}
@@ -609,7 +610,7 @@ class tmdb extends CI_Controller{
 	 */
 	public function searchMovies($movieTitle,$page=1,$type='movie'){
 		$ch = curl_init();
-		$movieTitle=str_replace(" ","+",$movieTitle);
+		$movieTitle=str_replace(" ","+",$this->clean($movieTitle));
 		// echo "http://api.themoviedb.org/3/search/".$type."?query=$movieTitle&api_key=".$this->getApikey()."&language=".$this->getLang()."&page=".$page."";
 		curl_setopt($ch, CURLOPT_URL, "http://api.themoviedb.org/3/search/".$type."?query=$movieTitle&api_key=".$this->getApikey()."&language=".$this->getLang()."&page=".$page."");
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
@@ -1181,61 +1182,92 @@ class tmdb extends CI_Controller{
 		$clean = preg_replace("/[\/_|+ -]+/", ' ', $clean);
 		return $this->noduplicate($clean);
 	}
-	private function savehasilterms($terms='',$type='movie',$page=1,$self=0){
-		$results=$this->searches($terms,$type,$page);
-		if($self==0){
-			$expterms=explode(' ',$terms);
-			if(!empty($expterms)){
-				foreach($expterms as $temsnya){
-					if(strlen($temsnya)>3){
-						
-						$clean = $this->clean($temsnya);
-						$this->savetermsnofile($clean,$type);
+	
+	private function filterminchar($terms='',$minchar=3){
+		$expterms=explode(' ',$terms);
+		$out='';
+		$rr=array();
+		if(!empty($expterms)){
+			foreach($expterms as $temsnya){
+				if(strlen($temsnya)>$minchar){
+					$rr[]=$temsnya;
+					$jjs .='"'.$temsnya.'",';
+				}
+			}
+			$out['string']=implode(' ',$rr);
+			$out['array']=$rr;
+			$out['in']=substr($jjs,0,-1);
+		}
+		return $out;
+	}
+	public function savehasilterms($termsx='',$type='movie',$page=1,$self=0){
+		//cek exist terms
+		$termsx = $this->clean($termsx);
+		$termsx = $this->filterminchar($termsx);
+		$terms =$termsx['string'];
+		if($termsx['in']==''){$termsx['in']='""';}
+		$existterms=$this->CI->db->query('SELECT COUNT(*) as cnt FROM movie_terms WHERE k_name IN('.$termsx['in'].')')->result_array();
+		if($existterms[0]['cnt']==0){//echo 1;
+			// if($page==1){$page=rand(1,30);}
+			$results=$this->searches($terms,$type,$page);
+			if($self==0){
+				$expterms=explode(' ',$terms);
+				if(!empty($expterms)){
+					foreach($expterms as $temsnya){
+						// if(strlen($temsnya)>3){
+							// $clean = $this->clean($temsnya);
+							$this->savetermsnofile($temsnya,$type);
+						// }
 					}
 				}
 			}
-		}
-		foreach($results->results as $datasave){
-			$imgurl=$datasave->poster_path;
-			
-			if($this->cinmovie<60){
-				//$keywords='';
-				if($type=='movie'){
-					$original = $this->getMovie($datasave->id);
-					//$keywords=$this->getKeywordsmovie($datasave->id).' '.$datasave->original_title.' '.$terms;
-					$keywords=$datasave->original_title.' '.$terms;
-					$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre=?, original=?,date=?, type=?, keywords=?";
-					$this->CI->db->query($sqlinsert,array($datasave->id,implode(' ',$datasave->genre_ids),json_encode($original->getdata()),date('Y-m-d H:i:s'),$type,$this->clean($keywords)));
-				}elseif($type=='tv'){
-					$appendToResponse = 'append_to_response=trailers,images,credits,translations,keywords,external_ids';
-					$original = new TVShow($this->_call('tv/' . $datasave->id, $appendToResponse));
-					$originals=(object)$original->getdata();
-					//pr(json_encode($originals));die;
-					//$keywords=$this->getKeywordsmovie($datasave->id).' '.$datasave->name.' '.$terms;
-					
-					$keywords=$datasave->name.' '.$terms;
-					
-					
-					$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre=?, original=?,date=?, type=?, keywords=?";	
-					$this->CI->db->query($sqlinsert,array($datasave->id,implode(' ',$datasave->genre_ids),json_encode($originals),date('Y-m-d H:i:s'),$type,$this->clean($keywords)));
-				}
+			// pr($results->results);die;
+			foreach($results->results as $datasave){
+				// $imgurl=$datasave->poster_path;
 				
+				if($this->cinmovie<10){
+					//$keywords='';
+					if($type=='movie'){
+						$original = $this->getMovie($datasave->id);
+						//$keywords=$this->getKeywordsmovie($datasave->id).' '.$datasave->original_title.' '.$terms;
+						$keywords=$datasave->original_title.' '.$terms;
+						$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre=?, original=?,date=?, type=?, keywords=?";
+						$this->CI->db->query($sqlinsert,array($datasave->id,implode(' ',$datasave->genre_ids),json_encode($original->getdata()),date('Y-m-d H:i:s'),$type,$this->clean($keywords)));
+					}elseif($type=='tv'){
+						$appendToResponse = 'append_to_response=trailers,images,credits,translations,keywords,external_ids';
+						$original = new TVShow($this->_call('tv/' . $datasave->id, $appendToResponse));
+						$originals=(object)$original->getdata();
+						//pr(json_encode($originals));die;
+						//$keywords=$this->getKeywordsmovie($datasave->id).' '.$datasave->name.' '.$terms;
+						
+						$keywords=$datasave->name.' '.$terms;
+						
+						
+						$sqlinsert="INSERT IGNORE INTO movie_data SET id_tmdb=?, id_genre=?, original=?,date=?, type=?, keywords=?";	
+						$this->CI->db->query($sqlinsert,array($datasave->id,implode(' ',$datasave->genre_ids),json_encode($originals),date('Y-m-d H:i:s'),$type,$this->clean($keywords)));
+					}
+					
+				}
+				$this->cinmovie++;
 			}
-			$this->cinmovie++;
+			$this->cinmovie=0;
+			return $results->total_pages;	
 		}
-		$this->cinmovie=0;
-		return $results->total_pages;
 	}
 	public function getDataByTerm($terms='',$type='movie'){
-		$this->savetermsnofile($terms,$type);
+		$terms=$this->clean($terms);
+		// $this->savetermsnofile($terms,$type);
 		$like='';
 		$terms=str_replace('.html','',$terms);
 		$data=array();
 		if(empty($data)){
+			$terms=str_replace(' ','-',$terms);
 			$pecahkey=explode('-',$terms);
-			// pr($pecahkey);die();
-			foreach($pecahkey as $terms2){
+			  // pr($pecahkey);die();
+			foreach($pecahkey as $iix=>$terms2){
 				if(strlen($terms2)>=3){
+				if($iix<=2){
+					$terms2=$this->clean($terms2);
 					$jml_page=$this->savehasilterms($terms2,$type,1);
 					
 					/*$p=2;
@@ -1250,6 +1282,7 @@ class tmdb extends CI_Controller{
 					}*/
 				 $like .="s.keywords LIKE '%".$terms2."%' OR ";
 				}
+				}
 			}
 			$like=substr($like,0,-3).'';
 			if($like==''){$lkk='';}else{$lkk="(".$like.") AND";}
@@ -1263,7 +1296,7 @@ class tmdb extends CI_Controller{
 
 			foreach($h as $res){
 				$data[]=json_decode($res['original']);
-			}			
+			}
 		}
 		
 		
@@ -1375,7 +1408,6 @@ class tmdb extends CI_Controller{
 					$this->getDataByTerm($_GET['s'],$type='movie');
 				// }		
 			}elseif($_GET['type']=='tv' && $_GET['s']!=''){
-			
 				// $searchterms=file_get_contents('keywordstv.txt');
 				
 				// if(strpos($searchterms,$_GET['s']) == false){
@@ -1430,10 +1462,14 @@ class tmdb extends CI_Controller{
 
 
 
-
-		$CountryCodex = @file_get_contents('http://api.apigurus.com/iplocation/v1.8/locateip?key=SAKXG8M5UG6M7Y6ZP67Z&ip='.$this->get_ip().'&format=json');
-		$CountryCodex1=json_decode($CountryCodex,true);
-		$CountryCode=@$CountryCodex1['geolocation_data']['country_code_iso3166alpha2'];
+		if(empty($this->CI->session->userdata('CountryCode'))){
+			$CountryCodex = @file_get_contents('http://api.apigurus.com/iplocation/v1.8/locateip?key=SAKXG8M5UG6M7Y6ZP67Z&ip='.$this->get_ip().'&format=json');
+			$CountryCodex1=json_decode($CountryCodex,true);
+			$this->CI->session->set_userdata('CountryCode', @$CountryCodex1['geolocation_data']['country_code_iso3166alpha2']);
+			$CountryCode=$this->CI->session->userdata('CountryCode');
+		}else{
+			$CountryCode=$this->CI->session->userdata('CountryCode');
+		}
 
 		switch ($CountryCode) {
 			//URL 1 Australia, Canada, Germany, Italy, Spain, United Kingdom, United States, Sweden
@@ -1525,12 +1561,13 @@ class tmdb extends CI_Controller{
 			$imdbID = $_GET['id'];
 		}		
 		
-		
+
 		//SET DETAIL
 		$playerback=array('movie_back.png','20thFox.png','1280x720-6sr.jpg','paramount_intro_sample_by_icepony64-d88n81s.jpg','fox_video_2010_by_charmedpiper1973-d429owp.png.jpg');
 		$ky=array_rand($playerback);
 		$usmg=$playerback[$ky];
 		$seasson=array();
+				
 		if(@$type=='tv' /*OR $season!=0 AND $episodes!=0*/ ){
 
 			if($season!=0 AND $episodes!=0){
@@ -1563,8 +1600,9 @@ class tmdb extends CI_Controller{
 				$this->savehasilterms($movies->getTitle(),$type,1);
 				// file_get_contents(base_url().''.$type.'-tag/'.$movies->getTitle().'');
 			}
-
+		
 		}elseif(@$type=='movie'){
+			
 			$movies=$this->getMovieDbById($id);
 			
 			$backd=$this->getbackd($movies);
@@ -1580,7 +1618,7 @@ class tmdb extends CI_Controller{
 		
 		// $redirect_url='http://'.$domain_name.'/watch_download/'.$type.'/'.str_replace(' ','-',$movies->getTitle()); 
 		
-		
+		  
 		  $trailer=$movies->getTrailers();
 		  // pr($trailer);die;
 		  if(isset($trailer->youtube[0]->source)){$trail=$trailer->youtube[0]->source;}elseif(isset($trailer['youtube'][0]['source'])){$trail=$trailer['youtube'][0]['source'];}
@@ -1631,6 +1669,7 @@ class tmdb extends CI_Controller{
 			$trailer='http://www.youtube.com/v/'.$datavids['items'][$keymax]['id']['videoId'];
 			// define('TRAILER', $trailer . "&vq=small");
 		}
+		
 		return array('trailer'=>$trailer."&vq=small",'movies'=>$movies,'backd'=>$backd,'seasson'=>$seasson,'tvs'=>@$tvs,'aff_link'=>@$aff_link);
 	}
 	

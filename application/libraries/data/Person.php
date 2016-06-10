@@ -16,6 +16,9 @@ class Person extends TMDBObject {
      *
      *  @return string
      */
+    public function get_data() {
+        return $this->_data;
+    }
     public function getProfile() {
         return $this->_data['profile_path'];
     }

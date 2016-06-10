@@ -635,7 +635,8 @@ abstract class CI_DB_driver {
 	 * @return	mixed
 	 */
 	public function query($sql, $binds = FALSE, $return_object = NULL)
-	{
+	{ 
+		// echo $sql.'<br />';
 		if ($sql === '')
 		{
 			log_message('error', 'Invalid query: '.$sql);
