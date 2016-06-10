@@ -20,7 +20,7 @@
                                     <a title="<?php if($type=='movie'){echo $datagenre->original_title;}elseif($type=='tv'){echo $datagenre->name;}?>" href="<?php
 									 if($type=='movie'){$tt= $datagenre->original_title;}elseif($type=='tv'){$tt= $datagenre->name;}
 									echo make_url_detail($datagenre->id,$tt,$type);?>" class="movie-beta__link">
-                                         <img alt='' src="<?php echo $imgurl; ?>" width="100%">
+                                         <img alt='<?php if($type=='movie'){echo $datagenre->original_title;}elseif($type=='tv'){echo $datagenre->name;}?>' src="<?php echo $imgurl; ?>" width="100%">
                                     </a>
                                 </div>
 								<?php $rnd=rand(1,50)/10;?>

@@ -11,7 +11,7 @@
 						
 					 ?>
 					 <div class="movie-beta__item ">
-                        <img alt='' src="<?php echo $imgurl;?>" width="100%">
+                        <img alt='<?php echo $dtatop->original_title;?>' src="<?php echo $imgurl;?>" width="100%">
                          <span class="best-rate"><?php echo round($dtatop->vote_average,1);?></span>
 
                          <ul class="movie-beta__info">

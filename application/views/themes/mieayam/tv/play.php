@@ -51,7 +51,7 @@ echo $this->load->get_section('player');
 									<div class="movie movie--preview movie--full release">
 										 <div class="col-sm-3 col-md-2 col-lg-2">
 												<div class="movie__images">
-													<img alt='' src="<?php echo $this->tmdb->getImageURL('w92') . $movies->getPoster();?>" width="100%">
+													<img alt='<?php echo $movies->getTitle();?>' src="<?php echo $this->tmdb->getImageURL('w92') . $movies->getPoster();?>" width="100%">
 												</div>
 												<!--<div class="movie__feature">
 													<a class="movie__feature-item movie__feature--comment" href="#">123</a>

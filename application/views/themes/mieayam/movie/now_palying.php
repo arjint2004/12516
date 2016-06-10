@@ -18,7 +18,7 @@
                             <div class="movie movie--test movie--test--dark movie--test--<?php if($xx%2==0){echo 'left';}else{echo 'right';}?>">
                                 <div class="movie__images">
                                     <a href="<?php echo make_url_detail($datanowplay->id,$datanowplay->original_title,'movie');?>" class="movie-beta__link" title="<?php echo $datanowplay->original_title;?>" >
-                                         <img alt='' src="<?php echo $imgurl; ?>" width="100%">
+                                         <img alt='<?php echo $datanowplay->original_title;?>' src="<?php echo $imgurl; ?>" width="100%">
                                     </a>
                                 </div>
 								<?php $rnd=rand(1,50)/10;?>

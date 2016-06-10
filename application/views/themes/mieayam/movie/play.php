@@ -48,7 +48,7 @@
 									<div class="movie movie--preview movie--full release">
 										 <div class="col-sm-3 col-md-2 col-lg-2">
 												<div class="movie__images">
-													<img alt='' src="<?php echo $this->tmdb->getImageURL('w92') . $movies->getPoster();?>" width="100%">
+													<img alt='<?php echo $movies->getTitle();?>' src="<?php echo $this->tmdb->getImageURL('w92') . $movies->getPoster();?>" width="100%">
 												</div>
 												<!--<div class="movie__feature">
 													<a class="movie__feature-item movie__feature--comment" href="#">123</a>
@@ -113,7 +113,7 @@
                                                     <div class="col-sm-6 col-md-5">
                                                         <div class="movie__images">
                                                             <span class="movie__rating"><?php echo round($Similarmovie->vote_average,1);?></span>
-                                                            <img alt='' src="<?php echo $imgurl;?>" width="100%">
+                                                            <img alt='<?php echo $Similarmovie->original_title;?>' src="<?php echo $imgurl;?>" width="100%">
                                                         </div>
                                                     </div>
 

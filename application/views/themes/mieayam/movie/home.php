@@ -19,7 +19,7 @@
                             <div class="movie movie--test movie--test--dark movie--test--<?php if($xx%2==0){echo 'left';}else{echo 'right';}?>">
                                 <div class="movie__images">
                                     <a href="<?php echo make_url_detail($datamovie->id,$datamovie->original_title,'movie');?>" class="movie-beta__link" title="<?php echo $datamovie->original_title;?>">
-                                        <img alt='' src="<?php echo $imgurl; ?>" width="100%">
+                                        <img alt='<?php echo $datamovie->original_title;?>' src="<?php echo $imgurl; ?>" width="100%">
                                     </a>
                                 </div>
                                 <div class="movie__info">
@@ -65,7 +65,7 @@
                             <div class="movie movie--test movie--test--dark movie--test--<?php if($xx%2==0){echo 'left';}else{echo 'right';}?>">
                                 <div class="movie__images">
                                     <a href="<?php echo make_url_detail($datamovie->id,$datamovie->original_name,'tv');?>" class="movie-beta__link" title="<?php echo $datamovie->original_name;?>">
-                                        <img alt='' src="<?php echo $imgurl; ?>">
+                                        <img alt='<?php echo $datamovie->original_name;?>' src="<?php echo $imgurl; ?>">
                                     </a>
                                 </div>
 								<?php $rnd=rand(1,50)/10;?>

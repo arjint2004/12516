@@ -22,7 +22,7 @@
 								?> 
 								<?php echo $movies->getTitle()?></div>
                         		<div id="streaming">
-                                		<img class="img-backdrop" src="<?php echo $backd; ?>" alt="" itemprop="image" height="524" width="720">
+                                		<img class="img-backdrop" src="<?php echo $backd; ?>" alt="<?php echo $movies->getTitle()?>" itemprop="image" height="524" width="720">
                                 		<span class="mpaa">HD</span>
                                 		<div class="watermark"><?php echo $this->session->userdata('namadomain');?></div>
                                 		<div class="inline play-button registration">
@@ -65,7 +65,7 @@
                 <div class="modal-body clearfix">
                         <div class="row">
                                 <div class="col-md-6" id="login">
-                                        <img class="img-responsive" src="<?php echo $backd; ?>">
+                                        <img class="img-responsive" alt="<?php echo $movies->getTitle()?>" title="<?php echo $movies->getTitle()?>" src="<?php echo $backd; ?>">
                                         <hr>
                                         <h5>Member Login</h5>
                                         <div class="form-group">
