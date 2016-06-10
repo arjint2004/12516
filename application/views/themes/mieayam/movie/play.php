@@ -216,7 +216,7 @@
 												</div>
 												<!-- Movie variant with time -->
 											</div>
-											<?php } break; } ?>
+											<?php }  } ?>
 										</div>
 									</div>
                             </div>
