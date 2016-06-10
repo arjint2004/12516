@@ -13,7 +13,7 @@
 						<?php foreach($genre as $cx=>$datagenre){
 							if($cx<4){
 						?>
-                        <li><a href="<?php echo base_url("movies/genre/".$datagenre['id']."/1/".$datagenre['nama']."");?>" class="nav-link__item"><?php echo $datagenre['nama'];?></a></li>
+                        <li><a title="<?php echo $datagenre['nama'];?>" href="<?php echo base_url("movies/genre/".$datagenre['id']."/1/".$datagenre['nama']."");?>" class="nav-link__item"><?php echo $datagenre['nama'];?></a></li>
                         <?php } } ?>
                     </ul>
                 </div>
@@ -22,7 +22,7 @@
 						<?php foreach($genre as $cx=>$datagenre){
 							if($cx>4 && $cx<9){
 						?>
-                        <li><a href="<?php echo base_url("movies/genre/".$datagenre['id']."/1/".$datagenre['nama']."");?>" class="nav-link__item"><?php echo $datagenre['nama'];?></a></li>
+                        <li><a title="<?php echo $datagenre['nama'];?>" href="<?php echo base_url("movies/genre/".$datagenre['id']."/1/".$datagenre['nama']."");?>" class="nav-link__item"><?php echo $datagenre['nama'];?></a></li>
                         <?php } } ?>
                     </ul>
                 </div>
@@ -31,7 +31,7 @@
 						<?php foreach($genre as $cx=>$datagenre){
 							if($cx>9 && $cx<14){
 						?>
-                        <li><a href="<?php echo base_url("movies/genre/".$datagenre['id']."/1/".$datagenre['nama']."");?>" class="nav-link__item"><?php echo $datagenre['nama'];?></a></li>
+                        <li><a title="<?php echo $datagenre['nama'];?>" href="<?php echo base_url("movies/genre/".$datagenre['id']."/1/".$datagenre['nama']."");?>" class="nav-link__item"><?php echo $datagenre['nama'];?></a></li>
                         <?php } } ?>
                     </ul>
                 </div>
@@ -84,7 +84,7 @@
                         
                         <div class="login__control">
                             <button type='submit' class="btn btn-md btn--warning btn--wider">sign in</button>
-                            <a href="#" class="login__tracker form__tracker">Forgot password?</a>
+                            <a href="#" title="Forgot password?" class="login__tracker form__tracker">Forgot password?</a>
                         </div>
                     </form>
                 </div>

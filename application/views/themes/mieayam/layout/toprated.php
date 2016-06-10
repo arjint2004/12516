@@ -22,7 +22,7 @@
                                 <!--<p>38 comments</p>-->
                              </li>
                              <li class="last-block">
-                                 <a href="<?php echo make_url_detail($dtatop->id,$dtatop->original_title,'movie');?>" class="slide__link">more</a>
+                                 <a href="<?php echo make_url_detail($dtatop->id,$dtatop->original_title,'movie');?>" class="slide__link"  title="<?php echo $dtatop->original_title;?>" >more</a>
                              </li>
                          </ul>
                      </div>

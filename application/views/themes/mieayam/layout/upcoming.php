@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <p class="post__date"><?php echo $dataupcoming->release_date;?></p>
-                        <a href="single-page-left.html" class="post__title"><?php echo $dataupcoming->original_title;?></a>
+                        <a href="single-page-left.html" class="post__title" title="<?php echo $dataupcoming->original_title;?>" ><?php echo $dataupcoming->original_title;?></a>
                         <a href="single-page-left.html" class="btn read-more post--btn">read more</a>
                     </div>
                 </div>

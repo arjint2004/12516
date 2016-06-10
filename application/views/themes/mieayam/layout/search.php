@@ -15,8 +15,8 @@
                       <div class="mega-select pull-right">
                           <span class="mega-select__point">Search by</span>
                           <ul class="mega-select__sort">
-                              <li class="filter-wrap"><a href="#" class="mega-select__filter" data-filter='cinema'>Movie</a></li>
-                              <li class="filter-wrap"><a href="#" class="mega-select__filter" data-filter='actors'>TV Series</a></li>
+                              <li class="filter-wrap"><a href="#" class="mega-select__filter" data-filter='cinema' title="Movie" >Movie</a></li>
+                              <li class="filter-wrap"><a href="#" class="mega-select__filter" data-filter='actors' title="TV Series" >TV Series</a></li>
                           </ul>
 						  <?php echo form_open(base_url().'movies/search', array('name'=>'search','id'=>'formsearch','class'=>'formsearch','method'=>'get')); ?>
                           <input name="s" type='text' class="select__field">
@@ -24,8 +24,8 @@
                           <input name="page" type='hidden'  value="1">
                           
                           <div class="select__btn">
-                            <a href="#" onclick="$('form#formsearch').submit();" class="btn btn-md btn--danger cinema" style="display: inline-block;">Find <span class="hidden-exrtasm">Movie</span></a>
-                            <a href="#" onclick="$('form#formsearch').submit();" class="btn btn-md btn--danger actors">Find <span class="hidden-exrtasm">TV Series</span></a>
+                            <a href="#" onclick="$('form#formsearch').submit();" class="btn btn-md btn--danger cinema" style="display: inline-block;"  title="Find Movie" >Find <span class="hidden-exrtasm">Movie</span></a>
+                            <a href="#" onclick="$('form#formsearch').submit();" class="btn btn-md btn--danger actors"  title="Find TV Series" >Find <span class="hidden-exrtasm">TV Series</span></a>
                           </div>
 						  <?php echo form_close();?>
                           <div class="select__dropdowns">

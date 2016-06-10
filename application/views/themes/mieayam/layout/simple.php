@@ -27,7 +27,7 @@
 </head>
 <body>
 <div>
-	<a href="<?php echo site_url(); ?>">Home</a> |
+	<a href="<?php echo site_url(); ?>" title="Home" >Home</a> |
 	<a href="<?php echo site_url('example/example_1'); ?>">Example 1</a> |
 	<a href="<?php echo site_url('example/example_2'); ?>">Example 2</a> |
 	<a href="<?php echo site_url('example/example_3'); ?>">Example 3</a> |

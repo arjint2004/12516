@@ -33,11 +33,11 @@
                       <!-- Nav tabs -->
                       <div class="container">
                           <ul class="nav nav-tabs" id="hTab">
-                            <li class="active"><a href="#detail1" data-toggle="tab">Detail</a></li>
-                            <li><a href="#movie1" data-toggle="tab">Simillar Movies</a></li>
-                            <!--<li><a href="#comment1" data-toggle="tab">Review</a></li>-->
-                            <li><a href="#map1" data-toggle="tab">Trailler</a></li>
-                            <li><a href="#star1" data-toggle="tab">Artist</a></li>
+                            <li class="active"><a href="#detail1" data-toggle="tab" title="Detail" >Detail</a></li>
+                            <li><a href="#movie1" data-toggle="tab" title="Simillar Movies" >Simillar Movies</a></li>
+                            <!--<li><a href="#comment1" data-toggle="tab" title="Review" >Review</a></li>-->
+                            <li><a href="#map1" data-toggle="tab" title="Trailler" >Trailler</a></li>
+                            <li><a href="#star1" data-toggle="tab" title="Artist" >Artist</a></li>
                           </ul>
                       </div>
 
@@ -58,7 +58,7 @@
 										</div>
 										<?php //pr($movies);?>
 										<div class="col-sm-9 col-md-10 col-lg-10 movie__about">
-												<a class="movie__title link--huge" href=""><?php echo $movies->getTitle();?></a>
+												<a class="movie__title link--huge" href="" title="<?php echo $movies->getTitle();?>" ><?php echo $movies->getTitle();?></a>
 
 												<p class="movie__time"><?php echo $movies->getrunTime();?> min</p>
 
@@ -118,7 +118,7 @@
                                                     </div>
 
                                                     <div class="col-sm-6 col-md-7">
-                                                        <a href='<?php echo make_url_detail($Similarmovie->id,$Similarmovie->original_title,'movie');?>' class="movie__title"><?php echo $Similarmovie->original_title;?></a>
+                                                        <a href='<?php echo make_url_detail($Similarmovie->id,$Similarmovie->original_title,'movie');?>' title="<?php echo $Similarmovie->original_title;?>"  class="movie__title"><?php echo $Similarmovie->original_title;?></a>
                                                         <p class="movie__time">Date: <?php echo $Similarmovie->release_date;?></p>
 
                                                         <p class="movie__option"><?php echo getgenrebyid($Similarmovie->genre_ids);?></p>
