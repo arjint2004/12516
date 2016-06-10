@@ -3,7 +3,7 @@
                         <div class="sitebar first-banner--left">
 							<?php echo $this->load->get_section('sidebar'); ?>
                             <div class="category category--discuss category--count marginb-sm mobile-category ls-cat">
-								<h3 class="category__title">MOVIE <br><span class="title-edition">Popular</span></h3>
+								<h3 class="category__title">MOVIE <br><span class="title-edition">Top Rated</span></h3>
 								<ol>
 									<?php foreach($popular->results as $popi=>$PopularMovie){
 									?>

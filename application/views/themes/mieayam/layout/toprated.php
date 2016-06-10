@@ -1,5 +1,5 @@
 <div class="movie-best">
-                 <div class="col-sm-10 col-sm-offset-1 movie-best__rating">TOp Rated Movie</div>
+                 <div class="col-sm-10 col-sm-offset-1 movie-best__rating">Popular Movie</div>
                  <div class="col-sm-12 change--col">
                      <?php
 						  // pr($toprated);

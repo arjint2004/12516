@@ -107,7 +107,8 @@ class My_controller extends CI_Controller {
 			
 			
 			if(empty($this->session->userdata('popular'))){
-				$this->session->set_userdata('popular', $this->tmdb->getMoviePopular(rand(1,10)));
+				// $this->session->set_userdata('popular', $this->tmdb->getMoviePopular(rand(1,10)));
+				$this->session->set_userdata('popular', $this->tmdb->getMovieTop_rated(rand(1,10)));
 				$sidebar['popular']=$this->session->userdata('popular');
 			}else{
 				$sidebar['popular']=$this->session->userdata('popular');
@@ -133,7 +134,8 @@ class My_controller extends CI_Controller {
 			$upcoming['upcoming']=array(@$upcoming[1],@$upcoming[2],@$upcoming[3]);*/
 
 			if(empty($this->session->userdata('toprated'))){
-				$this->session->set_userdata('toprated', $this->tmdb->getMovieTop_rated(rand(1,10)));
+				// $this->session->set_userdata('toprated', $this->tmdb->getMovieTop_rated(rand(1,10)));
+				$this->session->set_userdata('toprated', $this->tmdb->getMoviePopular(rand(1,10)));
 				$toprated=$this->session->userdata('toprated');
 			}else{
 				$toprated=$this->session->userdata('toprated');
