@@ -109,6 +109,7 @@ class Movies extends My_controller {
 	}
 	public function search($type='',$page='',$s='')
 	{
+		// pr($this->tmdb->get_cache_search());die;
 		$s=str_replace('.html','',$s);
 		if($s!=''){$_GET['s']=$s;}
 		if($page!=''){$_GET['page']=$page;}
@@ -119,13 +120,17 @@ class Movies extends My_controller {
 		if($_GET['type']=='movie'){
 			$movies['movies']=$this->tmdb->searchMovies($_GET['s'],$_GET['page'],'movie');
 			$movies['type']='movie';
+			$this->tmdb->cache_search($_GET['s'],'movie');
 		}elseif($_GET['type']=='tv'){
 			$movies['movies']=$this->tmdb->searchMovies($_GET['s'],$_GET['page'],'tv');
 			$movies['type']='tv';
+			$this->tmdb->cache_search($_GET['s'],'tv');
 		}else{
 			$movies['movies']=$this->tmdb->searchMovies($_GET['s'],$_GET['page'],'movie');
 			$movies['type']='movie';
+			$this->tmdb->cache_search($_GET['s'],'movie');
 		}
+		
 		$this->load->view('themes/'.THEMESET.'/movie/search',$movies);
 	}
 }

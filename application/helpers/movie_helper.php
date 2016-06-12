@@ -40,8 +40,9 @@ if (!function_exists('make_url_meta')) {
 		$clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $str);
 		$clean = strtolower(trim($clean, '-'));
 		$clean = preg_replace("/[\/_|+ -]+/", '-', $clean);
-		$clean=str_replace("-","+",$clean);
-		$url=base_url('movies/search?s='.$clean.'&type='.$type.'&page=1');
+		$clean=str_replace("-"," ",$clean);
+		// $url=base_url('movies/search?s='.$clean.'&type='.$type.'&page=1');
+		$url=base_url('movies/search/'.$type.'/1/'.$clean.'.html');
 		
 		return $url;
 	}

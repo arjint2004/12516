@@ -1683,5 +1683,41 @@ class tmdb extends CI_Controller{
 		return $out;
 		
 	}
+	
+	public function get_cache_search(){
+		$data_v['movie']=json_decode(file_get_contents('latest_search_movie.txt'),true);
+		$data_v['tv']=json_decode(file_get_contents('latest_search_tv.txt'),true);
+		return $data_v;
+	}
+	public function cache_search($terms='',$type='movie'){
+	
+		if($type=='movie'){$filename='latest_search_movie.txt';}elseif($type=='tv'){$filename='latest_search_tv.txt';}else{$filename='latest_search_movie.txt';}
+		// simpan untuk latesst view
+		$file_to_save=$filename;
+		if(!file_exists($filename)){
+			file_put_contents($filename,'["Action","Adventure"]');
+		}
+		
+		$data_v=file_get_contents($filename);
+		$arrdata_v=json_decode($data_v,true);
+		
+		$new_v=array($terms);
+		$merge_v=array_merge($arrdata_v,$new_v);
+
+		if(count($merge_v)>30){
+			$xc=0;
+			foreach($merge_v as $ii=>$dtcc){
+				$xc++;
+				if($xc<5){
+					unset($merge_v[$ii]);
+				}
+			}
+			
+		}
+		
+		file_put_contents($filename,json_encode($merge_v));
+		
+		$data['latest_search']=$merge_v;
+	}
 }
 ?>

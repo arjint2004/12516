@@ -104,6 +104,7 @@ class My_controller extends CI_Controller {
 		if($this->router->fetch_method()!='play'){
 			$sidebar['termsmovie']=$this->tmdb->getterms();
 			$sidebar['termstv']=$this->tmdb->getterms('tv');
+			$sidebar['lastsearch']=$this->tmdb->get_cache_search();
 			
 			
 			if(empty($this->session->userdata('popular'))){
@@ -123,9 +124,7 @@ class My_controller extends CI_Controller {
 			}
 			
 			
-			$slider=array(
-							'dataslider'=>''
-			);
+			
 
 			/*$upcoming=$this->tmdb->getMoviePopular(rand(1,10));
 			$upcoming=$upcoming->results;
@@ -141,14 +140,23 @@ class My_controller extends CI_Controller {
 				$toprated=$this->session->userdata('toprated');
 			}
 
-			$toprated=$toprated->results;
+			$toprated=$toprated->results;		
+
+			$slider=$toprated;
+			shuffle($slider);
+			shuffle($slider);
+			
+			$sliders['slider']=array($slider[0],$slider[1],$slider[2],$slider[3],$slider[4],$slider[5],$slider[6],$slider[7]);
+			unset($slider);
+			
 			shuffle($toprated);
 			shuffle($toprated);
 			$toprated['toprated']=array($toprated[1],$toprated[2],$toprated[3],$toprated[4],$toprated[5],$toprated[6]);
 			
 			$this->load->section('sidebar', 'themes/'.THEMESET.'/layout/sidebar',$sidebar);
-			$this->load->section('slider', 'themes/'.THEMESET.'/layout/slider',$slider);
+			$this->load->section('slider', 'themes/'.THEMESET.'/layout/slider',$sliders);
 			$this->load->section('toprated', 'themes/'.THEMESET.'/layout/toprated',$toprated);
+			$this->load->section('tvpopular', 'themes/'.THEMESET.'/layout/tvpopular',$sidebar['tvpopular']);
 			$this->load->section('search', 'themes/'.THEMESET.'/layout/search');
 			// $this->load->section('upcoming', 'themes/'.THEMESET.'/layout/upcoming',$upcoming);
 		}else{

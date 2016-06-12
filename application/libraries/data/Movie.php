@@ -75,8 +75,9 @@ class Movie extends TMDBObject {
 		foreach ( $this->_data['credits']['cast'] as $value ) {
 			$group[$value['name']] = $value;
 		}
+
 		foreach($group as $gn){
-			$gnr .=$gn['name'].', ';
+			$gnr .='<a href="'.base_url('artista/'.$gn['id'].'/'.$gn['name'].'.html').'" title="'.$gn['name'].'" >'.$gn['name'].'</a>, '; 
 		}
 		return $gnr;
 	}			
@@ -96,7 +97,7 @@ class Movie extends TMDBObject {
 	public function getGenres() {
 		$gnr='';
 		foreach($this->_data['genres'] as $gn){
-			$gnr .=$gn['name'].', ';
+			$gnr .='<a href="'.base_url('movies/genre/'.$gn['id'].'/1/'.$gn['name'].'.html').'" title="'.$gn['name'].'" >'.$gn['name'].'</a>, ';
 		}
 		return $gnr;
 	}	
