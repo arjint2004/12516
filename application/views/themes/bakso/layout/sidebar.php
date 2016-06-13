@@ -1,4 +1,7 @@
-<aside class="secBg sidebar">
+					<?php
+						$lastsearch=$this->tmdb->get_cache_search();
+					?>
+					<aside class="secBg sidebar">
                         <div class="row">
                             <!-- search Widget -->
                             <div class="large-12 medium-7 medium-centered columns">
@@ -226,17 +229,9 @@
                                         <h5>Movie Last Search Terms</h5>
                                     </div>
                                     <div class="tagcloud">
-                                        <a href="#">3D Videos</a>
-                                        <a href="#">Videos</a>
-                                        <a href="#">HD</a>
-                                        <a href="#">Movies</a>
-                                        <a href="#">Sports</a>
-                                        <a href="#">3D</a>
-                                        <a href="#">Movies</a>
-                                        <a href="#">Animation</a>
-                                        <a href="#">HD</a>
-                                        <a href="#">Music</a>
-                                        <a href="#">Recreation</a>
+										<?php  foreach($lastsearch['movie'] as $popix=>$termsdata){?>
+										<a href="<?php echo make_url_meta($termsdata,'movie');?>" title="<?php echo $termsdata?>" ><?php echo $termsdata?></a>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div><!-- End tags -->
@@ -247,17 +242,10 @@
                                         <h5>TV Last Search Terms</h5>
                                     </div>
                                     <div class="tagcloud">
-                                        <a href="#">3D Videos</a>
-                                        <a href="#">Videos</a>
-                                        <a href="#">HD</a>
-                                        <a href="#">Movies</a>
-                                        <a href="#">Sports</a>
-                                        <a href="#">3D</a>
-                                        <a href="#">Movies</a>
-                                        <a href="#">Animation</a>
-                                        <a href="#">HD</a>
-                                        <a href="#">Music</a>
-                                        <a href="#">Recreation</a>
+									<?php  foreach($lastsearch['tv'] as $popix=>$termsdata){?>
+                                        <a href="<?php echo make_url_meta($termsdata,'tv');?>" title="<?php echo $termsdata?>" ><?php echo $termsdata?></a>
+									<?php } ?>
+                                        
                                     </div>
                                 </div>
                             </div><!-- End tags -->

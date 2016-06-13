@@ -168,9 +168,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="text-center row-btn">
+                                <!--<div class="text-center row-btn">
                                     <a class="button radius" title="View All" href="<?php echo base_url('tv/top_rated');?>">View All</a>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                     </section>

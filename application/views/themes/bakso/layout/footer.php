@@ -68,23 +68,20 @@
                             </div>
                         </div>
                     </div>
+					<?php
+						$termsmovie=$this->tmdb->getterms();
+						$termstv=$this->tmdb->getterms('tv');
+					?>
                     <div class="large-3 medium-6 columns">
                         <div class="widgetBox">
                             <div class="widgetTitle">
                                 <h5>Movies Tags</h5>
                             </div>
                             <div class="tagcloud">
-                                <a href="#">3D Videos</a>
-                                <a href="#">Videos</a>
-                                <a href="#">HD</a>
-                                <a href="#">Movies</a>
-                                <a href="#">Sports</a>
-                                <a href="#">3D</a>
-                                <a href="#">Movies</a>
-                                <a href="#">Animation</a>
-                                <a href="#">HD</a>
-                                <a href="#">Music</a>
-                                <a href="#">Recreation</a>
+							<?php foreach($termsmovie as $popix=>$termsdata){?>
+                                <a href="<?php echo make_url_meta($termsdata['k_name'],'movie');?>" title="<?php echo $termsdata['k_name']?>" ><?php echo $termsdata['k_name']?></a>
+							<?php } ?>
+                               
                             </div>
                         </div>
                     </div>
@@ -94,17 +91,10 @@
                                 <h5>TV Series Tags</h5>
                             </div>
                             <div class="tagcloud">
-                                <a href="#">3D Videos</a>
-                                <a href="#">Videos</a>
-                                <a href="#">HD</a>
-                                <a href="#">Movies</a>
-                                <a href="#">Sports</a>
-                                <a href="#">3D</a>
-                                <a href="#">Movies</a>
-                                <a href="#">Animation</a>
-                                <a href="#">HD</a>
-                                <a href="#">Music</a>
-                                <a href="#">Recreation</a>
+							<?php foreach($termstv as $popix=>$termsdata){?>
+                                <a href="<?php echo make_url_meta($termsdata['k_name'],'tv');?>" title="<?php echo $termsdata['k_name']?>" ><?php echo $termsdata['k_name']?></a>
+							<?php } ?>
+                                
                             </div>
                         </div>
                     </div>
