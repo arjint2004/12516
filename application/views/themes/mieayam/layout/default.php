@@ -55,7 +55,7 @@
         <!-- Main content -->
         <section class="container">
             
-            <?php echo $this->load->get_section('toprated'); ?>
+            <?php echo $this->load->get_section('popularmovie'); ?>
             <?php echo $this->load->get_section('search'); ?>
             
             <div class="clearfix"></div>

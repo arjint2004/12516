@@ -1,94 +1,113 @@
-    <footer class="footer-wrapper">
-            <section class="container">
-                <div class="col-xs-4 col-md-2 footer-nav">
-					<?php
-						$i=0;
-						foreach($this->session->userdata('genre') as $idgen=>$dtgenre){
-							$genre[$i]['nama']=$dtgenre;
-							$genre[$i]['id']=$idgen;
-							$i++;
-						}
-					?>
-                    <ul class="nav-link">
-						<?php foreach($genre as $cx=>$datagenre){
-							if($cx<4){
-						?>
-                        <li><a title="<?php echo $datagenre['nama'];?>" href="<?php echo base_url("movies/genre/".$datagenre['id']."/1/".$datagenre['nama']."");?>" class="nav-link__item"><?php echo $datagenre['nama'];?></a></li>
-                        <?php } } ?>
-                    </ul>
-                </div>
-                <div class="col-xs-4 col-md-2 footer-nav">
-                    <ul class="nav-link">
-						<?php foreach($genre as $cx=>$datagenre){
-							if($cx>4 && $cx<9){
-						?>
-                        <li><a title="<?php echo $datagenre['nama'];?>" href="<?php echo base_url("movies/genre/".$datagenre['id']."/1/".$datagenre['nama']."");?>" class="nav-link__item"><?php echo $datagenre['nama'];?></a></li>
-                        <?php } } ?>
-                    </ul>
-                </div>
-                <div class="col-xs-4 col-md-2 footer-nav">
-                    <ul class="nav-link">
-						<?php foreach($genre as $cx=>$datagenre){
-							if($cx>9 && $cx<14){
-						?>
-                        <li><a title="<?php echo $datagenre['nama'];?>" href="<?php echo base_url("movies/genre/".$datagenre['id']."/1/".$datagenre['nama']."");?>" class="nav-link__item"><?php echo $datagenre['nama'];?></a></li>
-                        <?php } } ?>
-                    </ul>
-                </div>
-                <div class="col-xs-12 col-md-6">
-                    <div class="footer-info">
-                        <p class="heading-special--small"><?php echo $this->session->userdata('namadomain');?><br><span class="title-edition">in the social media</span></p>
-
-                        <div class="social">
-                            <!--<a href='<?php //echo $this->session->userdata('aff_link');?>' class="social__variant fa fa-facebook"></a>
-                            <a href='<?php //echo $this->session->userdata('aff_link');?>' class="social__variant fa fa-twitter"></a>
-                            <a href='<?php //echo $this->session->userdata('aff_link');?>' class="social__variant fa fa-vk"></a>
-                            <a href='<?php //echo $this->session->userdata('aff_link');?>' class="social__variant fa fa-instagram"></a>
-                            <a href='<?php //echo $this->session->userdata('aff_link');?>' class="social__variant fa fa-tumblr"></a>
-                            <a href='<?php //echo $this->session->userdata('aff_link');?>' class="social__variant fa fa-pinterest"></a>-->
+<!-- footer -->
+            <footer>
+                <div class="row">
+                    <div class="large-3 medium-6 columns">
+                        <div class="widgetBox">
+                            <div class="widgetTitle">
+                                <h5>About Betube</h5>
+                            </div>
+                            <div class="textwidget">
+                                Betube video wordpress theme lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s book.
+                            </div>
                         </div>
-                        
-                        <div class="clearfix"></div>
-                        <p class="copy">&copy; <?php echo $this->session->userdata('namadomain');?>, 2016. All rights reserved. Done by <?php echo $this->session->userdata('namadomain');?></p>
+                    </div>
+                    <div class="large-3 medium-6 columns">
+                        <div class="widgetBox">
+                            <div class="widgetTitle">
+                                <h5>Recent Videos</h5>
+                            </div>
+                            <div class="widgetContent">
+                                <div class="media-object">
+                                    <div class="media-object-section">
+                                        <div class="recent-img">
+                                            <img src= "http://placehold.it/80x80" alt="recent">
+                                            <a href="#" class="hover-posts">
+                                                <span><i class="fa fa-play"></i></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="media-object-section">
+                                        <div class="media-content">
+                                            <h6><a href="#">The lorem Ipsumbeen the industry's standard.</a></h6>
+                                            <p><i class="fa fa-user"></i><span>admin</span><i class="fa fa-clock-o"></i><span>5 january 16</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-object">
+                                    <div class="media-object-section">
+                                        <div class="recent-img">
+                                            <img src= "http://placehold.it/80x80" alt="recent">
+                                            <a href="#" class="hover-posts">
+                                                <span><i class="fa fa-play"></i></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="media-object-section">
+                                        <div class="media-content">
+                                            <h6><a href="#">The lorem Ipsumbeen the industry's standard.</a></h6>
+                                            <p><i class="fa fa-user"></i><span>admin</span><i class="fa fa-clock-o"></i><span>5 january 16</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-object">
+                                    <div class="media-object-section">
+                                        <div class="recent-img">
+                                            <img src= "http://placehold.it/80x80" alt="recent">
+                                            <a href="#" class="hover-posts">
+                                                <span><i class="fa fa-play"></i></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="media-object-section">
+                                        <div class="media-content">
+                                            <h6><a href="#">The lorem Ipsumbeen the industry's standard.</a></h6>
+                                            <p><i class="fa fa-user"></i><span>admin</span><i class="fa fa-clock-o"></i><span>5 january 16</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="large-3 medium-6 columns">
+                        <div class="widgetBox">
+                            <div class="widgetTitle">
+                                <h5>Movies Tags</h5>
+                            </div>
+                            <div class="tagcloud">
+                                <a href="#">3D Videos</a>
+                                <a href="#">Videos</a>
+                                <a href="#">HD</a>
+                                <a href="#">Movies</a>
+                                <a href="#">Sports</a>
+                                <a href="#">3D</a>
+                                <a href="#">Movies</a>
+                                <a href="#">Animation</a>
+                                <a href="#">HD</a>
+                                <a href="#">Music</a>
+                                <a href="#">Recreation</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="large-3 medium-6 columns">
+                        <div class="widgetBox">
+                            <div class="widgetTitle">
+                                <h5>TV Series Tags</h5>
+                            </div>
+                            <div class="tagcloud">
+                                <a href="#">3D Videos</a>
+                                <a href="#">Videos</a>
+                                <a href="#">HD</a>
+                                <a href="#">Movies</a>
+                                <a href="#">Sports</a>
+                                <a href="#">3D</a>
+                                <a href="#">Movies</a>
+                                <a href="#">Animation</a>
+                                <a href="#">HD</a>
+                                <a href="#">Music</a>
+                                <a href="#">Recreation</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section>
-        </footer>
-    </div>
-
-    <!-- open/close -->
-        <div class="overlay overlay-hugeinc">
-            
-            <section class="container">
-
-                <div class="col-sm-4 col-sm-offset-4">
-                    <button type="button" class="overlay-close">Close</button>
-                    <form id="login-form" class="login" method='get' novalidate=''>
-                        <p class="login__title">sign in <br><span class="login-edition">welcome to <?php echo $this->session->userdata('namadomain');?></span></p>
-
-                        <div class="social social--colored">
-                                <a href='#' class="social__variant fa fa-facebook"></a>
-                                <a href='#' class="social__variant fa fa-twitter"></a>
-                                <a href='#' class="social__variant fa fa-tumblr"></a>
-                        </div>
-
-                        <p class="login__tracker">or</p>
-                        
-                        <div class="field-wrap">
-                        <input type='email' placeholder='Email' name='user-email' class="login__input">
-                        <input type='password' placeholder='Password' name='user-password' class="login__input">
-
-                        <input type='checkbox' id='#informed' class='login__check styled'>
-                        <label for='#informed' class='login__check-info'>remember me</label>
-                         </div>
-                        
-                        <div class="login__control">
-                            <button type='submit' class="btn btn-md btn--warning btn--wider">sign in</button>
-                            <a href="#" title="Forgot password?" class="login__tracker form__tracker">Forgot password?</a>
-                        </div>
-                    </form>
-                </div>
-
-            </section>
-        </div>
-		
+                <a href="#" id="back-to-top" title="Back to top"><i class="fa fa-angle-double-up"></i></a>
+            </footer><!-- footer -->

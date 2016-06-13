@@ -1,5 +1,8 @@
 					
-                    
+                    <?php 
+					$movie=$this->tmdb->getRandTvMovie();
+					$tv=$this->tmdb->getRandTvMovie('tv');
+					?>
 					<h2 id='target' class="page-heading heading--outcontainer">Movies</h2>
 					<?php 
 					   // pr($movie['results']);

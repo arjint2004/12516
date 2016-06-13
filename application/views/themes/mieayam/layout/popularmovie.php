@@ -1,9 +1,22 @@
+			<?php
+			if(empty($this->session->userdata('popularmovie'))){
+				// $this->session->set_userdata('popularmovie', $this->tmdb->getMovieTop_rated(rand(1,10)));
+				$this->session->set_userdata('popularmovie', $this->tmdb->getMoviePopular(rand(1,10)));
+				$popularmovie=$this->session->userdata('popularmovie');
+			}else{
+				$popularmovie=$this->session->userdata('popularmovie');
+			}
+			$popularmovie=$popularmovie->results;	
+			shuffle($popularmovie);
+			shuffle($popularmovie);
+			$popularmovie=array($popularmovie[1],$popularmovie[2],$popularmovie[3],$popularmovie[4],$popularmovie[5],$popularmovie[6]);
+			?>
 <div class="movie-best">
                  <div class="col-sm-10 col-sm-offset-1 movie-best__rating">Popular Movie</div>
                  <div class="col-sm-12 change--col">
                      <?php
-						  // pr($toprated);
-						foreach($toprated as $dtatop){
+						  // pr($popularmovie);
+						foreach($popularmovie as $dtatop){
 					 	$imgurl=$this->tmdb->getImageURL('w154') . $dtatop->poster_path;
 						// $fileExists = checkExternalFile($imgurl);
 						

@@ -1,4 +1,26 @@
+					<?php
 					
+						$termsmovie=$this->tmdb->getterms();
+						$termstv=$this->tmdb->getterms('tv');
+						$lastsearch=$this->tmdb->get_cache_search();
+						
+						
+						if(empty($this->session->userdata('popular'))){
+							// $this->session->set_userdata('popular', $this->tmdb->getMoviePopular(rand(1,10)));
+							$this->session->set_userdata('popular', $this->tmdb->getMovieTop_rated(rand(1,10)));
+							$popular=$this->session->userdata('popular');
+						}else{
+							$popular=$this->session->userdata('popular');
+						}
+						
+						
+						if(empty($this->session->userdata('tvpopular'))){
+							$this->session->set_userdata('tvpopular', $this->tmdb->getTv(1,'popular'));
+							$tvpopular=$this->session->userdata('tvpopular');
+						}else{
+							$tvpopular=$this->session->userdata('tvpopular');
+						}
+					?>
 					<aside class="col-sm-4 col-md-3" style="margin-top:106px;">
                         <div class="sitebar first-banner--left">
 							<?php echo $this->load->get_section('sidebar'); ?>

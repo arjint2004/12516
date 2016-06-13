@@ -62,8 +62,7 @@ class Movies extends My_controller {
 	}
 	public function home()
 	{
-		$data['movie']=$this->tmdb->getRandTvMovie();
-		$data['tv']=$this->tmdb->getRandTvMovie('tv');
+		$data=array();
 		$this->load->view('themes/'.THEMESET.'/movie/home',$data);
 	}
 	public function nowplaying($page=1)

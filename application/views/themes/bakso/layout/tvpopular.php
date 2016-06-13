@@ -1,4 +1,11 @@
-		<? //pr($tvpopular);?>
+		<?php
+						if(empty($this->session->userdata('tvpopular'))){
+							$this->session->set_userdata('tvpopular', $this->tmdb->getTv(1,'popular'));
+							$tvpopular=$this->session->userdata('tvpopular');
+						}else{
+							$tvpopular=$this->session->userdata('tvpopular');
+						}
+		?>
 		<!-- Category -->
             <section id="category">
                 <div class="row secBg">
@@ -26,7 +33,7 @@
 							<div class="item-cat item thumb-border">
                                 <figure class="premium-img">
                                     <img alt="<?php echo $tvpopulardata->original_name;?>" src="<?php echo $imgurl;?>" alt="carousel">
-                                    <a href="categories.html" class="hover-posts">
+                                    <a href="<?php echo make_url_detail($tvpopulardata->id,$tvpopulardata->original_name,'tv', 1,1);?>" class="hover-posts">
                                         <span><i class="fa fa-play"></i></span>
                                     </a>
                                 </figure>
@@ -36,7 +43,7 @@
                         </div><!-- end carousel -->
                         <div class="row collapse">
                             <div class="large-12 columns text-center row-btn">
-                                <a href="<?php echo base_url('tv/popular');?>" class="button radius">View All Popular TV Series</a>
+                                <a href="<?php echo base_url('tv/popular');?>" title="tv series popular" class="button radius">View All Popular TV Series</a>
                             </div>
                         </div>
                     </div>
