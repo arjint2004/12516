@@ -77,10 +77,10 @@
                                                                 <i class="fa fa-user"></i>
                                                                 <span><a href="#">admin</a></span>
                                                             </p>
-                                                            <!--<p class="pull-left">
+                                                            <p class="pull-left">
                                                                 <i class="fa fa-clock-o"></i>
-                                                                <span>5 January 16</span>
-                                                            </p>-->
+                                                                <span><?php echo $topratedmoviedata->release_date;?></span>
+                                                            </p>
                                                             <p class="pull-left">
                                                                 <i class="fa fa-eye"></i>
                                                                 <span><?php echo rand(500,10000);?></span>
@@ -146,10 +146,10 @@
                                                                 <i class="fa fa-user"></i>
                                                                 <span><a href="#">admin</a></span>
                                                             </p>
-                                                            <!--<p class="pull-left">
+                                                            <p class="pull-left">
                                                                 <i class="fa fa-clock-o"></i>
-                                                                <span>5 January 16</span>
-                                                            </p>-->
+                                                                <span><?php echo $topratedtvdata->release_date;?></span>
+                                                            </p>
                                                             <p class="pull-left">
                                                                 <i class="fa fa-eye"></i>
                                                                 <span><?php echo rand(500,10000);?></span>
