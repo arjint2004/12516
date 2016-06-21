@@ -1,0 +1,305 @@
+/* CUSTOM PLAYER AREA
+---------------------------- */
+div.playersasb .vcontainer {
+        margin: 0 auto 0;
+        position: relative;
+        box-shadow: 0 10px 20px -5px #000;
+        width: 100%;
+        background-color: #000000;
+}
+div.playersasb #streaming {
+        width: 100%;
+        max-height: 580px;
+        /*z-index: 800;*/
+        cursor: pointer;
+        position: relative;
+		overflow:hidden;
+}
+div.playersasb .marquee {
+        color: #70E847;
+        padding: 5px 0;
+        margin: 0 auto;
+        white-space: nowrap;
+        overflow: hidden;
+        box-sizing: border-box;
+        border-top: 1px rgb(84, 86, 84) solid;
+        border-bottom: 1px rgb(84, 86, 84) solid;
+}
+div.playersasb .marquee span {
+        display: inline-block;
+        padding-left: 100%;
+        text-indent: 0;
+        animation: marquee 15s linear infinite;
+}
+div.playersasb .marquee span:hover {
+        animation-play-state: paused
+}
+div.playersasb .img-backdrop {
+        width: 100%;
+        height: auto;
+        height: auto;
+}
+/* Make it move */
+@keyframes marquee {
+    0%   { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+}
+
+div.playersasb .mpaa {
+        font-weight: bold;
+        border: 2px solid #ccc;
+        padding: 0 5px;
+        color: #ccc;
+        font-size: 10pt;
+        border-radius: 5px;
+        position: absolute;
+        z-index: 800;
+        top: 15px;
+        left: 15px;
+}
+div.playersasb .watermark {
+        position: absolute;
+        bottom: 1%;
+        left: 15px;
+        font-size: 16px;
+        opacity: 0.35;
+        z-index: 800;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: moz-none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        color:#ffffff;
+        text-shadow: 1px 1px 1px #666;
+}
+div.playersasb .play-button {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: block;
+        z-index: 3;
+}
+div.playersasb .player-loader {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: block;
+        background: #000 url('../../images/player/player-loading.gif') center center no-repeat;
+        visibility: visible;
+}
+div.playersasb .play-button .fa {
+        display:table;
+        width:100%;
+        height:100%;
+        text-align:center;
+        visibility:hidden;
+}
+div.playersasb .play-button .fa:before{
+        display:table-cell;
+        vertical-align:middle;
+        font-size:80px;
+        color:rgba(255,255,255,.5);
+        color: #2E99E5;
+}
+div.playersasb .play-button:hover > .fa:before{
+        color:#c00;
+        text-shadow:0 1px 2px rgba(0,0,0,.5);
+        cursor:pointer;
+}
+div.playersasb #controls { 
+        width:100%; 
+        padding:5px; 
+        bottom:0; 
+        cursor: pointer; 
+        color: #fff; 
+        opacity: 0.8;
+}
+div.playersasb .control-wrap { 
+        width:100%; 
+        height:30px; 
+        background-color:#000; 
+        background-color:rgba(0,0,0,.8); 
+        position:relative; 
+}
+div.playersasb .cplay, div.playersasb .cvolu, div.playersasb .cset, div.playersasb .cfull { 
+        margin:8px; 
+        height:16px; 
+        width:24px; 
+        display:inline-block; 
+        float:left; 
+        background-image:url('../../images/player/sprite.png'); 
+        background-repeat:no-repeat; 
+        position:relative; 
+        opacity:0.8; 
+}
+div.playersasb .cplay { 
+        background-position:0 -120px; 
+}
+div.playersasb .cplay:hover { 
+        background-position:0 -136px; 
+        opacity:1; 
+}
+div.playersasb .cvolu { 
+        width:auto; 
+        background:none; 
+}
+div.playersasb .progres{
+        display: block;
+        margin: 0 100px 0 220px;
+        position: relative;
+        top: 7px;
+        background: #000;}
+div.playersasb .buffering{
+        position:relative;
+        height:20px;
+        background:#000;
+        display:block;
+        width:100%;
+}
+div.playersasb .progressbar{
+        position:absolute;
+        height:20px;
+        width:5px;
+        background:#c00;
+        display:block;
+        top:0;
+        left:0;
+        z-index: 1;
+}
+div.playersasb .buffering::after{
+        content:'';
+        opacity:0;
+        position:absolute;
+        top:0;
+        right:0;
+        bottom:0;
+        left:0;
+        background: #2A2A2A;
+        -webkit-animation: animate-shine 200s ease-in;
+        -moz-animation: animate-shine 200s ease-in;
+        animation: animate-shine 200s ease-in;
+}
+@-webkit-keyframes animate-shine{0%{opacity:1;width:0;}50%{opacity:1;}100%{opacity:1;width:100%;}}
+@-moz-keyframes animate-shine{0%{opacity:1;width:0;}50%{opacity: 1;}100%{opacity:1;width:100%;}}
+@-webkit-keyframes animate-progres{0%{opacity:1;width:0;}50%{opacity:1;}100%{opacity:1;width:100%;}}
+@-moz-keyframes animate-progres{0%{opacity:1;width:0;}50%{opacity: 1;}100%{opacity:1;width:100%;}}
+div.playersasb .cvol { 
+        height:16px; 
+        width:24px; 
+        display:inline-block; 
+        float:left; 
+        background-image:url('../../images/player/sprite.png'); 
+        background-repeat:no-repeat; 
+        background-position:0 -86px; 
+}
+div.playersasb #ivol.ui-slider-horizontal { 
+        height:7px; 
+        width:0; 
+        overflow:hidden; 
+        background:#999; 
+        position:relative; 
+        top:4px; 
+        margin-left:30px; 
+        box-shadow:inset 0 1px 5px -1px #000;
+}
+div.playersasb .cvolu:hover > #ivol.ui-slider-horizontal { 
+        width:100px; 
+        overflow:visible; 
+}
+div.playersasb #ivol .ui-widget-header { 
+        background:#c00; 
+        box-shadow: inset 0 1px 5px -1px #000; 
+        height:7px; 
+}
+div.playersasb #ivol .ui-slider .ui-slider-range { 
+        position:absolute; 
+        z-index:1; 
+        font-size:.7em; 
+        display:block; 
+        border:0; 
+}
+div.playersasb #ivol .ui-slider-horizontal .ui-slider-range { 
+        top:0; height:100%; 
+}
+div.playersasb #ivol .ui-slider-handle { 
+        width:5px; 
+        height:14px; 
+        background:#ccc; 
+        display:inline-block; 
+        position:relative; 
+        top:-10px; 
+        outline:none; 
+}
+div.playersasb .ctime { 
+        margin:8px; 
+        line-height:16px; 
+        display:inline-block; 
+        float:left; 
+}
+div.playersasb .cset { 
+        background-position:0 -152px; 
+        float:right; 
+        top: -18px;    
+}
+div.playersasb .chade { 
+        height:10px; 
+        width:15px; 
+        display:inline-block; 
+        background:transparent url('../../images/player/sprite.png') -24px -55px no-repeat; 
+        position:absolute; 
+        top:-3px; 
+        right:-3px; 
+}
+div.playersasb .cfull { 
+        background-position:-24px -88px; float:right; 
+        top: -18px;
+}
+@media screen and (min-width: 768px){
+    div.playersasb .progress{
+        margin:0; 
+        border-radius: 0; 
+        height: 0.5em;
+    }
+}
+@media (min-width: 768px) and (max-width: 979px) { 
+    div.playersasb .progress{
+        margin:0; 
+        border-radius: 0; 
+        height: 0.5em;
+    }
+}
+@media (max-width: 767px) {
+    div.playersasb .progress{
+        margin:0; 
+        border-radius: 0; 
+        height: 0.5em;
+    }
+}
+@media (max-width: 480px) {
+    div.playersasb .progress{
+        margin:0; 
+        border-radius: 0; 
+        height: 0.5em;
+    }
+}
+div#modal-watch,div#modal-watch h1,div#modal-watch h2,div#modal-watch h3,div#modal-watch h4,div#modal-watch h5 {
+	font-family:inherit;
+}
+div#login {
+    text-align: left;
+}
+div.vtitle {
+    background: rgb(0, 0, 0) none repeat scroll 0 0;
+	color: rgb(255, 255, 255);
+	font-weight: bold;
+	height: 50px;
+	padding: 15px;
+	text-align: left;
+	text-transform: uppercase;
+}

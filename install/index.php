@@ -179,20 +179,29 @@ $config[\'domain\'] =array(
 							)
 						);
 						
-$config[\'t1\']=array(\'offer_id\'=>\''.$_POST['t1'].'\',
-				  \'aff_id\'=>\''.$_POST['affid'].'\',
-				  \'aff_sub\'=>\''.$_POST['subid'].'\');
-$config[\'t2\']=array(\'offer_id\'=>\''.$_POST['t2'].'\',
-				  \'aff_id\'=>\''.$_POST['affid'].'\',
-				  \'aff_sub\'=>\''.$_POST['subid'].'\');
-$config[\'itl\']=array(\'offer_id\'=>\''.$_POST['itl'].'\',
-				   \'aff_id\'=>\''.$_POST['affid'].'\',
-				   \'aff_sub\'=>\''.$_POST['subid'].'\');
-
+$config[\'email_contact\']=\''.$_POST['email'].'\';
+$config[\'AuthToken\']=\''.$_POST['token'].'\';
 		
-$config[\'useradmin\']=\'admin\';
-$config[\'AuthToken\']=\'0030b064-d0c1-4090-bd00-0a49c9e94151\';
-$config[\'passwordadmin\']=\'9d0fa3bb01d558aa8fdeb18fc0557622\';';
+// OFFER 1 Movie C - US						
+$config[\'t1\']=array(\'offer_id\'=>\''.$_POST['t1'].'\',
+				    \'aff_sub\'=>\''.$_POST['subid'].'\');
+				  
+// OFFER 2 Movie C - AU/CA/DE/ES/UK					  
+$config[\'t2\']=array(\'offer_id\'=>\''.$_POST['t2'].'\',
+				    \'aff_sub\'=>\''.$_POST['subid'].'\');
+				  
+// OFFER 3 Movie C - FR 					  
+$config[\'t3\']=array(\'offer_id\'=>\''.$_POST['t3'].'\',
+				     \'aff_sub\'=>\''.$_POST['subid'].'\');
+				   
+// OFFER 4 Movie C - In\'tl			   
+$config[\'t4\']=array(\'offer_id\'=>\''.$_POST['t4'].'\',
+				    \'aff_sub\'=>\''.$_POST['subid'].'\');
+	
+
+// $config[\'TrialDate\']=\'Jul 22, 2015\';
+// $config[\'useradmin\']=\'admin\';
+// $config[\'passwordadmin\']=\'9d0fa3bb01d558aa8fdeb18fc0557622\';';
 
 file_put_contents($rootPathAgc,$settingagc);
 
@@ -273,24 +282,32 @@ if(substr(sprintf('%o', fileperms($rootPathAgc)), -4)!=='0777'){
         <input <?php echo $disabled;?> id="name" type="text" name="namadomain" placeholder="Nama Domain" />
     </label>
     <label>
+        <span>Email :</span>
+        <input <?php echo $disabled;?> id="email" type="text" name="email" placeholder="Sub Id" />
+    </label>
+    <label>
         <span>Sub ID :</span>
-        <input <?php echo $disabled;?> id="name" type="text" name="subid" placeholder="Sub Id" />
+        <input <?php echo $disabled;?> id="subid" type="text" name="subid" placeholder="Sub Id" />
     </label>
     <label>
-        <span>Affiliate ID :</span>
-        <input <?php echo $disabled;?> id="name" type="text" name="affid" placeholder="Affiliate ID / ID tracking" />
+        <span>Affiliate TOKEN IndoCPA:</span>
+        <input <?php echo $disabled;?> id="token" type="text" name="token" placeholder="Affiliate TOKEN INDOCPA" />
     </label>
     <label>
-        <span>Offer ID T1 :</span>
-        <input <?php echo $disabled;?> id="name" type="text" name="t1" placeholder="Offer ID T1" />
+        <span>Offer Movie C - US :</span>
+        <input <?php echo $disabled;?> id="t1" type="text" name="t1" placeholder="Offer ID T1" />
     </label>
     <label>
-        <span>Offer ID T2 :</span>
-        <input <?php echo $disabled;?> id="name" type="text" name="t2" placeholder="Offer ID T2" />
+        <span>Offer Movie C - AU/CA/DE/ES/UK :</span>
+        <input <?php echo $disabled;?> id="t2" type="text" name="t2" placeholder="Offer ID T2" />
     </label>
     <label>
-        <span>Offer ID ITL :</span>
-        <input <?php echo $disabled;?> id="name" type="text" name="itl" placeholder="Offer ID ITL (International)" />
+        <span>Offer Movie C - FR:</span>
+        <input <?php echo $disabled;?> id="t3" type="text" name="t3" placeholder="Offer ID ITL (International)" />
+    </label>
+    <label>
+        <span>Offer Movie C - In'tl :</span>
+        <input <?php echo $disabled;?> id="t3" type="text" name="t4" placeholder="Offer ID ITL (International)" />
     </label>
     
    

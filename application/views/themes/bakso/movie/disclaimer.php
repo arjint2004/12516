@@ -1,0 +1,2 @@
+<h2 id='target' class="page-heading heading--outcontainer">DISCLAIMER</h2>
+We do not host or upload any video, films, media files (avi, mov, flv, mpg, mpeg, divx, dvd rip, mp3, mp4, torrent, ipod, psp), MovieBuzzer.Us is not responsible for the accuracy, compliance, copyright, legality, decency, or any other aspect of the content of other linked sites. If you have any legal issues please contact the appropriate media file owners or host sites.

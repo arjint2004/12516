@@ -5,7 +5,7 @@
                 <span data-toggle="offCanvas-responsive"><i class="fa fa-times"></i></span>
             </div>
             <ul class="vertical menu off-menu" data-responsive-menu="drilldown">
-                <li class="has-submenu"><a href="#"><i class="fa fa-home"></i>Home</a></li>
+                <li class="has-submenu"><a href="<?php echo base_url();?>"><i class="fa fa-home"></i>Home</a></li>
                 <li class="has-submenu" data-dropdown-menu="example1">
                     <a href="#"><i class="fa fa-film"></i>Genre</a>
                     <ul class="submenu menu vertical" data-submenu data-animate="slide-in-down slide-out-up">
@@ -49,8 +49,10 @@
 						<li ><a href="<?php echo base_url();?>tv/popular"  title="Popular"><i class="fa fa-film"></i>Popular</a></li>
                     </ul>
                 </li>
-                <li><a href="<?php echo base_url();?>movies/about_us"><i class="fa fa-user"></i>about</a></li>
-                <li><a href="<?php echo base_url();?>movies/dmca"><i class="fa fa-envelope"></i>DMCA</a></li>
+                <li><a href="<?php echo base_url();?>movies/about_us" title="about">About</a></li>
+                <li><a href="<?php echo base_url();?>movies/dmca" title="DMCA">DMCA</a></li>
+                <li><a href="<?php echo base_url();?>movies/disclaimer"  title="Disclaimer" >Disclaimer</a></li>
+				
             </ul>
             <!--<div class="responsive-search">
                 <form method="post">
@@ -114,7 +116,7 @@
 
                                         <div class="top-bar-right">
                                             <ul class="menu vertical medium-horizontal" data-responsive-menu="drilldown medium-dropdown">
-                                                <li class="has-submenu active"><a href="#"><i class="fa fa-home"></i>Home</a></li>
+                                                <li class="has-submenu active"><a href="<?php echo base_url();?>"><i class="fa fa-home"></i>Home</a></li>
                                                 <li class="has-submenu" data-dropdown-menu="example1">
                                                     <a href="#"><i class="fa fa-film"></i>Genre</a>
                                                     <ul class="submenu menu vertical" data-submenu data-animate="slide-in-down slide-out-up">
@@ -158,8 +160,9 @@
 														<li ><a href="<?php echo base_url();?>tv/popular"  title="Popular"><i class="fa fa-film"></i>Popular</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="<?php echo base_url();?>movies/about_us"><i class="fa fa-user"></i>about</a></li>
-                                                <li><a href="<?php echo base_url();?>movies/dmca"><i class="fa fa-envelope"></i>DMCA</a></li>
+                                                <li><a href="<?php echo base_url();?>movies/about_us" title="about">About</a></li>
+												<li><a href="<?php echo base_url();?>movies/dmca" title="DMCA">DMCA</a></li>
+												<li><a href="<?php echo base_url();?>movies/disclaimer"  title="Disclaimer" >Disclaimer</a></li>
                                             </ul>
                                         </div>
                                     </div>

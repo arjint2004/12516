@@ -1,6 +1,5 @@
-<!-- left side content area -->
-                <div class="large-8 columns">
-                    <section class="content content-with-sidebar">
+
+                    
                         <!-- newest video -->
                         <div class="main-heading">
                             <div class="row secBg padding-14">
@@ -173,12 +172,5 @@
                                 </div>-->
                             </div>
                         </div>
-                    </section>
-                    <!-- ad Section -->
-                    <div class="googleAdv text-center">
-                        <!--<a href="#"><img src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/images/goodleadv.png" alt="googel ads"></a>-->
-                    </div> <!--End ad Section -->
 
-                    
 
-                </div><!-- end left side content area -->

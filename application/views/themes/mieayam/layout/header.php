@@ -69,7 +69,11 @@
                         </li>
                         <li>
                             <span class="sub-nav-toggle plus"></span>
-                            <a href="<?php echo base_url();?>movies/about_us"  title="About Us" >About Us</a>
+                            <a href="<?php echo base_url();?>movies/contact_us"  title="About Us" >Contact Us</a>
+                        </li>
+                        <li>
+                            <span class="sub-nav-toggle plus"></span>
+                            <a href="<?php echo base_url();?>movies/disclaimer"  title="About Us" >Disclaimer</a>
                         </li>
                         <li>
                             <span class="sub-nav-toggle plus"></span>

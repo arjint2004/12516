@@ -62,7 +62,7 @@ echo $this->load->get_section('player');
 										<?PHP //pr($movies);?>
 										<div class="col-sm-9 col-md-10 col-lg-10 movie__about">
 												<a class="movie__title link--huge" href="" title="<?php echo $movies->getTitle();?>" ><?php echo $movies->getTitle();?></a>
-												<p class="movie__time"><?php //echo $movies->getrunTime();?> min</p>
+												<p ><?php //echo $movies->getrunTime();?> </p>
 
 												<p class="movie__option"><strong>Overview: </strong><?php echo $movies->getOverview();?></p>
 												<!--<p class="movie__option"><strong>Country: </strong><?php //echo $movies->getProductionCountry();?></p>

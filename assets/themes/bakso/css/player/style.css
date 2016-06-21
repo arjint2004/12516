@@ -1,0 +1,106 @@
+
+div.playersasb a {
+        color: #ffa400;
+        text-decoration: none;
+}
+div.playersasb a:hover, 
+div.playersasb a:focus {
+        color: #efac38;
+        text-decoration: underline;
+}
+div.playersasb ol, div.playersasb ul {
+    	padding-left: 20px;
+}
+div.playersasb .h1, div.playersasb h1 {
+        font-size: 26px;
+}
+div.playersasb .navbar-custom {
+        background-color: #222;
+        border-color: #080808;
+        color: #fff;
+}
+div.playersasb .navbar-toggle {
+        color: #428BCA;    
+}
+div.playersasb .navbar-custom a{
+        color: #fff;
+}
+div.playersasb .navbar-custom a:hover{
+        color: wheat;
+}
+div.playersasb .navbar-custom .nav>li>a:hover,
+div.playersasb .navbar-custom .nav>li>a:focus,div.playersasb .nav .open>a, div.playersasb .nav .open>a:focus, div.playersasb .nav .open>a:hover {
+        background-color: #337ab7;
+}
+div.playersasb .box-container {
+	background-color: #101010;
+	border: 1px solid #444343;
+	color: #fff;
+	margin-bottom: 25px;
+	padding: 15px;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.21);
+}
+div.playersasb table {
+        background-color: #181818;
+}
+div.playersasb .table-striped>tbody>tr:nth-of-type(odd) {
+        background-color: #181818;
+}
+div.playersasb .table>tbody>tr>td, div.playersasb .table>tbody>tr>th, div.playersasb .table>tfoot>tr>td, div.playersasb .table>tfoot>tr>th, div.playersasb .table>thead>tr>td, div.playersasb .table>thead>tr>th {
+        border-top: 1px solid #282828;
+}
+div.playersasb .nowrap {
+        display: block;            
+        overflow: hidden;
+}
+div.playersasb .page-header {
+        margin: 0  0 20px;
+        border-bottom: 1px solid #444343;
+}
+div.playersasb .movie-list {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        position: relative;
+}
+div.playersasb .movie-list .thumbnail {
+        margin-bottom: 3px;
+}
+div.playersasb .movie-list-title {
+        font-size: 13px;    
+        padding: 5px 10px;
+        font-weight: 700;
+        background-color: #000;
+        opacity: 0.8;
+        position: absolute;
+        bottom: 10px;
+        right: 0;
+}
+div.playersasb .movie-list .label-info {
+        position: absolute;
+        top: 0;
+        left: 0;
+}
+div.playersasb .media-left a.playicon {
+        width: 128px;
+        height: 128px;
+        display: block;
+        margin-top: -64px;
+        margin-left: -115px;
+        left: 50%;
+        top: 60%;
+        position: absolute;
+}
+div.playersasb .media-left a.playicon i {
+        color: #fff;
+        font-size: 50px;
+        margin-top: 28px;
+        opacity: .5;
+}
+@media (min-width: 1200px){
+
+}
+@media (max-width: 767px){
+        div.playersasb .dropdown-menu>li>a {
+                color: #fff;
+        }
+}

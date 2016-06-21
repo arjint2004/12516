@@ -59,6 +59,15 @@ class Movies extends My_controller {
 	public function dmca()
 	{
 		$this->load->view('themes/'.THEMESET.'/movie/dmca');
+		$this->output->set_template('single');	
+	}
+	public function disclaimer()
+	{
+		$this->load->view('themes/'.THEMESET.'/movie/disclaimer');
+	}
+	public function contact_us()
+	{
+		$this->load->view('themes/'.THEMESET.'/movie/contact_us');
 	}
 	public function home()
 	{

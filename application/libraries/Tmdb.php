@@ -1438,25 +1438,51 @@ class tmdb extends CI_Controller{
 			}
 			return $ip;
 	}	
+	function IndoCPA($TOKEN, $url) {
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		$headers = array();
+		$headers[] = 'Authorization: Bearer ' . $TOKEN;
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		$server_output = curl_exec($ch);
+		$info = curl_getinfo($ch);
+		curl_close($ch);
+		return $server_output;
+	}
 	public function set_detail($id=0,$type='movie',$season=0,$episodes=0){
+
+		$tokenresult=json_decode($this->IndoCPA($this->CI->config->item('AuthToken'), 'https://auth.indocpa.me/user'),true);
+		if($tokenresult['status']=='success'){
+			$profile=$tokenresult['data'];
+		}else{
+			echo "failed auth from INDOCPA";
+			die;
+		}
 
 		//SET ZONE
 
 		$DefaultIDImdb =false;
-		// OFFER T1
+		// OFFER 1 Movie C - US
 		$t1=$this->CI->config->item('t1');
 				  
-		// OFFER T2		  
+		// OFFER 2 Movie C - AU/CA/DE/ES/UK		  
 		$t2=$this->CI->config->item('t2');
 				  
-		// OFFER ITL		  
-		$itl=$this->CI->config->item('itl');
+		// OFFER 3 Movie C - FR 
+		$t3=$this->CI->config->item('t3');
+		
+		// OFFER 4 Movie C - In'tl
+		$t4=$this->CI->config->item('t4');
 				   
 		//AFF LINK
-		$url1 = 'http://watch.vid-id.me/aff_c?offer_id='.$t1['offer_id'].'&aff_id='.$t1['aff_id'].'&aff_sub='.$t1['aff_sub'].''; // 4,20
-		$url2 = 'http://watch.vid-id.me/aff_c?offer_id='.$t2['offer_id'].'&aff_id='.$t2['aff_id'].'&aff_sub='.$t2['aff_sub'].''; // 6,24
-		$urlItl = 'http://watch.vid-id.me/aff_c?offer_id='.$itl['offer_id'].'&aff_id='.$itl['aff_id'].'&aff_sub='.$itl['aff_sub'].''; // 2,22				   
-		
+		$url1 = 'http://watch.vid-id.me/aff_c?offer_id='.$t1['offer_id'].'&aff_id='.$profile['hasOfferId'].'&aff_sub='.$t1['aff_sub'].''; 
+		$url2 = 'http://watch.vid-id.me/aff_c?offer_id='.$t2['offer_id'].'&aff_id='.$profile['hasOfferId'].'&aff_sub='.$t2['aff_sub'].''; 
+		$url3 = 'http://watch.vid-id.me/aff_c?offer_id='.$t3['offer_id'].'&aff_id='.$profile['hasOfferId'].'&aff_sub='.$t3['aff_sub'].''; 
+		$url4 = 'http://watch.vid-id.me/aff_c?offer_id='.$t4['offer_id'].'&aff_id='.$profile['hasOfferId'].'&aff_sub='.$t4['aff_sub'].'';
+
 		//URL Error
 		$urlErrors = 'http://www.indocpa.com/';
 
@@ -1472,59 +1498,42 @@ class tmdb extends CI_Controller{
 		}
 
 		switch ($CountryCode) {
-			//URL 1 Australia, Canada, Germany, Italy, Spain, United Kingdom, United States, Sweden
-			//      AU         CA      DE       IT     ES     UK              US             SE
-			case "AU":
-				$aff_link = $url1;
-				break;
-			case "CA":
-				$aff_link = $url1;
-				break;
-			case "DE":
-				$aff_link = $url1;
-				break;
-			case "IT":
-				$aff_link = $url1;
-				break;
-			case "ES":
-				$aff_link = $url1;
-				break;
-			case "UK":
-				$aff_link = $url1;
-				break;
-			case "GB":
-				$aff_link = $url1;
-				break;
+
+			//Movie C - US
 			case "US":
 				$aff_link = $url1;
 				break;
-			case "SE":
-				$aff_link = $url1;
-				break;
 				
-				
-			//URL 2   France Sweden United_Kingdom
-			//        FR     SE     UK
-			case "FR":
+			//Movie C - AU/CA/DE/ES/UK	
+			case "AU":
 				$aff_link = $url2;
 				break;
-			//Stream4Stream 129
-			case "SE":
+			case "CA":
 				$aff_link = $url2;
 				break;
-			case "GB":
+			case "DE":
+				$aff_link = $url2;
+				break;
+			case "ES":
 				$aff_link = $url2;
 				break;
 			case "UK":
 				$aff_link = $url2;
 				break;
+			
+			//Movie C - FR
+			case "FR":
+				$aff_link = $url3;
+				break;
 				
-			//URL 3   INTERNATIONAL
+			//URL Movie C - In'tl
 			default:
-				$aff_link = $urlItl;
+				$aff_link = $url4;
 		}
+		
+
 		//FREE TRIAL DATE
-		$TrialDate = 'Jul 22, 2015';
+		$TrialDate = $this->CI->config->item('TrialDate');
 		$DateTrial = date('M d, Y', strtotime(''.$TrialDate.' days', strtotime(date('M d, Y'))));
 
 		/*function FilterUrl($url=""){
@@ -1540,13 +1549,16 @@ class tmdb extends CI_Controller{
 
 		$Linkurl1 = explode('/',$url1);
 		$Linkurl2 = explode('/',$url2);
-		$LinkurlItl = explode('/',$urlItl);
+		$Linkurl3 = explode('/',$url3);
+		$Linkurl4 = explode('/',$url4);
 
 		if(!in_array($Linkurl1[2],$LinkValid)) {
 			header('Location: '.$urlErrors);
 		}elseif(!in_array($Linkurl2[2],$LinkValid)){
 			header('Location: '.$urlErrors);	
-		}elseif(!in_array($LinkurlItl[2],$LinkValid)){
+		}elseif(!in_array($Linkurl3[2],$LinkValid)){
+			header('Location: '.$urlErrors);	
+		}elseif(!in_array($Linkurl4[2],$LinkValid)){
 			header('Location: '.$urlErrors);	
 		}
 

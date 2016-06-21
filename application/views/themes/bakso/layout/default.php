@@ -28,7 +28,18 @@
 			<?php echo $this->load->get_section('tvpopular'); ?>
 
             <div class="row">
-                <?php echo $output;?>
+				<!-- left side content area -->
+					<div class="large-8 columns">
+						<section class="content content-with-sidebar">
+
+						<?php echo $output;?>
+						</section>
+						<!-- ad Section -->
+						<div class="googleAdv text-center">
+							<!--<a href="#"><img src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/images/goodleadv.png" alt="googel ads"></a>-->
+						</div> <!--End ad Section -->
+						
+					</div>
                 <!-- sidebar -->
                 <div class="large-4 columns padding-right-remove">
                     <?php echo $this->load->get_section('sidebar'); ?>
@@ -48,17 +59,17 @@
     </div><!--end off canvas wrapper inner-->
 </div><!--end off canvas wrapper-->
 <!-- script files -->
-<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/bower_components/jquery/dist/jquery.js"></script>
-<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/bower_components/what-input/what-input.js"></script>
-<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/bower_components/foundation-sites/dist/foundation.js"></script>
-<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/jquery.showmore.src.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/app.js"></script>
-<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/layerslider/js/greensock.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/bower_components/jquery/dist/jquery.js"></script>
+<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/bower_components/what-input/what-input.js"></script>
+<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/bower_components/foundation-sites/dist/foundation.js"></script>
+<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/jquery.showmore.src.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/app.js"></script>
+<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/layerslider/js/greensock.js" type="text/javascript"></script>
 <!-- LayerSlider script files -->
-<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/layerslider/js/layerslider.transitions.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/layerslider/js/layerslider.kreaturamedia.jquery.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/owl.carousel.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/inewsticker.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/jquery.kyco.easyshare.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/layerslider/js/layerslider.transitions.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/layerslider/js/layerslider.kreaturamedia.jquery.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/owl.carousel.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/inewsticker.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/js/jquery.kyco.easyshare.js" type="text/javascript"></script>
 </body>
 </html>
