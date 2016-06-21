@@ -8,6 +8,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BeTube video</title>
+	<link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/player/bootstrap.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/app.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/theme.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/themes/<?php echo THEMESET;?>/css/font-awesome.min.css">
@@ -43,13 +44,6 @@
             <!-- full width Video -->
             <section class="fullwidth-single-video">
 			<?php echo $this->load->get_section('player');?>
-                <div class="row">
-                    <div class="large-12 columns">
-                        <div class="flex-video widescreen">
-                            
-                        </div>
-                    </div>
-                </div>
             </section>
             <div class="row">
                 <!-- left side content area -->

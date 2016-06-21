@@ -124,7 +124,7 @@ class My_controller extends CI_Controller {
 			$this->load->section('tvpopular', 'themes/'.THEMESET.'/layout/tvpopular');
 			// $this->load->section('upcoming', 'themes/'.THEMESET.'/layout/upcoming',$upcoming);
 		}else{
-			
+			$this->load->section('sidebar', 'themes/'.THEMESET.'/layout/sidebar');
 		}
 		$this->_theme();
 	}
